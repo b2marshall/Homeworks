@@ -46,3 +46,13 @@ def get_n_from_list(n):
         sample_list.append(choice(random_sequence))
     return sample_list
 
+#function for taking the mean of a list of integer values
+def mean_function(list_nums):
+    tempvar = 0
+    for i in range(0, len(list_nums)):
+        tempvar += list_nums[i]
+    tempvar /= len(list_nums)
+    return tempvar
+
+print(mean_function([1,2,3,4,5]))
+
