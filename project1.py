@@ -1,3 +1,12 @@
+import matplotlib.pyplot as plt
+import numpy as np
+#next two imports are for selecting random elements out of our generated list. 
+from random import seed
+from random import choice
+
+
+
+#handles user input and provides simple guardrails for values of the parameters
 m = int(input("m value?\n"))
 if m <= 0: 
     print("invalid value! m value must be positive. \n")
@@ -22,7 +31,7 @@ if N <= 0:
     print("invalid N! N must be a positive integer.\n")
     N = int(input("N value?\n")) 
 
-
+#generates the sequence of random numbers from LCG 
 random_sequence = [x_0] 
 for i in range(0, N-1):
     tempvar = (random_sequence[-1]*a + c) % m
@@ -30,4 +39,10 @@ for i in range(0, N-1):
 
 print(random_sequence)
 
+#function to sample n elements from our random list
+def get_n_from_list(n):
+    sample_list = []
+    for i in range(0,n-1):
+        sample_list.append(choice(random_sequence))
+    return sample_list
 
