@@ -38,7 +38,7 @@ else:
     a = 3
     c = 7 
     x_0 = 0
-    N = 1000000
+    N = 100000
 #generates the sequence of random numbers from LCG 
 random_sequence = [x_0] 
 for i in range(0, N-1):
@@ -68,7 +68,7 @@ plot_bound_xs = max(random_sequence)
 
 fig, axs = plt.subplots(1,1, sharey=True, tight_layout=True)
 axs.hist(random_sequence, bins=number_bins)
-plt.ylim(0,10)
+#plt.ylim(0,10)
 #plt.yticks([0,1,2,3,4,5])
 #plt.xlim(0, plot_bound_xs)
 #plt.figure(figsize=(7,5))
