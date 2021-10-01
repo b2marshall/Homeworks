@@ -49,13 +49,13 @@ if user_input == 2:
     N = 100000
 
 if user_input == 3: 
-    m = 2147482648
+    m = 2147483648
     a = 37769685
     c = 1
     x_0 = 1
     N = 100000
 if user_input == 0:
-    m = 4294967269
+    m = 4294967296
     a = 3
     c = 7 
     x_0 = 0
@@ -63,10 +63,10 @@ if user_input == 0:
 
 #generates the sequence of random numbers from LCG 
 random_sequence = [x_0] 
-for i in range(0, N-1):
+for i in range(0, N):
     tempvar = (random_sequence[-1]*a + c) % m
     random_sequence.append(tempvar) 
-
+'''
 if user_input == 0:
     number_bins = m
     fig, axs = plt.subplots(1,1, figsize=(9,5), sharey=True, tight_layout=True)
@@ -118,7 +118,7 @@ if user_input == 5:
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
     plt.savefig("histogram.png")
-
+'''
 print(random_sequence)
 
 #function to sample n elements from our random list
@@ -134,14 +134,8 @@ def mean_function(list_nums):
     for i in range(0, len(list_nums)):
         tempvar += list_nums[i]
     if len(list_nums) != 0:
-        tempvar /= len(list_nums)
+        tempvar /= float(len(list_nums))
     return tempvar
-
-#def samples_set(n, element_list):
-    #samples_one_to_n = []
-    #for i in range(1,n+1):
-        #samples_one_to_n.append(get_n_from_list(i,element_list))
-    #return samples_one_to_n
 
 def samples_set(size_of_sample,number_of_samples,element_list):
     samples_of_size_n = []
@@ -152,8 +146,12 @@ def samples_set(size_of_sample,number_of_samples,element_list):
 def sample_means(samples_set):
     templist = []
     for i in samples_set:
-        templist.append(mean_function(i))
+        templist.append(np.mean(i))
     return templist
+
+
+nvals = [10,100,1000]
+actual_mean = 0.5*(m-1)
 
 def given_epsilon(sample_means_list, epsilon, actual_mean):
     count_var =0
@@ -162,13 +160,18 @@ def given_epsilon(sample_means_list, epsilon, actual_mean):
             count_var += 1
     return count_var/len(sample_means_list)
 
-def law_large_numbers(epsilon_array,num_samples,sample_size,actual_mean):
-    samp_means = sample_means(samples_set(sample_size,num_samples,random_sequence))
-    probability_array = [given_epsilon(samp_means,epsilon,actual_mean) for epsilon in epsilon_array]
-    return probability_array
+def distance_from_true(mean_array,true_mean):
+    distances = [abs(mean-actual_mean) for mean in mean_array]
+    return(distances)
+mean_distance_sequence = [distance_from_true(sample_means(samples_set(x,1,random_sequence)),actual_mean) for x in [10,100,200,500,10000]]
+print(mean_distance_sequence)
+print(actual_mean)  
+#print(distance_from_true(sample_means(samples_set(50,1,random_sequence)),actual_mean))
+#def law_large_numbers(epsilon_array,num_samples,sample_size,actual_mean):
+    #samp_means = sample_means(samples_set(sample_size,num_samples,random_sequence))
+    #probability_array = [given_epsilon(samp_means,epsilon,actual_mean) for epsilon in epsilon_array]
+    #return probability_array
 
-nvals = [10,100,1000,10000,100000,1000000]
-epsilons = [0.25] 
-for n in nvals:
-    print(law_large_numbers(epsilons,n,100,4))
-
+#print(actual_mean)
+#plotvals = [given_epsilon(sample_means(samples_set(50,n,random_sequence)), 0.15,actual_mean) for n in nvals]
+#print(plotvals)
