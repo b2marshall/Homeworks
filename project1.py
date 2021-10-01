@@ -8,8 +8,9 @@ from random import choice
 
 
 
-#handles user input and provides simple guardrails for values of the parameters
-if int(input("use default? Input '0' for no, and 1 for yes.\n")) == 0: 
+#handles user input and includes default. For custom runs it provides simple guardrails for values of the parameters
+user_input = int(input("Would you like to use T1, T2, or T3? Enter 1 for T1, 2 for T2, 3 for T3 and 0 for default run. Enter 5 for custom run.\n"))
+if user_input == 5: 
     m = int(input("m value?\n"))
     if m <= 0: 
         print("invalid value! m value must be positive. \n")
@@ -33,7 +34,27 @@ if int(input("use default? Input '0' for no, and 1 for yes.\n")) == 0:
     if N <= 0: 
         print("invalid N! N must be a positive integer.\n")
         N = int(input("N value?\n")) 
-else:
+if user_input == 1:
+    m = 9
+    a = 4
+    c = 1
+    x_0 = 1 
+    N = 100000
+
+if user_input == 2:
+    m = 126
+    a = 43 
+    c = 25
+    x_0 = 25 
+    N = 100000
+
+if user_input == 3: 
+   m = 2147482648
+   a = 37769685
+   c = 1
+   x_0 = 1
+   N = 100000
+if user_input == 0:
     m = 4294967269
     a = 3
     c = 7 
@@ -64,7 +85,7 @@ def mean_function(list_nums):
 
 
 number_bins = 100000
-plot_bound_xs = max(random_sequence)  
+#plot_bound_xs = max(random_sequence)  
 
 fig, axs = plt.subplots(1,1, figsize=(9,5), sharey=True, tight_layout=True)
 axs.hist(random_sequence, bins=number_bins)
