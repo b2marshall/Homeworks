@@ -137,12 +137,17 @@ def mean_function(list_nums):
         tempvar /= len(list_nums)
     return tempvar
 
-def samples_set(n, element_list):
-    samples_one_to_n = []
-    for i in range(1,n+1):
-        samples_one_to_n.append(get_n_from_list(i,element_list))
-    return samples_one_to_n
-print(samples_set(10,random_sequence))
+#def samples_set(n, element_list):
+    #samples_one_to_n = []
+    #for i in range(1,n+1):
+        #samples_one_to_n.append(get_n_from_list(i,element_list))
+    #return samples_one_to_n
+
+def samples_set(size_of_sample,number_of_samples,element_list):
+    samples_of_size_n = []
+    for i in range(0,number_of_samples): 
+        samples_of_size_n.append(get_n_from_list(size_of_sample,element_list))
+    return samples_of_size_n
 
 def sample_means(samples_set):
     templist = []
@@ -150,5 +155,20 @@ def sample_means(samples_set):
         templist.append(mean_function(i))
     return templist
 
-print('*'*50)
-print(sample_means(samples_set(10,random_sequence)))
+def given_epsilon(sample_means_list, epsilon, actual_mean):
+    count_var =0
+    for i in sample_means_list:
+        if abs(i-actual_mean) > epsilon: 
+            count_var += 1
+    return count_var/len(sample_means_list)
+
+def law_large_numbers(epsilon_array,num_samples,sample_size,actual_mean):
+    samp_means = sample_means(samples_set(sample_size,num_samples,random_sequence))
+    probability_array = [given_epsilon(samp_means,epsilon,actual_mean) for epsilon in epsilon_array]
+    return probability_array
+
+nvals = [10,100,1000,10000,100000,1000000]
+epsilons = [0.25] 
+for n in nvals:
+    print(law_large_numbers(epsilons,n,100,4))
+
