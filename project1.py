@@ -67,7 +67,7 @@ for i in range(0, N-1):
     random_sequence.append(tempvar) 
 
 if user_input == 0:
-    number_bins = 100000
+    number_bins = m
     fig, axs = plt.subplots(1,1, figsize=(9,5), sharey=True, tight_layout=True)
     axs.hist(random_sequence, bins=number_bins)
     plt.ylim(0,6)
@@ -78,11 +78,11 @@ if user_input == 0:
     plt.savefig("histogram.png")
     
 if user_input == 1:
-    number_bins = N
-    fig, axs = plt.subplots(1,1, figsize=(9,5), sharey=True, tight_layout=True)
-    axs.hist(random_sequence, bins=number_bins)
+    number_bins = m
+    np.histogram(np.array(random_sequence),bins=number_bins)
+    plt.hist(random_sequence, bins=number_bins)
     #plt.ylim(0,6)
-    #plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
+    plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
     plt.title("Frequency of random number values")
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
