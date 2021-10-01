@@ -1,3 +1,5 @@
+import matplotlib 
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 #next two imports are for selecting random elements out of our generated list. 
@@ -54,5 +56,8 @@ def mean_function(list_nums):
     tempvar /= len(list_nums)
     return tempvar
 
-print(mean_function([1,2,3,4,5]))
+number_bins = 100000
 
+fig, axs = plt.subplots(1,1, sharey=True, tight_layout=True)
+axs.hist(random_sequence, bins=number_bins)
+plt.savefig("histogram.png")
