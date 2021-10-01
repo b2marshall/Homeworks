@@ -122,10 +122,10 @@ if user_input == 5:
 print(random_sequence)
 
 #function to sample n elements from our random list
-def get_n_from_list(n):
+def get_n_from_list(n, element_list):
     sample_list = []
-    for i in range(0,n-1):
-        sample_list.append(choice(random_sequence))
+    for i in range(1,n+1):
+        sample_list.append(choice(element_list))
     return sample_list
 
 #function for taking the mean of a list of integer values
@@ -133,13 +133,22 @@ def mean_function(list_nums):
     tempvar = 0
     for i in range(0, len(list_nums)):
         tempvar += list_nums[i]
-    tempvar /= len(list_nums)
+    if len(list_nums) != 0:
+        tempvar /= len(list_nums)
     return tempvar
 
+def samples_set(n, element_list):
+    samples_one_to_n = []
+    for i in range(1,n+1):
+        samples_one_to_n.append(get_n_from_list(i,element_list))
+    return samples_one_to_n
+print(samples_set(10,random_sequence))
 
-#plot_bound_xs = max(random_sequence)  
+def sample_means(samples_set):
+    templist = []
+    for i in samples_set:
+        templist.append(mean_function(i))
+    return templist
 
-
-
-
- 
+print('*'*50)
+print(sample_means(samples_set(10,random_sequence)))
