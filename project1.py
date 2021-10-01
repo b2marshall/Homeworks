@@ -66,18 +66,14 @@ def mean_function(list_nums):
 number_bins = 100000
 plot_bound_xs = max(random_sequence)  
 
-fig, axs = plt.subplots(1,1, sharey=True, tight_layout=True)
+fig, axs = plt.subplots(1,1, figsize=(9,5), sharey=True, tight_layout=True)
 axs.hist(random_sequence, bins=number_bins)
-#plt.ylim(0,10)
-#plt.yticks([0,1,2,3,4,5])
-#plt.xlim(0, plot_bound_xs)
-#plt.figure(figsize=(7,5))
+plt.ylim(0,6)
+plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
 plt.title("Frequency of random number values")
 plt.ylabel("Frequency of particular value")
 plt.xlabel("Value from our randomly generated sequence")
 plt.savefig("histogram.png")
 
-#for a test run, m = 4294967296 = 2^32 > 100,000 and a = 3, c = 7 , x_0 = 0 and 
-# N = 100,000 makes a good plot.
 
  
