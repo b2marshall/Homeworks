@@ -65,8 +65,9 @@ random_sequence = [x_0]
 for i in range(0, N-1):
     tempvar = (random_sequence[-1]*a + c) % m
     random_sequence.append(tempvar) 
-    
+
 if user_input == 0:
+    number_bins = 100000
     fig, axs = plt.subplots(1,1, figsize=(9,5), sharey=True, tight_layout=True)
     axs.hist(random_sequence, bins=number_bins)
     plt.ylim(0,6)
@@ -77,6 +78,7 @@ if user_input == 0:
     plt.savefig("histogram.png")
     
 if user_input == 1:
+    number_bins = N
     fig, axs = plt.subplots(1,1, figsize=(9,5), sharey=True, tight_layout=True)
     axs.hist(random_sequence, bins=number_bins)
     #plt.ylim(0,6)
@@ -104,7 +106,6 @@ def mean_function(list_nums):
     return tempvar
 
 
-number_bins = 100000
 #plot_bound_xs = max(random_sequence)  
 
 
