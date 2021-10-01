@@ -163,9 +163,20 @@ def given_epsilon(sample_means_list, epsilon, actual_mean):
 def distance_from_true(mean_array,true_mean):
     distances = [abs(mean-actual_mean) for mean in mean_array]
     return(distances)
-mean_distance_sequence = [distance_from_true(sample_means(samples_set(x,1,random_sequence)),actual_mean) for x in [10,100,200,500,10000]]
+mean_distance_sequence = [distance_from_true(sample_means(samples_set(x,1,random_sequence)),actual_mean) for x in range(0,10001)]
 print(mean_distance_sequence)
-print(actual_mean)  
+
+  
+#np.histogram(np.array(random_sequence),bins=number_bins)
+plt.plot(mean_distance_sequence, np.linspace(0,10001,1))
+#plt.ylim(0,1)
+#plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
+plt.title("convergence of sample means to true mean")
+plt.ylabel("sample means")
+plt.axhline(y=actual_mean, color='r' linetyle='-')
+plt.xlabel("size of sample")
+plt.savefig("meanconvergence.png")
+#print(actual_mean)  
 #print(distance_from_true(sample_means(samples_set(50,1,random_sequence)),actual_mean))
 #def law_large_numbers(epsilon_array,num_samples,sample_size,actual_mean):
     #samp_means = sample_means(samples_set(sample_size,num_samples,random_sequence))
