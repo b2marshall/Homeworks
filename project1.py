@@ -101,29 +101,18 @@ if user_input == 2:
     plt.savefig("histogram.png")
 
 if user_input == 3:
-    #number_bins = m
-    #np.histogram(random_sequence,bins=number_bins)
-    #plt.hist(random_sequence, bins=number_bins)
-    #plt.ylim(0,6)
-    #plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
-    #plt.title("Frequency of random number values")
-    #plt.ylabel("Frequency of particular value")
-    #plt.xlabel("Value from our randomly generated sequence")
-    #plt.savefig("histogram.png")
-    number_bins = m
+    number_bins = N
     fig, axs = plt.subplots(1,1, figsize=(9,5), sharey=True, tight_layout=True)
     axs.hist(random_sequence, bins=number_bins)
-    #plt.ylim(0,6)
+    plt.ylim(0,6)
     plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
     plt.title("Frequency of random number values")
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
     plt.savefig("histogram.png")
 if user_input == 5:
-    number_bins = m
-    #np.histogram(np.array(random_sequence),bins=number_bins)
+    number_bins = N
     plt.hist(random_sequence, bins=number_bins)
-    #plt.ylim(0,6)
     plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
     plt.title("Frequency of random number values")
     plt.ylabel("Frequency of particular value")
