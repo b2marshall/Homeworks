@@ -49,17 +49,18 @@ if user_input == 2:
     N = 100000
 
 if user_input == 3: 
-   m = 2147482648
-   a = 37769685
-   c = 1
-   x_0 = 1
-   N = 100000
+    m = 2147482648
+    a = 37769685
+    c = 1
+    x_0 = 1
+    N = 100000
 if user_input == 0:
     m = 4294967269
     a = 3
     c = 7 
     x_0 = 0
     N = 100000
+
 #generates the sequence of random numbers from LCG 
 random_sequence = [x_0] 
 for i in range(0, N-1):
@@ -79,7 +80,7 @@ if user_input == 0:
     
 if user_input == 1:
     number_bins = m
-    np.histogram(np.array(random_sequence),bins=number_bins)
+    #np.histogram(np.array(random_sequence),bins=number_bins)
     plt.hist(random_sequence, bins=number_bins)
     #plt.ylim(0,6)
     plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
@@ -90,7 +91,7 @@ if user_input == 1:
     
 if user_input == 2:
     number_bins = m
-    np.histogram(np.array(random_sequence),bins=number_bins)
+    #np.histogram(np.array(random_sequence),bins=number_bins)
     plt.hist(random_sequence, bins=number_bins)
     #plt.ylim(0,6)
     plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
@@ -101,7 +102,7 @@ if user_input == 2:
 
 if user_input == 3:
     number_bins = m
-    np.histogram(np.array(random_sequence),bins=number_bins)
+    #np.histogram(random_sequence,bins=number_bins)
     plt.hist(random_sequence, bins=number_bins)
     #plt.ylim(0,6)
     plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
@@ -112,7 +113,7 @@ if user_input == 3:
 
 if user_input == 5:
     number_bins = m
-    np.histogram(np.array(random_sequence),bins=number_bins)
+    #np.histogram(np.array(random_sequence),bins=number_bins)
     plt.hist(random_sequence, bins=number_bins)
     #plt.ylim(0,6)
     plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
@@ -120,6 +121,7 @@ if user_input == 5:
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
     plt.savefig("histogram.png")
+
 print(random_sequence)
 
 #function to sample n elements from our random list
