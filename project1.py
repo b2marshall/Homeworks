@@ -77,13 +77,14 @@ if user_input == 0:
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
     plt.savefig("histogram.png")
-    
+'''
+''' 
 if user_input == 1:
     number_bins = m
     #np.histogram(np.array(random_sequence),bins=number_bins)
     plt.hist(random_sequence, bins=number_bins)
     #plt.ylim(0,6)
-    plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
+    plt.text(0,4,"T_1")
     plt.title("Frequency of random number values")
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
@@ -94,7 +95,7 @@ if user_input == 2:
     #np.histogram(np.array(random_sequence),bins=number_bins)
     plt.hist(random_sequence, bins=number_bins)
     #plt.ylim(0,6)
-    plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
+    plt.text(0,4,"T_2")
     plt.title("Frequency of random number values")
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
@@ -105,7 +106,7 @@ if user_input == 3:
     fig, axs = plt.subplots(1,1, figsize=(9,5), sharey=True, tight_layout=True)
     axs.hist(random_sequence, bins=number_bins)
     plt.ylim(0,6)
-    plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
+    plt.text(0,4,"T_3")
     plt.title("Frequency of random number values")
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
@@ -146,7 +147,7 @@ def samples_set(size_of_sample,number_of_samples,element_list):
 def sample_means(samples_set):
     templist = []
     for i in samples_set:
-        templist.append(np.mean(i))
+        templist.append(mean_function(i))
     return templist
 
 
@@ -164,25 +165,13 @@ def distance_from_true(mean_array,true_mean):
     distances = [abs(mean-actual_mean) for mean in mean_array]
     return(distances)
 mean_distance_sequence = [distance_from_true(sample_means(samples_set(x,1,random_sequence)),actual_mean) for x in range(0,10001)]
-print(mean_distance_sequence)
-
-  
-#np.histogram(np.array(random_sequence),bins=number_bins)
-plt.plot(mean_distance_sequence, np.linspace(0,10001,1))
-#plt.ylim(0,1)
-#plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
+#plots the convergence of the sample means to the true mean
+"""
+xs = range(0,10001)
+plt.plot(xs, mean_distance_sequence)
 plt.title("convergence of sample means to true mean")
-plt.ylabel("sample means")
-plt.axhline(y=actual_mean, color='r' linetyle='-')
+plt.ylabel("distance of sample mean from true mean")
 plt.xlabel("size of sample")
 plt.savefig("meanconvergence.png")
-#print(actual_mean)  
-#print(distance_from_true(sample_means(samples_set(50,1,random_sequence)),actual_mean))
-#def law_large_numbers(epsilon_array,num_samples,sample_size,actual_mean):
-    #samp_means = sample_means(samples_set(sample_size,num_samples,random_sequence))
-    #probability_array = [given_epsilon(samp_means,epsilon,actual_mean) for epsilon in epsilon_array]
-    #return probability_array
+""" 
 
-#print(actual_mean)
-#plotvals = [given_epsilon(sample_means(samples_set(50,n,random_sequence)), 0.15,actual_mean) for n in nvals]
-#print(plotvals)
