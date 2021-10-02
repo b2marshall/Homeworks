@@ -55,8 +55,8 @@ if user_input == 3:
     x_0 = 1
     N = 100000
 if user_input == 0:
-    m = 4294967296
-    a = 3
+    m = 65536
+    a = 5
     c = 7 
     x_0 = 0
     N = 100000
@@ -89,7 +89,8 @@ if user_input == 1:
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
     plt.savefig("histogram.png")
-    
+'''
+'''    
 if user_input == 2:
     number_bins = m
     #np.histogram(np.array(random_sequence),bins=number_bins)
@@ -100,7 +101,8 @@ if user_input == 2:
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
     plt.savefig("histogram.png")
-
+'''
+'''
 if user_input == 3:
     number_bins = N
     fig, axs = plt.subplots(1,1, figsize=(9,5), sharey=True, tight_layout=True)
@@ -111,15 +113,16 @@ if user_input == 3:
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
     plt.savefig("histogram.png")
+'''
+
 if user_input == 5:
     number_bins = N
-    plt.hist(random_sequence, bins=number_bins)
-    plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
-    plt.title("Frequency of random number values")
+    plt.hist(random_sequence, bins=m)
+    #plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
+    plt.title("m="+str(m)+"  a="+str(a)+"  c="+str(c)+"  x_0="+str(x_0)+"  N="+str(N))
     plt.ylabel("Frequency of particular value")
-    plt.xlabel("Value from our randomly generated sequence")
+    plt.xlabel("Value selected from random sequence")
     plt.savefig("histogram.png")
-'''
 print(random_sequence)
 
 #function to sample n elements from our random list
@@ -174,4 +177,4 @@ plt.ylabel("distance of sample mean from true mean")
 plt.xlabel("size of sample")
 plt.savefig("meanconvergence.png")
 """ 
-
+print(m,a,c,x_0,N)
