@@ -183,13 +183,15 @@ def z_n(size_of_sample, number_of_samples,element_list,actual_mean):
         z_i = z_num/float(z_denom)  
         z_n.append(z_i)    
     return z_n
-z_n(10,200,random_sequence,3)
-
+z_n(100,200,random_sequence,actual_mean)
+sigma_squared = np.var(random_sequence)**2
 z_n_mu = 0
 z_n_var = 1
+sigma = (N**2 -1)/12
 x_for_z_n = np.linspace(1.5*z_n_var,1.5*z_n_var,200)
 zs = z_n(100,1000,random_sequence,actual_mean)
 print(zs)
+plt.xlim(-0.5,0.5)
 plt.hist(zs,bins=200) 
 plt.plot(x_for_z_n, stats.norm.pdf(x_for_z_n,z_n_mu,z_n_var))
 plt.savefig('z_n_plot.png')
