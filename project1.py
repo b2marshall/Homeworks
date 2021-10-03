@@ -2,6 +2,8 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
+import math
+import scipy.stats as stats
 #next two imports are for selecting random elements out of our generated list. 
 from random import seed
 from random import choice
@@ -76,7 +78,7 @@ if user_input == 0:
     plt.title("Frequency of random number values")
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
-    plt.savefig("histogram.png")
+    plt.savefig("default_histogram.png")
 '''
 ''' 
 if user_input == 1:
@@ -88,43 +90,42 @@ if user_input == 1:
     plt.title("Frequency of random number values")
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
-    plt.savefig("histogram.png")
+    plt.savefig("t1_histogram.png")
 '''
 '''    
 if user_input == 2:
     number_bins = m
     #np.histogram(np.array(random_sequence),bins=number_bins)
     plt.hist(random_sequence, bins=number_bins)
-    #plt.ylim(0,6)
     plt.text(0,4,"T_2")
-    plt.title("Frequency of random number values")
+    plt.title("m="+str(m)+"  a="+str(a)+"  c="+str(c)+"  x_0="+str(x_0)+"  N="+str(N))lt.title("Frequency of random number values")
     plt.ylabel("Frequency of particular value")
-    plt.xlabel("Value from our randomly generated sequence")
-    plt.savefig("histogram.png")
+    plt.xlabel("Value selected from random sequence")
+    plt.savefig("t2_histogram.png")
 '''
 '''
 if user_input == 3:
-    number_bins = N
+    number_bins = min(m//1000,N)
     fig, axs = plt.subplots(1,1, figsize=(9,5), sharey=True, tight_layout=True)
     axs.hist(random_sequence, bins=number_bins)
     plt.ylim(0,6)
-    plt.text(0,4,"T_3")
-    plt.title("Frequency of random number values")
+    plt.title("m="+str(m)+"  a="+str(a)+"  c="+str(c)+"  x_0="+str(x_0)+"  N="+str(N))
     plt.ylabel("Frequency of particular value")
-    plt.xlabel("Value from our randomly generated sequence")
-    plt.savefig("histogram.png")
+    plt.xlabel("Value selected from random sequence, number of bins = N")
+    plt.savefig("t3_histogram.png")
 '''
-
+'''
 if user_input == 5:
     number_bins = N
     plt.hist(random_sequence, bins=m)
-    #plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
     plt.title("m="+str(m)+"  a="+str(a)+"  c="+str(c)+"  x_0="+str(x_0)+"  N="+str(N))
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value selected from random sequence")
     plt.savefig("histogram.png")
 print(random_sequence)
-
+'''
+actual_mean = np.mean(random_sequence)
+actual_var = np.var(random_sequence)
 #function to sample n elements from our random list
 def get_n_from_list(n, element_list):
     sample_list = []
@@ -153,10 +154,6 @@ def sample_means(samples_set):
         templist.append(mean_function(i))
     return templist
 
-
-nvals = [10,100,1000]
-actual_mean = 0.5*(m-1)
-
 def given_epsilon(sample_means_list, epsilon, actual_mean):
     count_var =0
     for i in sample_means_list:
@@ -176,5 +173,23 @@ plt.title("convergence of sample means to true mean")
 plt.ylabel("distance of sample mean from true mean")
 plt.xlabel("size of sample")
 plt.savefig("meanconvergence.png")
-""" 
-print(m,a,c,x_0,N)
+"""
+def z_n(size_of_sample, number_of_samples,element_list,actual_mean):
+    samples = samples_set(size_of_sample,number_of_samples,element_list)
+    z_n = []
+    for element in samples: 
+        z_num = (mean_function(element))-actual_mean
+        z_denom = math.sqrt(np.var(element))
+        z_i = z_num/float(z_denom)  
+        z_n.append(z_i)    
+    return z_n
+z_n(10,200,random_sequence,3)
+
+z_n_mu = 0
+z_n_var = 1
+x_for_z_n = np.linspace(1.5*z_n_var,1.5*z_n_var,200)
+zs = z_n(100,1000,random_sequence,actual_mean)
+print(zs)
+plt.hist(zs,bins=200) 
+plt.plot(x_for_z_n, stats.norm.pdf(x_for_z_n,z_n_mu,z_n_var))
+plt.savefig('z_n_plot.png')
