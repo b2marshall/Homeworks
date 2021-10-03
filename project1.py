@@ -174,6 +174,8 @@ plt.ylabel("distance of sample mean from true mean")
 plt.xlabel("size of sample")
 plt.savefig("meanconvergence.png")
 """
+
+#this is the code for the central limit theorem plot 
 def z_n(size_of_sample, number_of_samples,element_list,actual_mean):
     samples = samples_set(size_of_sample,number_of_samples,element_list)
     z_n = []
@@ -183,15 +185,68 @@ def z_n(size_of_sample, number_of_samples,element_list,actual_mean):
         z_i = z_num/float(z_denom)  
         z_n.append(z_i)    
     return z_n
+'''
 z_n(100,200,random_sequence,actual_mean)
 sigma_squared = np.var(random_sequence)**2
 z_n_mu = 0
 z_n_var = 1
 sigma = (N**2 -1)/12
 x_for_z_n = np.linspace(1.5*z_n_var,1.5*z_n_var,200)
-zs = z_n(100,1000,random_sequence,actual_mean)
+zs = z_n(100,10000,random_sequence,actual_mean)
 print(zs)
 plt.xlim(-0.5,0.5)
-plt.hist(zs,bins=200, density=True, stacked=True) 
+weight = np.ones_like(zs)/float(len(zs))
+plt.hist(zs,bins=50,weights=weight) 
 plt.plot(x_for_z_n, stats.norm.pdf(x_for_z_n,z_n_mu,z_n_var))
 plt.savefig('z_n_plot.png')
+'''
+
+#begin monty hall problem: 
+door_number_sequence = [x % 3 for x in random_sequence]
+#generate new list of random with different seed 
+
+x_0 = int(input("Current seed is "+str(x_0)+".What would you like for the new seed?\n")) 
+
+random_sequence_2 = [x_0] 
+
+for i in range(0, N):
+    tempvar = (random_sequence_2[-1]*a + c) % m
+    random_sequence_2.append(tempvar) 
+contestant_guess = [x % 3 for x in random_sequence_2]
+
+x_0 = int(input("Now, a seed for the random choice of the host.\n"))
+
+random_sequence_3 = [x_0]
+
+for i in range(0,N):
+    tempvar = (random_sequence_3[-1]*a + c) % m
+    random_sequence_3.append(tempvar) 
+
+host_choice = [x % 2 for x in random_sequence_3] 
+
+goat_display_number = []
+
+for i in range(0,N):
+    doors = [0,1,2]
+    if door_number_sequence[i] == contestant_guess[i]:
+        doors.remove(door_number_sequence[i])
+        goat_display_number.append(doors[host_choice[i]])
+    if door_number_sequence[i] != contestant_guess[i]:
+        doors.remove(door_number_sequence[i])
+        doors.remove(contestant_guess[i])
+        goat_display_number.append(doors[0])
+
+correct_guesses_with_change = 0
+contestant_guess_changed = []
+for i in range(0,N): 
+    doors = [0,1,2]
+    doors.remove(goat_display_number[i])
+    doors.remove(contestant_guess[i])
+    contestant_guess_changed.append(doors[0])
+
+for i in range(0,N): 
+    if contestant_guess_changed[i] == door_number_sequence[i]: 
+        correct_guesses_with_change += 1
+correct_guesses_with_change /= N
+
+print(correct_guesses_with_change)
