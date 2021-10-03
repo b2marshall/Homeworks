@@ -250,3 +250,9 @@ for i in range(0,N):
 correct_guesses_with_change /= N
 
 print(correct_guesses_with_change)
+correct_guesses_without_change = 0
+for i in range(0,N): 
+    if contestant_guess[i] == door_number_sequence[i]:
+        correct_guesses_without_change +=1
+correct_guesses_without_change /= N 
+print(correct_guesses_without_change)
