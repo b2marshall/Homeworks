@@ -105,10 +105,9 @@ if user_input == 2:
     plt.close()
 
 if user_input == 3:
-    number_bins = N
     counts_t3 = []
     vals = []
-    xs = np.linspace(0,m-1,num=N)
+    xs = np.linspace(0,m-1,num=m)
     for i in range(0,N):
         if random_sequence.count(i) >= 1:
             counts_t3.append(random_sequence.count(i))
@@ -126,12 +125,11 @@ if user_input == 3:
 if user_input == 5:
     exes = np.linspace(0,m-1,num=m)
     ys = [random_sequence.count(x) for x in random_sequence]
-    number_bins = min(N,m)
     plt.plot(exes, ys)
     plt.title("m="+str(m)+"  a="+str(a)+"  c="+str(c)+"  x_0="+str(x_0)+"  N="+str(N))
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value selected from random sequence")
-    plt.savefig("histogram.png")
+    plt.savefig("custom_run.png")
     plt.clf()
     plt.cla()
     plt.close()
