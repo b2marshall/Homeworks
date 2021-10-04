@@ -196,16 +196,45 @@ def z_n(size_of_sample, number_of_samples,element_list,actual_mean):
         z_n.append(z_i)    
     return z_n
 
-z_n(100,200,random_sequence,actual_mean)
+
+num_sample = 100
+z_n(100,num_sample,random_sequence,actual_mean)
 z_n_mu = 0
 z_n_var = 1
+
 x_for_z_n = np.linspace(1.5*z_n_var,1.5*z_n_var,200)
-zs = z_n(100,10000,random_sequence,actual_mean)
-print(zs)
+zs = z_n(100,100,random_sequence,actual_mean)
+plt.subplot(2,2,1)
+plt.text(0, 0.1, 'n=100')
 plt.xlim(-0.5,0.5)
 weight = np.ones_like(zs)/float(len(zs))
 plt.hist(zs,bins=50,weights=weight) 
-plt.plot(x_for_z_n, stats.norm.pdf(x_for_z_n,z_n_mu,z_n_var))
+
+x_for_z_n = np.linspace(1.5*z_n_var,1.5*z_n_var,200)
+zs = z_n(100,1000,random_sequence,actual_mean)
+plt.subplot(2,2,2)
+plt.text(0, 0.1, 'n=1000')
+plt.xlim(-0.5,0.5)
+weight = np.ones_like(zs)/float(len(zs))
+plt.hist(zs,bins=50,weights=weight) 
+
+x_for_z_n = np.linspace(1.5*z_n_var,1.5*z_n_var,200)
+zs = z_n(100,10000,random_sequence,actual_mean)
+plt.subplot(2,2,3)
+plt.text(0, 0.1, 'n=10000')
+plt.xlim(-0.5,0.5)
+weight = np.ones_like(zs)/float(len(zs))
+plt.hist(zs,bins=50,weights=weight) 
+
+x_for_z_n = np.linspace(1.5*z_n_var,1.5*z_n_var,200)
+zs = z_n(100,50000,random_sequence,actual_mean)
+plt.subplot(2,2,4)
+plt.text(0, 0.1, 'n=50000')
+plt.xlim(-0.5,0.5)
+weight = np.ones_like(zs)/float(len(zs))
+plt.hist(zs,bins=50,weights=weight) 
+
+plt.title("Central limit Theorem")
 plt.savefig('z_n_plot.png')
 plt.clf()
 plt.cla()
