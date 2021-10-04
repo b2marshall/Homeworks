@@ -80,7 +80,7 @@ if user_input == 0:
     plt.xlabel("Value from our randomly generated sequence")
     plt.savefig("default_histogram.png")
 '''
-''' 
+ 
 if user_input == 1:
     number_bins = m
     #np.histogram(np.array(random_sequence),bins=number_bins)
@@ -91,8 +91,8 @@ if user_input == 1:
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
     plt.savefig("t1_histogram.png")
-'''
-'''    
+
+    
 if user_input == 2:
     number_bins = m
     #np.histogram(np.array(random_sequence),bins=number_bins)
@@ -102,10 +102,10 @@ if user_input == 2:
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value selected from random sequence")
     plt.savefig("t2_histogram.png")
-'''
-'''
+
+
 if user_input == 3:
-    number_bins = min(m//1000,N)
+    number_bins = N
     fig, axs = plt.subplots(1,1, figsize=(9,5), sharey=True, tight_layout=True)
     axs.hist(random_sequence, bins=number_bins)
     plt.ylim(0,6)
@@ -113,17 +113,17 @@ if user_input == 3:
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value selected from random sequence, number of bins = N")
     plt.savefig("t3_histogram.png")
-'''
-'''
+
+
 if user_input == 5:
     number_bins = N
-    plt.hist(random_sequence, bins=m)
+    plt.hist(random_sequence, bins=number_bins)
     plt.title("m="+str(m)+"  a="+str(a)+"  c="+str(c)+"  x_0="+str(x_0)+"  N="+str(N))
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value selected from random sequence")
     plt.savefig("histogram.png")
 print(random_sequence)
-'''
+
 actual_mean = np.mean(random_sequence)
 actual_var = np.var(random_sequence)
 #function to sample n elements from our random list
@@ -276,3 +276,4 @@ weight_1 = np.ones_like(norm_dist_z)/float(len(norm_dist_z))
 plt.hist(norm_dist_z, weights=weight_1)
 plt.title("Box-Muller method")
 plt.savefig("BoxMuller.png")
+
