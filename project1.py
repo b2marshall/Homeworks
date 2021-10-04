@@ -266,7 +266,7 @@ for N in monty_hall_ns:
     
 plt.plot([0,1,2,3,4],correct_guesses_without_change_arr, color='green', label='no change')
 plt.plot([0,1,2,3,4],correct_guesses_with_change_arr, color='blue', label='changed')
-plt.xticks([10,100,1000,10000,10000])
+#plt.xticks([10,100,1000,10000,10000])
 plt.xlabel('number of games')
 #plt.xlim(0,5)
 plt.axhline(.33333333333, color='black', linestyle='dotted')
