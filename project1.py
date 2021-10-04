@@ -68,7 +68,7 @@ random_sequence = [x_0]
 for i in range(0, N):
     tempvar = (random_sequence[-1]*a + c) % m
     random_sequence.append(tempvar) 
-
+'''
 if user_input == 0:
     number_bins = m
     fig, axs = plt.subplots(1,1, figsize=(9,5), sharey=True, tight_layout=True)
@@ -118,7 +118,7 @@ if user_input == 5:
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value selected from random sequence")
     plt.savefig("histogram.png")
-
+'''
 print(random_sequence)
 
 actual_mean = np.mean(random_sequence)
