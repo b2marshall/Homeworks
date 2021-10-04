@@ -258,7 +258,7 @@ plt.plot(monty_hall_ns,correct_guesses_without_change_arr, color='green', label=
 plt.plot(monty_hall_ns,correct_guesses_with_change_arr, color='blue', label='changed')
 plt.xlabel('number of games')
 plt.ylabel('amount of car winners divided by N') 
-
+plt.savefig('monty.png')
 
 
 
