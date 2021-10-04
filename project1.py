@@ -263,14 +263,12 @@ for N in monty_hall_ns:
             correct_guesses_without_change +=1
     correct_guesses_without_change /= N 
     correct_guesses_without_change_arr.append(correct_guesses_without_change)
-
-#plt.plot(monty_hall_ns,correct_guesses_without_change_arr, color='green', label='no change')
-#plt.plot(monty_hall_ns,correct_guesses_with_change_arr, color='blue', label='changed')
+    
 plt.plot([0,1,2,3,4],correct_guesses_without_change_arr, color='green', label='no change')
 plt.plot([0,1,2,3,4],correct_guesses_with_change_arr, color='blue', label='changed')
 plt.xticks([10,100,1000,10000,10000])
 plt.xlabel('number of games')
-plt.xlim(0,5)
+#plt.xlim(0,5)
 plt.axhline(.33333333333, color='black', linestyle='dotted')
 plt.axhline(.66666666666, color='black', linestyle='dotted')
 plt.ylabel('amount of car winners divided by N') 
