@@ -196,7 +196,7 @@ plt.hist(zs,bins=50,weights=weight)
 plt.plot(x_for_z_n, stats.norm.pdf(x_for_z_n,z_n_mu,z_n_var))
 plt.savefig('z_n_plot.png')
 '''
-'''
+
 #begin monty hall problem: 
 door_number_sequence = [x % 3 for x in random_sequence]
 #generate new list of random with different seed 
@@ -266,7 +266,7 @@ plt.ylabel('amount of car winners divided by N')
 
 #implements the Box-Muller method for turning two uniform distributions into two normal distributions. We only plot one because that's all 
 #that we really needed. 
-
+'''
 x_1 = int(input("The current seed x_0 is " + str(x_0) + ". What would you like to seed with for turning a uniform distribution into a normal?\n"))
 random_sequence_for_normal = [x_1]
 for i in range(0,N):    
@@ -284,4 +284,4 @@ weight_1 = np.ones_like(norm_dist_z)/float(len(norm_dist_z))
 plt.hist(norm_dist_z, weights=weight_1)
 plt.title("Box-Muller method")
 plt.savefig("BoxMuller.png")
-
+'''
