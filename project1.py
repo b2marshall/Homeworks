@@ -68,7 +68,7 @@ random_sequence = [x_0]
 for i in range(0, N):
     tempvar = (random_sequence[-1]*a + c) % m
     random_sequence.append(tempvar) 
-'''
+
 if user_input == 0:
     number_bins = m
     fig, axs = plt.subplots(1,1, figsize=(9,5), sharey=True, tight_layout=True)
@@ -79,7 +79,9 @@ if user_input == 0:
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
     plt.savefig("default_histogram.png")
-
+    plt.clf()
+    plt.cla()
+    plt.close()
  
 if user_input == 1:
     number_bins = m
@@ -88,7 +90,9 @@ if user_input == 1:
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
     plt.savefig("t1_histogram.png")
-
+    plt.clf()
+    plt.cla()
+    plt.close()
     
 if user_input == 2:
     number_bins = m
@@ -98,7 +102,9 @@ if user_input == 2:
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value selected from random sequence")
     plt.savefig("t2_histogram.png")
-
+    plt.clf()
+    plt.cla()
+    plt.close()
 
 if user_input == 3:
     number_bins = N
@@ -109,7 +115,9 @@ if user_input == 3:
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value selected from random sequence, number of bins = N")
     plt.savefig("t3_histogram.png")
-
+    plt.clf()
+    plt.cla()
+    plt.close()
 
 if user_input == 5:
     number_bins = min(N,m)
@@ -118,7 +126,10 @@ if user_input == 5:
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value selected from random sequence")
     plt.savefig("histogram.png")
-'''
+    plt.clf()
+    plt.cla()
+    plt.close()
+
 print(random_sequence)
 
 actual_mean = np.mean(random_sequence)
@@ -258,6 +269,7 @@ plt.plot(monty_hall_ns,correct_guesses_without_change_arr, color='green', label=
 plt.plot(monty_hall_ns,correct_guesses_with_change_arr, color='blue', label='changed')
 plt.xticks([10,100,1000,10000,10000])
 plt.xlabel('number of games')
+plt.xlim(0,100000)
 plt.ylabel('amount of car winners divided by N') 
 plt.savefig('monty.png')
 
