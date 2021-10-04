@@ -98,7 +98,7 @@ if user_input == 2:
     #np.histogram(np.array(random_sequence),bins=number_bins)
     plt.hist(random_sequence, bins=number_bins)
     plt.text(0,4,"T_2")
-    plt.title("m="+str(m)+"  a="+str(a)+"  c="+str(c)+"  x_0="+str(x_0)+"  N="+str(N))lt.title("Frequency of random number values")
+    plt.title("m="+str(m)+"  a="+str(a)+"  c="+str(c)+"  x_0="+str(x_0)+"  N="+str(N))
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value selected from random sequence")
     plt.savefig("t2_histogram.png")
@@ -187,10 +187,8 @@ def z_n(size_of_sample, number_of_samples,element_list,actual_mean):
     return z_n
 '''
 z_n(100,200,random_sequence,actual_mean)
-sigma_squared = np.var(random_sequence)**2
 z_n_mu = 0
 z_n_var = 1
-sigma = (N**2 -1)/12
 x_for_z_n = np.linspace(1.5*z_n_var,1.5*z_n_var,200)
 zs = z_n(100,10000,random_sequence,actual_mean)
 print(zs)
@@ -200,7 +198,7 @@ plt.hist(zs,bins=50,weights=weight)
 plt.plot(x_for_z_n, stats.norm.pdf(x_for_z_n,z_n_mu,z_n_var))
 plt.savefig('z_n_plot.png')
 '''
-
+'''
 #begin monty hall problem: 
 door_number_sequence = [x % 3 for x in random_sequence]
 #generate new list of random with different seed 
@@ -256,3 +254,25 @@ for i in range(0,N):
         correct_guesses_without_change +=1
 correct_guesses_without_change /= N 
 print(correct_guesses_without_change)
+'''
+
+#implements the Box-Muller method for turning two uniform distributions into two normal distributions. We only plot one because that's all 
+#that we really needed. 
+
+x_1 = int(input("The current seed is " + str(x_0) + ". What would you like to seed with for turning a uniform distribution into a normal?\n"))
+random_sequence_for_normal = [x_1]
+for i in range(0,N):    
+    tempvar = (random_sequence_for_normal[-1]*a + c) % m
+    random_sequence_for_normal.append(tempvar)
+
+norm_dist_z = []
+
+for i in range(0,N):
+    if random_sequence[i] !=0:
+        z_i = math.sqrt(-2*np.log((random_sequence[i]/float(m))))*math.cos(2*math.pi*(random_sequence_for_normal[i]/float(m)))
+        norm_dist_z.append(z_i)
+
+weight_1 = np.ones_like(norm_dist_z)/float(len(norm_dist_z))
+plt.hist(norm_dist_z, weights=weight_1)
+plt.title("Box-Muller method")
+plt.savefig("BoxMuller.png")
