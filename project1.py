@@ -68,7 +68,7 @@ random_sequence = [x_0]
 for i in range(0, N):
     tempvar = (random_sequence[-1]*a + c) % m
     random_sequence.append(tempvar) 
-'''
+
 if user_input == 0:
     number_bins = m
     fig, axs = plt.subplots(1,1, figsize=(9,5), sharey=True, tight_layout=True)
@@ -79,15 +79,12 @@ if user_input == 0:
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
     plt.savefig("default_histogram.png")
-'''
+
  
 if user_input == 1:
     number_bins = m
-    #np.histogram(np.array(random_sequence),bins=number_bins)
     plt.hist(random_sequence, bins=number_bins)
-    #plt.ylim(0,6)
-    plt.text(0,4,"T_1")
-    plt.title("Frequency of random number values")
+    plt.title("T_1, m="+str(m)+"  a="+str(a)+"  c="+str(c)+"  x_0="+str(x_0)+"  N="+str(N))
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
     plt.savefig("t1_histogram.png")
@@ -97,8 +94,7 @@ if user_input == 2:
     number_bins = m
     #np.histogram(np.array(random_sequence),bins=number_bins)
     plt.hist(random_sequence, bins=number_bins)
-    plt.text(0,4,"T_2")
-    plt.title("m="+str(m)+"  a="+str(a)+"  c="+str(c)+"  x_0="+str(x_0)+"  N="+str(N))
+    plt.title("T_2, m="+str(m)+"  a="+str(a)+"  c="+str(c)+"  x_0="+str(x_0)+"  N="+str(N))
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value selected from random sequence")
     plt.savefig("t2_histogram.png")
@@ -116,16 +112,18 @@ if user_input == 3:
 
 
 if user_input == 5:
-    number_bins = N
+    number_bins = min(N,m)
     plt.hist(random_sequence, bins=number_bins)
     plt.title("m="+str(m)+"  a="+str(a)+"  c="+str(c)+"  x_0="+str(x_0)+"  N="+str(N))
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value selected from random sequence")
     plt.savefig("histogram.png")
+
 print(random_sequence)
 
 actual_mean = np.mean(random_sequence)
 actual_var = np.var(random_sequence)
+
 #function to sample n elements from our random list
 def get_n_from_list(n, element_list):
     sample_list = []
@@ -203,63 +201,73 @@ plt.savefig('z_n_plot.png')
 door_number_sequence = [x % 3 for x in random_sequence]
 #generate new list of random with different seed 
 
-x_0 = int(input("Current seed is "+str(x_0)+".What would you like for the new seed?\n")) 
+x_cont = int(input("Current seed is "+str(x_0)+". What would you like for the new seed?\n")) 
+correct_guesses_without_change_arr = []
+correct_guesses_with_change_arr = []
+random_sequence_2 = [x_cont] 
+monty_hall_ns = [10,100,1000,10000,100000]
+for N in monty_hall_ns:
+    for i in range(0, N):
+        tempvar = (random_sequence_2[-1]*a + c) % m
+        random_sequence_2.append(tempvar) 
+    contestant_guess = [x % 3 for x in random_sequence_2]
 
-random_sequence_2 = [x_0] 
+    x_host = int(input("Now, a seed for the random choice of the host.\n"))
 
-for i in range(0, N):
-    tempvar = (random_sequence_2[-1]*a + c) % m
-    random_sequence_2.append(tempvar) 
-contestant_guess = [x % 3 for x in random_sequence_2]
+    random_sequence_3 = [x_host]
 
-x_0 = int(input("Now, a seed for the random choice of the host.\n"))
+    for i in range(0,N):
+        tempvar = (random_sequence_3[-1]*a + c) % m
+        random_sequence_3.append(tempvar) 
 
-random_sequence_3 = [x_0]
+    host_choice = [x % 2 for x in random_sequence_3] 
 
-for i in range(0,N):
-    tempvar = (random_sequence_3[-1]*a + c) % m
-    random_sequence_3.append(tempvar) 
+    goat_display_number = []
 
-host_choice = [x % 2 for x in random_sequence_3] 
+    for i in range(0,N):
+        doors = [0,1,2]
+        if door_number_sequence[i] == contestant_guess[i]:
+            doors.remove(door_number_sequence[i])
+            goat_display_number.append(doors[host_choice[i]])
+        if door_number_sequence[i] != contestant_guess[i]:
+            doors.remove(door_number_sequence[i])
+            doors.remove(contestant_guess[i])
+            goat_display_number.append(doors[0])
 
-goat_display_number = []
-
-for i in range(0,N):
-    doors = [0,1,2]
-    if door_number_sequence[i] == contestant_guess[i]:
-        doors.remove(door_number_sequence[i])
-        goat_display_number.append(doors[host_choice[i]])
-    if door_number_sequence[i] != contestant_guess[i]:
-        doors.remove(door_number_sequence[i])
+    correct_guesses_with_change = 0
+    contestant_guess_changed = []
+    for i in range(0,N): 
+        doors = [0,1,2]
+        doors.remove(goat_display_number[i])
         doors.remove(contestant_guess[i])
-        goat_display_number.append(doors[0])
+        contestant_guess_changed.append(doors[0])
 
-correct_guesses_with_change = 0
-contestant_guess_changed = []
-for i in range(0,N): 
-    doors = [0,1,2]
-    doors.remove(goat_display_number[i])
-    doors.remove(contestant_guess[i])
-    contestant_guess_changed.append(doors[0])
+    for i in range(0,N): 
+        if contestant_guess_changed[i] == door_number_sequence[i]: 
+            correct_guesses_with_change += 1
+    correct_guesses_with_change /= N
+    correct_guesses_with_change_arr.append(correct_guesses_with_change)
 
-for i in range(0,N): 
-    if contestant_guess_changed[i] == door_number_sequence[i]: 
-        correct_guesses_with_change += 1
-correct_guesses_with_change /= N
+    print(correct_guesses_with_change)
+    correct_guesses_without_change = 0
+    for i in range(0,N): 
+        if contestant_guess[i] == door_number_sequence[i]:
+            correct_guesses_without_change +=1
+    correct_guesses_without_change /= N 
+    correct_guesses_without_change_arr.append(correct_guesses_without_change)
 
-print(correct_guesses_with_change)
-correct_guesses_without_change = 0
-for i in range(0,N): 
-    if contestant_guess[i] == door_number_sequence[i]:
-        correct_guesses_without_change +=1
-correct_guesses_without_change /= N 
-print(correct_guesses_without_change)
-'''
+plt.plot(monty_hall_ns,correct_guesses_without_change_arr, color='green', label='no change')
+plt.plot(monty_hall_ns,correct_guesses_with_change_arr, color='blue', label='changed')
+plt.xlabel('number of games')
+plt.ylabel('amount of car winners divided by N') 
+
+
+
 
 #implements the Box-Muller method for turning two uniform distributions into two normal distributions. We only plot one because that's all 
 #that we really needed. 
 
-x_1 = int(input("The current seed is " + str(x_0) + ". What would you like to seed with for turning a uniform distribution into a normal?\n"))
+x_1 = int(input("The current seed x_0 is " + str(x_0) + ". What would you like to seed with for turning a uniform distribution into a normal?\n"))
 random_sequence_for_normal = [x_1]
 for i in range(0,N):    
     tempvar = (random_sequence_for_normal[-1]*a + c) % m
