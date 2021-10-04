@@ -84,7 +84,7 @@ if user_input == 0:
  
 if user_input == 1:
     counts_t1 = []
-    xs = np.linspace(0,N,num=N)
+    xs = np.linspace(0,m-1,num=m)
     for i in range(0,N):
         if random_sequence.count(i) >= 1:
             counts_t1.append(random_sequence.count(i))
@@ -99,7 +99,7 @@ if user_input == 1:
     
 if user_input == 2:
     counts_t2 = []
-    xs = np.linspace(0,N,num=N)
+    xs = np.linspace(0,m-1,num=m)
     for i in range(0,N):
         if random_sequence.count(i) >= 1:
             counts_t2.append(random_sequence.count(i))
