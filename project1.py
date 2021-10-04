@@ -106,7 +106,12 @@ if user_input == 2:
 
 if user_input == 3:
     number_bins = N
-    plt.hist(random_sequence, bins=number_bins)
+    counts_t3 = []
+    np.linspace(0,m-1,num=N)
+    for i in range(0,N):
+        counts_t3.append(random_sequence.count(i))
+    #plt.hist(random_sequence, bins=number_bins)
+    plt.plot(,counts_t3)
     plt.title("m="+str(m)+"  a="+str(a)+"  c="+str(c)+"  x_0="+str(x_0)+"  N="+str(N))
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value selected from random sequence, number of bins = N")
