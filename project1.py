@@ -202,6 +202,7 @@ door_number_sequence = [x % 3 for x in random_sequence]
 #generate new list of random with different seed 
 
 x_cont = int(input("Current seed is "+str(x_0)+". What would you like for the new seed?\n")) 
+x_host = int(input("Now, a seed for the random choice of the host.\n"))
 correct_guesses_without_change_arr = []
 correct_guesses_with_change_arr = []
 random_sequence_2 = [x_cont] 
@@ -211,9 +212,6 @@ for N in monty_hall_ns:
         tempvar = (random_sequence_2[-1]*a + c) % m
         random_sequence_2.append(tempvar) 
     contestant_guess = [x % 3 for x in random_sequence_2]
-
-    x_host = int(input("Now, a seed for the random choice of the host.\n"))
-
     random_sequence_3 = [x_host]
 
     for i in range(0,N):
@@ -248,7 +246,7 @@ for N in monty_hall_ns:
     correct_guesses_with_change /= N
     correct_guesses_with_change_arr.append(correct_guesses_with_change)
 
-    print(correct_guesses_with_change)
+    #print(correct_guesses_with_change)
     correct_guesses_without_change = 0
     for i in range(0,N): 
         if contestant_guess[i] == door_number_sequence[i]:
