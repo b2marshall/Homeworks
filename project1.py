@@ -107,7 +107,7 @@ if user_input == 2:
 if user_input == 3:
     counts_t3 = []
     vals = []
-    xs = np.linspace(0,m-1,num=m)
+    xs = np.linspace(0,m-1,num=N)
     for i in range(0,N):
         if random_sequence.count(i) >= 1:
             counts_t3.append(random_sequence.count(i))
