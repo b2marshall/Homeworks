@@ -71,8 +71,7 @@ for i in range(0, N):
 
 if user_input == 0:
     number_bins = m
-    fig, axs = plt.subplots(1,1, figsize=(9,5), sharey=True, tight_layout=True)
-    axs.hist(random_sequence, bins=number_bins)
+    plt.hist(random_sequence, bins=number_bins)
     plt.ylim(0,6)
     plt.text(0,4,"m="+str(m)+"\na="+str(a)+"\nc="+str(c)+"\nx_0="+str(x_0)+"\nN="+str(N))
     plt.title("Frequency of random number values")
