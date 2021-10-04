@@ -340,4 +340,9 @@ plt.clf()
 plt.cla()
 plt.close()
 
+mean_of_seq = np.mean(random_sequence[0:m])
+calculated_mean = m*(m-1)/float(2)
+
+print(mean_of_seq, calculated_mean)
+
 
