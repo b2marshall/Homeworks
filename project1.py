@@ -195,7 +195,7 @@ def z_n(size_of_sample, number_of_samples,element_list,actual_mean):
         z_i = z_num/float(z_denom)  
         z_n.append(z_i)    
     return z_n
-'''
+
 z_n(100,200,random_sequence,actual_mean)
 z_n_mu = 0
 z_n_var = 1
