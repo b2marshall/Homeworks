@@ -84,13 +84,11 @@ if user_input == 0:
  
 if user_input == 1:
     counts_t1 = []
-    vals = []
     xs = np.linspace(0,N,num=N)
     for i in range(0,N):
         if random_sequence.count(i) >= 1:
             counts_t1.append(random_sequence.count(i))
-            vals.append(random_sequence[i])
-    plt.plot(vals,counts_t1)
+    plt.plot(xs,counts_t1)
     plt.title("T_1, m="+str(m)+"  a="+str(a)+"  c="+str(c)+"  x_0="+str(x_0)+"  N="+str(N))
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value from our randomly generated sequence")
@@ -101,13 +99,11 @@ if user_input == 1:
     
 if user_input == 2:
     counts_t2 = []
-    vals = []
     xs = np.linspace(0,N,num=N)
     for i in range(0,N):
         if random_sequence.count(i) >= 1:
             counts_t2.append(random_sequence.count(i))
-            vals.append(random_sequence[i])
-    plt.plot(vals,counts_t2)
+    plt.plot(xs,counts_t2)
     plt.title("T_2, m="+str(m)+"  a="+str(a)+"  c="+str(c)+"  x_0="+str(x_0)+"  N="+str(N))
     plt.ylabel("Frequency of particular value")
     plt.xlabel("Value selected from random sequence")
