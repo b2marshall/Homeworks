@@ -174,14 +174,16 @@ def distance_from_true(mean_array,true_mean):
     return(distances)
 mean_distance_sequence = [distance_from_true(sample_means(samples_set(x,1,random_sequence)),actual_mean) for x in range(0,10001)]
 #plots the convergence of the sample means to the true mean
-"""
+
 xs = range(0,10001)
 plt.plot(xs, mean_distance_sequence)
 plt.title("convergence of sample means to true mean")
 plt.ylabel("distance of sample mean from true mean")
 plt.xlabel("size of sample")
 plt.savefig("meanconvergence.png")
-"""
+plt.clf()
+plt.cla()
+plt.close()
 
 #this is the code for the central limit theorem plot 
 def z_n(size_of_sample, number_of_samples,element_list,actual_mean):
@@ -205,7 +207,9 @@ weight = np.ones_like(zs)/float(len(zs))
 plt.hist(zs,bins=50,weights=weight) 
 plt.plot(x_for_z_n, stats.norm.pdf(x_for_z_n,z_n_mu,z_n_var))
 plt.savefig('z_n_plot.png')
-'''
+plt.clf()
+plt.cla()
+plt.close()
 
 #begin monty hall problem: 
 door_number_sequence = [x % 3 for x in random_sequence]
@@ -267,18 +271,20 @@ for N in monty_hall_ns:
 plt.plot([0,1,2,3,4],correct_guesses_without_change_arr, color='green', label='no change')
 plt.plot([0,1,2,3,4],correct_guesses_with_change_arr, color='blue', label='changed')
 #plt.xticks([10,100,1000,10000,10000])
-plt.xlabel('number of games')
+plt.xlabel('number of games x=0 for 10 games, x = 1  for 100 games..., x = 4 for 100000 games')
 #plt.xlim(0,5)
 plt.axhline(.33333333333, color='black', linestyle='dotted')
 plt.axhline(.66666666666, color='black', linestyle='dotted')
 plt.ylabel('amount of car winners divided by N') 
 plt.savefig('monty.png')
-
+plt.clf()
+plt.cla()
+plt.close()
 
 
 #implements the Box-Muller method for turning two uniform distributions into two normal distributions. We only plot one because that's all 
 #that we really needed. 
-'''
+
 x_1 = int(input("The current seed x_0 is " + str(x_0) + ". What would you like to seed with for turning a uniform distribution into a normal?\n"))
 random_sequence_for_normal = [x_1]
 for i in range(0,N):    
@@ -296,4 +302,6 @@ weight_1 = np.ones_like(norm_dist_z)/float(len(norm_dist_z))
 plt.hist(norm_dist_z, weights=weight_1)
 plt.title("Box-Muller method")
 plt.savefig("BoxMuller.png")
-'''
+plt.clf()
+plt.cla()
+plt.close()
