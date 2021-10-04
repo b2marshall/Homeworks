@@ -246,7 +246,7 @@ for N in monty_hall_ns:
     correct_guesses_with_change /= N
     correct_guesses_with_change_arr.append(correct_guesses_with_change)
 
-    #print(correct_guesses_with_change)
+    print(correct_guesses_with_change)
     correct_guesses_without_change = 0
     for i in range(0,N): 
         if contestant_guess[i] == door_number_sequence[i]:
@@ -256,6 +256,7 @@ for N in monty_hall_ns:
 
 plt.plot(monty_hall_ns,correct_guesses_without_change_arr, color='green', label='no change')
 plt.plot(monty_hall_ns,correct_guesses_with_change_arr, color='blue', label='changed')
+plt.xticks([10,100,1000,10000,10000])
 plt.xlabel('number of games')
 plt.ylabel('amount of car winners divided by N') 
 plt.savefig('monty.png')
