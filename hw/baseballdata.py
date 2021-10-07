@@ -1,4 +1,9 @@
-import csv 
+import csv
+import matplotlib
+matplotlib.use('Agg')
+import numpy as np
+import matplotlib.pyplot as plt  
+
 
 
 delim = ";"
@@ -22,43 +27,35 @@ for element in column_pairs:
    
 untreated_first_column.sort()
 untreated_second_column.sort()
-first_with_counts = []
-second_with_counts = []
 
 first_column = untreated_first_column[untreated_first_column.count(''):]    
 
-for element in first_column:
-    first_with_counts.append([element, untreated_first_column.count(element)])
-for element in untreated_second_column:
-    second_with_counts.append([element, untreated_second_column.count(element)]
-)
 
+first_singles = []
+for element in first_column: 
+    if element not in first_singles: 
+        first_singles.append(element)
 
+def ecdfys(dat_column_singles,dat_column,n):
+    ys = [0]
+    for element in dat_column_singles: 
+        ys.append(ys[-1]+dat_column.count(element)/n)
+    return ys[1:]
 
-first_no_duplicates = []
-second_no_duplicates = [] 
-count_variable = 0
-    
+#the following code takes these two lists of lists and generates the graph.
+xs = [0]
+for i in range(0,len(first_column)):
+    if xs[-1] != float(first_column[i]):
+        xs.append(float(first_column[i]))
+xs1 = xs[1:]
 
-for i in range(0,len(first_with_counts)-1):
-    if i == 0:
-        first_no_duplicates.append(first_with_counts[0])
-    if i > 0 and first_no_duplicates[-1] != first_with_counts[i]:
-        first_no_duplicates.append(first_with_counts[i])
-    else:
-        pass
-
-for i in range(0,len(second_with_counts)-1):
-    if i == 0:
-        second_no_duplicates.append(second_with_counts[0])
-    if i > 0 and second_no_duplicates[-1] != second_with_counts[i]:
-        second_no_duplicates.append(second_with_counts[i])
-    else:
-        pass  
-
-
-print(first_no_duplicates)
-print('*'*80)
-print(second_no_duplicates)
-
-#the following code takes these two lists of lists and generates the graph. 
+dat_array = np.array(first_column)
+n1 = len(first_column) 
+#y1 = np.arange(start=1/n1, stop=(n1+1)/n1, step=1/n1) 
+plt.plot(figsize=(12,6))
+#plt.plot(dat_array, y1)
+plt.figure(figsize=(27,13))
+plt.step(first_singles,ecdfys(first_singles,first_column,len(first_column)), 'r*', where='post')
+plt.savefig("npECDF1.png")
+print(first_singles)
+print(ecdfys(first_singles,first_column,len(first_column)))
