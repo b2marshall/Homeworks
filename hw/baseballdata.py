@@ -49,10 +49,24 @@ for i in range(0,len(first_column)):
         xs.append(float(first_column[i]))
 xs1 = xs[1:]
 
+#TEST
+dx = 0.01
+X  = np.arange(-2, 2, dx)
+Y  = exp(-X ** 2)
+
+# Normalize the data to a proper PDF
+Y /= (dx * Y).sum()
+
+# Compute the CDF
+CY = np.cumsum(Y * dx)
+
 dat_array = np.array(first_column)
 n1 = len(first_column) 
 #y1 = np.arange(start=1/n1, stop=(n1+1)/n1, step=1/n1) 
 plt.plot(figsize=(12,6))
+plt.plot(X,CY)
+
+
 #plt.plot(dat_array, y1)
 plt.figure(figsize=(27,13))
 plt.step(first_singles,ecdfys(first_singles,first_column,len(first_column)), 'r*', where='post')
