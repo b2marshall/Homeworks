@@ -101,9 +101,12 @@ plt.plot(xs2,lower(len(second_column),alpha,xs2,second_column), label='upper con
 plt.legend(loc='upper left')
 
 plt.savefig("ECDF2.png")
-print(min(second_column),max(second_column))
 
 
+first_floats = [float(element) for element in first_column]
+second_floats = [float(element) for element in second_column]
+est_var_15 = np.var(first_floats)
+est_var_19 = np.var(second_floats)
 
 def resampling(dat_list, n):
     resampled = []
@@ -111,8 +114,25 @@ def resampling(dat_list, n):
         resampled.append(random.choice(dat_list))
     return resampled
 
-n = int(input("What size n?\n"))
-T_boot_n = []
-for i in range(0,n): 
-    T_boot_n.append(mean_data(resampling(data,100)))
-print(T_boot_n)
+#n = int(input("What size n?\n"))
+n = len(first_floats)
+
+def T_n_star_var(data,n): 
+    T_n_star = np.var(resampling(data,n))
+    return(T_n_star)
+
+def bootstrap_var(data,B,n):
+    i=0
+    bootstrap_var = []
+    while i < B:
+        bootstrap_var.append(T_n_star_var(data,n))
+        i+=1 
+    return bootstrap_var       
+
+def vboot(bootstrap): 
+    inn_sum = sum(bootstrap)/len(bootstrap) 
+    summand = [(bootstrap[i]-inn_sum)**2 for i in range(0,len(bootstrap))]
+    vboot = sum(summand)/len(bootstrap)
+    return vboot 
+bootstrap_var(first_floats,10,100)
+
