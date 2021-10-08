@@ -183,7 +183,6 @@ def bootstrap_med(data,B,n):
     return bootstrap_med
 
 def bootstrap_var(data,B,n):
-    i=0
     bootstrap_var = []
     while i < B:
         bootstrap_var.append(T_n_star_var(data,n))
@@ -218,25 +217,3 @@ print("The 95 percent confidence interval for the variance of the hit speeds in 
 print("The 95 percent confidence interval for the variance of the hit speeds in 2019 is ({}, {}).".format(var_int_lower_19,var_int_upper_19))
 print("The 95 percent confidence interval for the median of the hit speeds in 2015 is ({}, {}).".format(med_int_lower_15,med_int_upper_15))
 print("The 95 percent confidence interval for the median of the hit speeds in 2019 is ({}, {}).".format(med_int_lower_19,med_int_upper_19))
- 
-
-
-
-p = ecdf_small(col1_singles,first_floats)
-
-
-plt.figure(figsize=(12,9))
-plt.title("ECDF for 2015 baseball data with computed ECDF")
-plt.yticks(np.linspace(0,1,num=30))
-plt.step(col1_singles,p, color='blue',where='post', label='Calculated ECDF')
-plt.ylabel("P(X_i) >= x")
-#plt.plot(np.linspace(81.5,91,num=100),p)
-#plt.plot(col1_singles,ecdf_small(col1_singles,first_column) label='upper confidence bound, alpha=0.05', color='black')
-plt.xlabel("hit speeds in mph")
-#plt.plot(np.linspace(81.5,91,num=100),lower(len(first_column),alpha,np.linspace(81.5,91,num=100),first_column), label='lower confidence bound, alpha = 0.05', color='blue')
-plt.step(col1_singles,ecdf_small(col1_singles,first_floats), 'r*', where='post', label='My ECDF')
-plt.legend(loc='upper left')
-plt.savefig("ECDF3.png")
-plt.clf()
-plt.cla() 
-plt.close()
