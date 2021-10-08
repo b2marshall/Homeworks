@@ -184,6 +184,7 @@ def bootstrap_med(data,B,n):
 
 def bootstrap_var(data,B,n):
     bootstrap_var = []
+    i=0
     while i < B:
         bootstrap_var.append(T_n_star_var(data,n))
         i+=1 
@@ -217,3 +218,12 @@ print("The 95 percent confidence interval for the variance of the hit speeds in 
 print("The 95 percent confidence interval for the variance of the hit speeds in 2019 is ({}, {}).".format(var_int_lower_19,var_int_upper_19))
 print("The 95 percent confidence interval for the median of the hit speeds in 2015 is ({}, {}).".format(med_int_lower_15,med_int_upper_15))
 print("The 95 percent confidence interval for the median of the hit speeds in 2019 is ({}, {}).".format(med_int_lower_19,med_int_upper_19))
+
+
+print(bootstrap_var(first_floats,1000,100))
+plt.figure(figsize=(12,9))
+plt.title("Plotting distribution of variance to determine the proper bootstrap method")
+plt.hist(bootstrap_var(first_floats,10000,500), bins=200)
+plt.axvline(x=np.mean(bootstrap_var(first_floats,10000,500)),color='red', linewidth=4, label='Mean of boostrap data')
+plt.legend(loc='upper left')
+plt.savefig("var1.png")
