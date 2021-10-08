@@ -68,37 +68,62 @@ def lower(n,alpha,xs,data):
     lowerbound = [min(ecdf(xs,data)[i]-epsilon,1) for i in range(0,len(xs))]
     return lowerbound
 
-p = 1.* np.arange(len(np.linspace(81.5,91,num=100)))/(len(np.linspace(81.5,91,num=100))-1)
-
-
-
-
-
-
-plt.plot(np.linspace(81.5,91,num=100),p)
-
-
-
+pstar = np.linspace(81.5,91,num=100)
+cdf = ecdf(pstar,first_column) 
+cdf1 =[0]+ [cdf[i]-cdf[i-1] for i in range(1,len(cdf))]
+Y = np.cumsum(cdf1)
 
 plt.figure(figsize=(12,9))
 plt.title("ECDF for 2015 baseball data")
 plt.yticks(np.linspace(0,1.01,num=30))
 plt.ylabel("P(X_i) >= x")
-#plt.plot(np.linspace(81.5,91,num=100),p)
+plt.plot(np.linspace(81.5,91,num=100),Y, label='calculated ECDF', color='black', linestyle='dashed', linewidth=3)
+plt.xlabel("hit speeds in mph")
+plt.step(np.linspace(81.5,91,num=100), ecdf(np.linspace(81.5,91,num=100),first_column), 'r*', where='post', label='My ECDF')
+plt.legend(loc='upper left')
+plt.savefig("2015ECDF1.png")
+plt.clf()
+plt.cla() 
+plt.close()
+
+
+plt.figure(figsize=(12,9))
+plt.yticks(np.linspace(0,1.01,num=30))
+plt.ylabel("P(X_i) >= x")
+plt.plot(np.linspace(81.5,91,num=100),Y)
 plt.plot(np.linspace(81.5,91,num=100),upper(len(first_column),alpha,np.linspace(81.5,91,num=100),first_column), label='upper confidence bound, alpha=0.05', color='black')
 plt.xlabel("hit speeds in mph")
 plt.plot(np.linspace(81.5,91,num=100),lower(len(first_column),alpha,np.linspace(81.5,91,num=100),first_column), label='lower confidence bound, alpha = 0.05', color='blue')
 plt.step(np.linspace(81.5,91,num=100), ecdf(np.linspace(81.5,91,num=100),first_column), 'r*', where='post', label='My ECDF')
 plt.legend(loc='upper left')
-plt.savefig("npECDF1.png")
+plt.savefig("2015ECDF2.png")
+plt.clf()
+plt.cla() 
+plt.close()
+
+
+pstar = np.linspace(84,93,num=100)
+cdf = ecdf(pstar,first_column) 
+cdf1 =[0]+ [cdf[i]-cdf[i-1] for i in range(1,len(cdf))]
+Y = np.cumsum(cdf1)
+
+xs2 = np.linspace(84,93,num=100)
+
+plt.figure(figsize=(12,9))
+plt.title("ECDF for 2019 baseball data")
+plt.yticks(np.linspace(0,1.01,num=30))
+plt.ylabel("P(X_i) >= x")
+plt.plot(xs2,Y, label='calculated ECDF', color='black', linestyle='dashed', linewidth=3)
+plt.xlabel("hit speeds in mph")
+plt.step(xs2, ecdf(xs2,second_column), 'r*', where='post', label='My ECDF')
+plt.legend(loc='upper left')
+plt.savefig("2019ECDF1.png")
 plt.clf()
 plt.cla() 
 plt.close()
 
 
 
-xs2 = np.linspace(84,93,num=100)
-plt.figure(figsize=(12,9))
 plt.title("ECDF for 2019 baseball data")
 plt.yticks(np.linspace(0,1.01,num=30))
 plt.ylabel("P(X_i) >= x")
@@ -108,7 +133,7 @@ plt.plot(xs2,upper(len(second_column),alpha,xs2,second_column), label='upper con
 plt.plot(xs2,lower(len(second_column),alpha,xs2,second_column), label='upper confidence bound, alpha=0.05', color='blue')
 plt.legend(loc='upper left')
 
-plt.savefig("ECDF2.png")
+plt.savefig("2019ECDF2.png")
 
 
 first_floats = [float(element) for element in first_column]
@@ -119,6 +144,22 @@ est_var_19 = np.var(second_floats)
 est_med_15 = np.median(first_floats)
 est_med_19 = np.median(second_floats) 
 
+col1_singles = []
+for element in first_floats:
+    if element not in col1_singles:
+        col1_singles.append(element)
+
+col2_singles = []
+for elemenet in second_floats:
+    if element not in col2_singles:
+        col2_singles.append(element)
+
+def ecdf_small(data_no_repeats, data):
+    ys = [0]
+    for element in data_no_repeats:
+        ys.append(ys[-1]+data.count(element)/len(data)) 
+    return ys[1:] 
+    
 
 def resampling(dat_list, n):
     resampled = []
@@ -174,5 +215,25 @@ print("The 95% confidence interval for the variance of the hit speeds in 2015 is
 print("The 95% confidence interval for the variance of the hit speeds in 2019 is ({},{})".format(var_int_lower_19,var_int_upper_19))
 print("The 95% confidence interval for the median of the hit speeds in 2015 is ({},{})".format(med_int_lower_15,med_int_upper_15))
 print("The 95% confidence interval for the median of the hit speeds in 2019 is ({},{})".format(med_int_lower_19,med_int_upper_19))
+ 
 
 
+
+p = ecdf_small(col1_singles,first_floats)
+
+
+plt.figure(figsize=(12,9))
+plt.title("ECDF for 2015 baseball data with computed ECDF")
+plt.yticks(np.linspace(0,1,num=30))
+plt.step(col1_singles,p, color='blue',where='post', label='Calculated ECDF')
+plt.ylabel("P(X_i) >= x")
+#plt.plot(np.linspace(81.5,91,num=100),p)
+#plt.plot(col1_singles,ecdf_small(col1_singles,first_column) label='upper confidence bound, alpha=0.05', color='black')
+plt.xlabel("hit speeds in mph")
+#plt.plot(np.linspace(81.5,91,num=100),lower(len(first_column),alpha,np.linspace(81.5,91,num=100),first_column), label='lower confidence bound, alpha = 0.05', color='blue')
+plt.step(col1_singles,ecdf_small(col1_singles,first_floats), 'r*', where='post', label='My ECDF')
+plt.legend(loc='upper left')
+plt.savefig("ECDF3.png")
+plt.clf()
+plt.cla() 
+plt.close()
