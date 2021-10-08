@@ -121,6 +121,18 @@ def T_n_star_var(data,n):
     T_n_star = np.var(resampling(data,n))
     return(T_n_star)
 
+def T_n_star_med(data,n):
+    T_n_star = np.median(resampling(data,n))
+    return(T_n_star)
+
+def bootstrap_med(data,B,n):
+    i = 0 
+    bootstrap_med = []
+    while i < B:
+        bootstrap_med.append(T_n_star_med(data,n))
+        i+=1
+    return bootstrap_med
+
 def bootstrap_var(data,B,n):
     i=0
     bootstrap_var = []
@@ -134,5 +146,10 @@ def vboot(bootstrap):
     summand = [(bootstrap[i]-inn_sum)**2 for i in range(0,len(bootstrap))]
     vboot = sum(summand)/len(bootstrap)
     return vboot 
-bootstrap_var(first_floats,10,100)
+
+print(vboot(bootstrap_var(first_floats,1000,100)))
+print('*'*80)
+print(est_var_15)
+
+
 
