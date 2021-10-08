@@ -2,6 +2,7 @@ import csv
 import matplotlib
 matplotlib.use('Agg')
 import numpy as np
+import random 
 import matplotlib.pyplot as plt  
 import math
 
@@ -101,3 +102,17 @@ plt.legend(loc='upper left')
 
 plt.savefig("ECDF2.png")
 print(min(second_column),max(second_column))
+
+
+
+def resampling(dat_list, n):
+    resampled = []
+    for i in range(0,n):
+        resampled.append(random.choice(dat_list))
+    return resampled
+
+n = int(input("What size n?\n"))
+T_boot_n = []
+for i in range(0,n): 
+    T_boot_n.append(mean_data(resampling(data,100)))
+print(T_boot_n)
