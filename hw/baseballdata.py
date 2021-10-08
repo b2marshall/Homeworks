@@ -75,7 +75,7 @@ Y = np.cumsum(cdf1)
 
 plt.figure(figsize=(12,9))
 plt.title("ECDF for 2015 baseball data")
-plt.yticks(np.linspace(0,1.01,num=30))
+plt.yticks(np.linspace(0,1,num=30))
 plt.ylabel("P(X_i) >= x")
 plt.plot(np.linspace(81.5,91,num=100),Y, label='calculated ECDF', color='black', linestyle='dashed', linewidth=3)
 plt.xlabel("hit speeds in mph")
@@ -88,9 +88,8 @@ plt.close()
 
 
 plt.figure(figsize=(12,9))
-plt.yticks(np.linspace(0,1.01,num=30))
+plt.yticks(np.linspace(0,1,num=30))
 plt.ylabel("P(X_i) >= x")
-plt.plot(np.linspace(81.5,91,num=100),Y)
 plt.plot(np.linspace(81.5,91,num=100),upper(len(first_column),alpha,np.linspace(81.5,91,num=100),first_column), label='upper confidence bound, alpha=0.05', color='black')
 plt.xlabel("hit speeds in mph")
 plt.plot(np.linspace(81.5,91,num=100),lower(len(first_column),alpha,np.linspace(81.5,91,num=100),first_column), label='lower confidence bound, alpha = 0.05', color='blue')
@@ -103,7 +102,7 @@ plt.close()
 
 
 pstar = np.linspace(84,93,num=100)
-cdf = ecdf(pstar,first_column) 
+cdf = ecdf(pstar,second_column) 
 cdf1 =[0]+ [cdf[i]-cdf[i-1] for i in range(1,len(cdf))]
 Y = np.cumsum(cdf1)
 
@@ -111,7 +110,7 @@ xs2 = np.linspace(84,93,num=100)
 
 plt.figure(figsize=(12,9))
 plt.title("ECDF for 2019 baseball data")
-plt.yticks(np.linspace(0,1.01,num=30))
+plt.yticks(np.linspace(0,1,num=30))
 plt.ylabel("P(X_i) >= x")
 plt.plot(xs2,Y, label='calculated ECDF', color='black', linestyle='dashed', linewidth=3)
 plt.xlabel("hit speeds in mph")
@@ -123,9 +122,9 @@ plt.cla()
 plt.close()
 
 
-
+plt.figure(figsize=(12,9))
 plt.title("ECDF for 2019 baseball data")
-plt.yticks(np.linspace(0,1.01,num=30))
+plt.yticks(np.linspace(0,1,num=30))
 plt.ylabel("P(X_i) >= x")
 plt.xlabel("hit speeds in mph")
 plt.step(xs2,ecdf(xs2,second_column),'r*',where='post',label='My ECDF')
