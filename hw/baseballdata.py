@@ -17,17 +17,14 @@ with open('baseball_data') as fptr:
     for element in lines:
         column_pairs.append(element.strip('\n'))
 untreated_first_column = []
-untreated_second_column = []
 second_column = []
 
 for element in column_pairs:
     tempsplit = element.split(',')
     untreated_first_column.append(tempsplit[0])
-    untreated_second_column.append(tempsplit[1])
+    second_column.append(tempsplit[1])
    
 untreated_first_column.sort()
-second_column = untreated_second_column.sort()
-
 first_column = untreated_first_column[untreated_first_column.count(''):]    
 
 
@@ -49,8 +46,6 @@ def ecdf(xs, data):
         temps =0
     return ys[1:]
 
-print(np.linspace(80,92,num=100))
-print(min(first_column), max(first_column))
 #the following code takes these two lists of lists and generates the graph.
 mu = np.mean([float(first_column[i]) for i in range(0,len(first_column))])
 sigma = math.sqrt(np.var([float(first_column[i]) for i in range(0,len(first_column))]))
@@ -87,4 +82,22 @@ plt.plot(np.linspace(81.5,91,num=100),lower(len(first_column),alpha,np.linspace(
 plt.step(np.linspace(81.5,91,num=100), ecdf(np.linspace(81.5,91,num=100),first_column), 'r*', where='post', label='My ECDF')
 plt.legend(loc='upper left')
 plt.savefig("npECDF1.png")
+plt.clf()
+plt.cla() 
+plt.close()
 
+
+
+xs2 = np.linspace(84,93,num=100)
+plt.figure(figsize=(12,9))
+plt.title("ECDF for 2019 baseball data")
+plt.yticks(np.linspace(0,1.01,num=30))
+plt.ylabel("P(X_i) >= x")
+plt.xlabel("Pitch speeds in mph")
+plt.step(xs2,ecdf(xs2,second_column),'r*',where='post',label='My ECDF')
+plt.plot(xs2,upper(len(second_column),alpha,xs2,second_column), label='upper confidence bound, alpha=0.05', color='black')
+plt.plot(xs2,lower(len(second_column),alpha,xs2,second_column), label='upper confidence bound, alpha=0.05', color='blue')
+plt.legend(loc='upper left')
+
+plt.savefig("ECDF2.png")
+print(min(second_column),max(second_column))
