@@ -68,18 +68,26 @@ def lower(n,alpha,xs,data):
     lowerbound = [min(ecdf(xs,data)[i]-epsilon,1) for i in range(0,len(xs))]
     return lowerbound
 
-#upper_bound1 = upper(len(first_column), alpha,)
+p = 1.* np.arange(len(np.linspace(81.5,91,num=100)))/(len(np.linspace(81.5,91,num=100))-1)
+
+
+
+
+
+
+plt.plot(np.linspace(81.5,91,num=100),p)
+
+
 
 
 plt.figure(figsize=(12,9))
 plt.title("ECDF for 2015 baseball data")
 plt.yticks(np.linspace(0,1.01,num=30))
 plt.ylabel("P(X_i) >= x")
+#plt.plot(np.linspace(81.5,91,num=100),p)
 plt.plot(np.linspace(81.5,91,num=100),upper(len(first_column),alpha,np.linspace(81.5,91,num=100),first_column), label='upper confidence bound, alpha=0.05', color='black')
-#plt.hist(x, bins= 200, normed=True, cumulative=True, label='CDF', histtype='step', alpha=0.55, color='k')
-plt.xlabel("Pitch speeds in mph")
+plt.xlabel("hit speeds in mph")
 plt.plot(np.linspace(81.5,91,num=100),lower(len(first_column),alpha,np.linspace(81.5,91,num=100),first_column), label='lower confidence bound, alpha = 0.05', color='blue')
-#plt.step(first_singles,ecdfys(first_singles,first_column,len(first_column)), 'r*', where='post')
 plt.step(np.linspace(81.5,91,num=100), ecdf(np.linspace(81.5,91,num=100),first_column), 'r*', where='post', label='My ECDF')
 plt.legend(loc='upper left')
 plt.savefig("npECDF1.png")
@@ -94,7 +102,7 @@ plt.figure(figsize=(12,9))
 plt.title("ECDF for 2019 baseball data")
 plt.yticks(np.linspace(0,1.01,num=30))
 plt.ylabel("P(X_i) >= x")
-plt.xlabel("Pitch speeds in mph")
+plt.xlabel("hit speeds in mph")
 plt.step(xs2,ecdf(xs2,second_column),'r*',where='post',label='My ECDF')
 plt.plot(xs2,upper(len(second_column),alpha,xs2,second_column), label='upper confidence bound, alpha=0.05', color='black')
 plt.plot(xs2,lower(len(second_column),alpha,xs2,second_column), label='upper confidence bound, alpha=0.05', color='blue')
@@ -105,17 +113,18 @@ plt.savefig("ECDF2.png")
 
 first_floats = [float(element) for element in first_column]
 second_floats = [float(element) for element in second_column]
+
 est_var_15 = np.var(first_floats)
 est_var_19 = np.var(second_floats)
+est_med_15 = np.median(first_floats)
+est_med_19 = np.median(second_floats) 
+
 
 def resampling(dat_list, n):
     resampled = []
     for i in range(0,n):
         resampled.append(random.choice(dat_list))
     return resampled
-
-#n = int(input("What size n?\n"))
-n = len(first_floats)
 
 def T_n_star_var(data,n): 
     T_n_star = np.var(resampling(data,n))
@@ -142,14 +151,28 @@ def bootstrap_var(data,B,n):
     return bootstrap_var       
 
 def vboot(bootstrap): 
-    inn_sum = sum(bootstrap)/len(bootstrap) 
+    inn_sum = np.mean(bootstrap) 
     summand = [(bootstrap[i]-inn_sum)**2 for i in range(0,len(bootstrap))]
-    vboot = sum(summand)/len(bootstrap)
+    vboot = np.mean(summand)
     return vboot 
 
-print(vboot(bootstrap_var(first_floats,1000,100)))
-print('*'*80)
-print(est_var_15)
+def se(vboot):
+   return math.sqrt(vboot)
+     
+var_int_upper_15 = 2*se(vboot(bootstrap_var(first_floats,1000,100))) + est_var_15 
+var_int_lower_15 = est_var_15 - 2*se(vboot(bootstrap_var(first_floats,1000,100)))  
+var_int_upper_19 = 2*se(vboot(bootstrap_var(second_floats,1000,100))) + est_var_19 
+var_int_lower_19 = est_var_19 - 2*se(vboot(bootstrap_var(second_floats,1000,100)))  
 
+med_int_upper_15 = 2*se(vboot(bootstrap_med(first_floats,1000,100))) + est_med_15 
+med_int_lower_15 = est_med_15 - 2*se(vboot(bootstrap_med(first_floats,1000,100))) 
+med_int_upper_19 = 2*se(vboot(bootstrap_med(second_floats,1000,100))) + est_med_19 
+med_int_lower_19 = est_med_19 - 2*se(vboot(bootstrap_med(second_floats,1000,100))) 
+ 
+
+print("The 95% confidence interval for the variance of the hit speeds in 2015 is ({},{})".format(var_int_lower_15,var_int_upper_15))
+print("The 95% confidence interval for the variance of the hit speeds in 2019 is ({},{})".format(var_int_lower_19,var_int_upper_19))
+print("The 95% confidence interval for the median of the hit speeds in 2015 is ({},{})".format(med_int_lower_15,med_int_upper_15))
+print("The 95% confidence interval for the median of the hit speeds in 2019 is ({},{})".format(med_int_lower_19,med_int_upper_19))
 
 
