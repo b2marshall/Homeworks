@@ -214,10 +214,10 @@ print("The estimated variance of the hit speeds in 2019 is {}.".format(est_var_1
 print("The estimated median of the hit speeds in 2015 is {} mph.".format(est_med_15))
 print("The estimated median of the hit speeds in 2019 is {} mph.".format(est_med_19))
 print("*"*80)
-print("The 95 percent confidence interval for the variance of the hit speeds in 2015 is ({},{}).".format(var_int_lower_15,var_int_upper_15))
-print("The 95 percent confidence interval for the variance of the hit speeds in 2019 is ({},{}).".format(var_int_lower_19,var_int_upper_19))
-print("The 95 percent confidence interval for the median of the hit speeds in 2015 is ({},{}).".format(med_int_lower_15,med_int_upper_15))
-print("The 95 percent confidence interval for the median of the hit speeds in 2019 is ({},{}).".format(med_int_lower_19,med_int_upper_19))
+print("The 95 percent confidence interval for the variance of the hit speeds in 2015 is ({}, {}).".format(var_int_lower_15,var_int_upper_15))
+print("The 95 percent confidence interval for the variance of the hit speeds in 2019 is ({}, {}).".format(var_int_lower_19,var_int_upper_19))
+print("The 95 percent confidence interval for the median of the hit speeds in 2015 is ({}, {}).".format(med_int_lower_15,med_int_upper_15))
+print("The 95 percent confidence interval for the median of the hit speeds in 2019 is ({}, {}).".format(med_int_lower_19,med_int_upper_19))
  
 
 
