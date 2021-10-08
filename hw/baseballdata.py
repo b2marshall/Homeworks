@@ -86,8 +86,8 @@ plt.clf()
 plt.cla() 
 plt.close()
 
-
 plt.figure(figsize=(12,9))
+plt.title("ECDF for 2015 baseball data")
 plt.yticks(np.linspace(0,1,num=30))
 plt.ylabel("P(X_i) >= x")
 plt.plot(np.linspace(81.5,91,num=100),upper(len(first_column),alpha,np.linspace(81.5,91,num=100),first_column), label='upper confidence bound, alpha=0.05', color='black')
