@@ -40,10 +40,8 @@ def getm(m,column):
 def genm(m): 
     return [(random.uniform(0,10), random.uniform(0,10)) for i in range(0,m)]
 
-#generates a dict of D_m keys, the value is a list of closest point and distance to that point
-#20 suffices as an upper bound for this problem as the maximum distance between any two points 
-#in a 10x10 square is 2sqrt(10) < 20.
-
+#Creates an array of minimum distances from element in first pair to elements in 
+#second pair. 
 def min_dist(pairs1, pairs2):
     temp = []
     mins = []
@@ -53,13 +51,20 @@ def min_dist(pairs1, pairs2):
         mins.append(min(temp))
         temp = []  
     return mins 
-    
 
-
-#print(min_dist([(0,1),(0,2),(0,0)], [(0,3),(0,4),(0,5)]))  
-
+#Squares then sums the element of the lists 
 def sumsquare(distances): 
     return (sum([element**2 for element in distances]))
 
-print(sumsquare(min_dist([(0,1),(0,2),(0,0)], [(0,3),(0,4),(0,5)])))
- 
+#Calculates H as a random variable from given data 
+def H(data,m): 
+    dm = getm(m,data)
+    randm = genm(m) 
+    r_i = min_dist(data, randm) 
+    p_i = min_dist(data, dm) 
+    return sumsquare(r_i)/(sumsquare(p_i)+ sumsquare(r_i))
+
+hvals = [H(ds5,m) for i in range(0,100)]
+
+print(hvals)
+print(np.mean(hvals)) 
