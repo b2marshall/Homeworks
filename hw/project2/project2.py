@@ -27,7 +27,6 @@ ds4 = [(float(x[0]),float(x[1])) for x in fds4]
 fds5 = [element[4].split(',') for element in lines]
 ds5 = [(float(x[0]),float(x[1])) for x in fds5]
 
-print(ds5)
 
 #calculates Euclidean distance between (x,y) and (j,k) 
 def dist(x,y,j,k):
@@ -40,22 +39,27 @@ def getm(m,column):
 
 def genm(m): 
     return [(random.uniform(0,10), random.uniform(0,10)) for i in range(0,m)]
-print(genm(10))
+
 #generates a dict of D_m keys, the value is a list of closest point and distance to that point
+#20 suffices as an upper bound for this problem as the maximum distance between any two points 
+#in a 10x10 square is 2sqrt(10) < 20.
 
-def closest(d_m, rand_m): 
-    values = {} 
-    temprand = [20] 
-    for element in d_m:
-        for x in rand_m:
-            if  dist(element[0],element[1],x[0],x[1]) < temprand[-1]:
-                temprand.append(dist(element[0],element[1],x[0],x[1]))
-                values[element] = [x, dist(element[0],element[1],x[0],x[1])] 
-        temprand = [20]  
-    return values 
-
-print(closest([(0,1),(0,2),(0,0)], [(0,3),(0,4),(0,5)]))  
+def min_dist(pairs1, pairs2):
+    temp = []
+    mins = []
+    for element in pairs1:
+        for x in pairs2:
+            temp.append(dist(element[0],element[1],x[0],x[1]))
+        mins.append(min(temp))
+        temp = []  
+    return mins 
+    
 
 
+#print(min_dist([(0,1),(0,2),(0,0)], [(0,3),(0,4),(0,5)]))  
 
+def sumsquare(distances): 
+    return (sum([element**2 for element in distances]))
+
+print(sumsquare(min_dist([(0,1),(0,2),(0,0)], [(0,3),(0,4),(0,5)])))
  
