@@ -4,6 +4,7 @@ import matplotlib
 matplotlib.use('Agg') 
 import matplotlib.pyplot as plt
 import random
+import scipy as sp
 from math import sqrt
 
 #This section imports the data and parses the columns into lists of ordered pairs of floats  
@@ -66,5 +67,18 @@ def H(data,m):
 
 hvals = [H(ds5,m) for i in range(0,100)]
 
+#Gets values for Ix(m,m) 
+z_alpha1 = 1/2 + 1.96/sqrt(8*m+4)
+z_alpha2 = 1/2 - 1.96/sqrt(8*m+4) 
+
+#Finds hopkins statistic for each column, writes to file. Added here because it's slow 
+hopfile = open('hopkins.txt', 'w')
+hopfile.writelines('1e: compute Hopkins statistic for each column and report\n')
+hop = [str(H(ds1,50))+'\t', str(H(ds2,50))+'\t', str(H(ds1,50))+'\t', str(H(ds3,50))+'\t', str(H(ds4,50))+'\t', str(H(ds5,50))+'\t']
+hopfile.writelines(hop) 
+hopfile.close()
+
+
+#print(sp.special.betainc(m,m,
 print(hvals)
 print(np.mean(hvals)) 
