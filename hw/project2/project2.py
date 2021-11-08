@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import random
 import scipy
 from scipy import special 
+from scipy import stats
 from math import sqrt
 
 #This section imports the data and parses the columns into lists of ordered pairs of floats  
@@ -75,12 +76,17 @@ z_alpha2 = 1/2 - 1.96/sqrt(8*m+4)
 alpha_estimate = 1 - (scipy.special.betainc(m,m,z_alpha1)-scipy.special.betainc(m,m,z_alpha2))
 solutions = open('hopkins.txt', 'w')
 solutions.writelines('1c: The estimate for alpha is {0}\n\n'.format(alpha_estimate))
+two_e = [H(ds1,50), H(ds2,50), H(ds3, 50), H(ds4,50), H(ds5,50)] 
 #Finds hopkins statistic for each column, writes to file. Added here because it's slow 
-solutions.writelines('1e: compute Hopkins statistic for each column and report\n')
-hop = ['['+str(H(ds1,50))+'\t', str(H(ds2,50))+'\t', str(H(ds1,50))+'\t', str(H(ds3,50))+'\t', str(H(ds4,50))+'\t', str(H(ds5,50))+'\t'+']']
+solutions.writelines('1e: compute Hopkins statistic for each column and report. \t m = {0}\n'.format(m)) 
+hop = ['['+str(two_e[0])+'\t', str(two_e[1])+'\t', str(two_e[2])+'\t', str(two_e[3])+'\t', str(two_e[4])+']']
 solutions.writelines(hop) 
 solutions.close()
-
-
+def pvalh(H,mu,sigma):
+    z_0 = (H-mu)/sigma 
+    p = 2*scipy.stats.norm.cdf(-1*abs(z_0))
+    return p
+pvals2e = [pvalh(element, 0.5, sqrt(804)) for element in two_e]
+print(pvals2e)
 #print(hvals)
 #print(np.mean(hvals)) 
