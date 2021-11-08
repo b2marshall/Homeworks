@@ -84,7 +84,7 @@ solutions.writelines(hop)
 solutions.close()
 def pvalh(H,mu,sigma):
     z_0 = (H-mu)/sigma 
-    p = 2*scipy.stats.norm.cdf(-1*abs(z_0))
+    p = 1- 2*scipy.stats.norm.cdf(-abs(z_0))
     return p
 pvals2e = [pvalh(element, 0.5, sqrt(804)) for element in two_e]
 print(pvals2e)
