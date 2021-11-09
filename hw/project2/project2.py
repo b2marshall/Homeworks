@@ -67,28 +67,44 @@ def H(data,m):
     p_i = min_dist(data, dm) 
     return sumsquare(r_i)/(sumsquare(p_i)+ sumsquare(r_i))
 
-#?????
-#hvals = [H(ds5,m) for i in range(0,100)]
-
+#calculates p values 
 def pvalh(H,mu,sigma):
     z_0 = (H-mu)/sigma 
-    p = 1- 2*scipy.stats.norm.cdf(-abs(z_0))
+    p = 2*(scipy.stats.norm.cdf(-abs(z_0)))
     return p
+#decides to reject/maintain null hypothesis 
+def pvalreject(pval): 
+    if pval < 0.05:
+        return 'Reject'
+    if pval > 0.1:
+        return 'Maintain'
+    else: 
+        return 'Inconclusive'
+
 #Gets values for Ix(m,m) to answer 2b 
 z_alpha1 = 1/2 + 1.96/sqrt(8*m+4)
 z_alpha2 = 1/2 - 1.96/sqrt(8*m+4) 
 alpha_estimate = 1 - (scipy.special.betainc(m,m,z_alpha1)-scipy.special.betainc(m,m,z_alpha2))
 solutions = open('hopkins.txt', 'w')
 solutions.writelines('1c: The estimate for alpha is {0}\n\n'.format(alpha_estimate))
-two_e = [H(ds1,50), H(ds2,50), H(ds3, 50), H(ds4,50), H(ds5,50)] 
-#Finds H for each column, writes to file. Added here because it's slow 
-solutions.writelines('1e: compute Hopkins statistic for each column and report. \t m = {0}\n'.format(m)) 
-hop = ['['+str(two_e[0])+'\t', str(two_e[1])+'\t', str(two_e[2])+'\t', str(two_e[3])+'\t', str(two_e[4])+']'+'\n']
-solutions.writelines(hop) 
-pvals2e = [pvalh(element, 0.5, sqrt(804)) for element in two_e]
-pvalswrite = [str(element) for element in pvals2e]
-solutions.writelines([['+pvalswrite[0]+'\t', pvalswrite[1]+'\t', pvalswrite[2]+'\t', pvalswrite[3]+'\t', pvalswrite[4]+'\t'+']'])
 
+#Finds H for each column,m =100 then writes H values to file for part 2e
+two_e = [H(ds1,100), H(ds2,100), H(ds3, 100), H(ds4,100), H(ds5,100)] 
+solutions.writelines('1e: compute Hopkins statistic for each column and report. \t m = {0}\n'.format(m)) 
+hop = ['['+'H = '+str(two_e[0])+'\t', 'H = '+str(two_e[1])+'\t', 'H = '+str(two_e[2])+'\t', 'H = '+str(two_e[3])+'\t', 'H = '+str(two_e[4])+']']
+solutions.writelines(hop)
+solutions.write('\n') 
+
+#for 2e, calculates p values and writes to file
+pvals2e = [pvalh(element, 0.5, (1/sqrt(804))) for element in two_e]
+pvalswrite = ['p = '+str(element) for element in pvals2e]
+solutions.write('\n')
+solutions.writelines(['['pvalswrite[0]+'\t', pvalswrite[1]+'\t', pvalswrite[2]+'\t', pvalswrite[3]+'\t', pvalswrite[4]+']'])
+
+#for 2f, decides whether or not to reject null hypothesis 
+pval_decide = [pvalreject(float(element)) for element in pvals2e]
+print(pval_decide)
+solutions.write('\n')
 solutions.close()
 
 print(pvals2e)
