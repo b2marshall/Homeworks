@@ -97,7 +97,7 @@ solutions.writelines(hop)
 solutions.write('\n') 
 
 #for 2e, calculates p values and writes to file
-pvals2e = [pvalh(element, 0.5, (1/sqrt(8m+4))) for element in two_e]
+pvals2e = [pvalh(element, 0.5, (1/sqrt(8*m+4))) for element in two_e]
 pvalswrite = ['p = '+str(element) for element in pvals2e]
 solutions.write('\n')
 solutions.writelines(['['+pvalswrite[0]+'\t', pvalswrite[1]+'\t', pvalswrite[2]+'\t', pvalswrite[3]+'\t', pvalswrite[4]+']'])
@@ -111,4 +111,32 @@ solutions.close()
 print(pvals2e)
 
 #3a
-m = int(input("Part 3: what value for m?\n"))    
+
+
+m = int(input("Part 3: what value for m?\n"))   
+k = int(input("Part 3: what value for k?\n"))
+
+p3h1 = [str(H(ds1,m))+',' for i in range(1000)]
+p3h2 = [str(H(ds2,m))+',' for i in range(1000)]
+p3h3 = [str(H(ds3,m))+',' for i in range(1000)]
+p3h4 = [str(H(ds4,m))+',' for i in range(1000)]
+p3h5 = [str(H(ds4,m))+',' for i in range(1000)]
+p3txt = open('p3.txt', 'w')
+p3txt.writelines(p3h1+['\n'])
+p3txt.writelines(p3h2+['\n'])
+p3txt.writelines(p3h3+['\n'])
+p3txt.writelines(p3h4+['\n'])
+p3txt.writelines(p3h5+['\n'])
+p3txt.close()
+
+with open('p3.txt') as fptr:
+    x = fptr.readlines()
+    print(len(x))
+    #y = x.split(',') 
+    #print(y)
+    #print(len(y))
+
+
+
+
+ 
