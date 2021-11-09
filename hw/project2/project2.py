@@ -36,7 +36,7 @@ def dist(x,y,j,k):
     return sqrt((x-j)**2 + (y-k)**2)
 
 #selects sample size, generates D_m set and random set of size m from the same range
-m = int(input("What value for m?\n"))    
+m = int(input("Part 2c: what value for m?\n"))    
 def getm(m,column): 
     return [random.choice(column)for i in range(0,m)]
 
@@ -89,14 +89,15 @@ solutions = open('hopkins.txt', 'w')
 solutions.writelines('1c: The estimate for alpha is {0}\n\n'.format(alpha_estimate))
 
 #Finds H for each column,m =100 then writes H values to file for part 2e
-two_e = [H(ds1,100), H(ds2,100), H(ds3, 100), H(ds4,100), H(ds5,100)] 
+m = int(input("Part 2e: what value for m?\n"))    
+two_e = [H(ds1,m), H(ds2,m), H(ds3, m), H(ds4,m), H(ds5,m)] 
 solutions.writelines('1e: compute Hopkins statistic for each column and report. \t m = {0}\n'.format(m)) 
 hop = ['['+'H = '+str(two_e[0])+'\t', 'H = '+str(two_e[1])+'\t', 'H = '+str(two_e[2])+'\t', 'H = '+str(two_e[3])+'\t', 'H = '+str(two_e[4])+']']
 solutions.writelines(hop)
 solutions.write('\n') 
 
 #for 2e, calculates p values and writes to file
-pvals2e = [pvalh(element, 0.5, (1/sqrt(804))) for element in two_e]
+pvals2e = [pvalh(element, 0.5, (1/sqrt(8m+4))) for element in two_e]
 pvalswrite = ['p = '+str(element) for element in pvals2e]
 solutions.write('\n')
 solutions.writelines(['['+pvalswrite[0]+'\t', pvalswrite[1]+'\t', pvalswrite[2]+'\t', pvalswrite[3]+'\t', pvalswrite[4]+']'])
@@ -107,7 +108,7 @@ print(pval_decide)
 solutions.write('\n\n1f: decide whether or not to reject the null hypothesis\n')
 solutions.writelines(['['+pval_decide[0], ',\t'+pval_decide[1], ',\t'+pval_decide[2], ',\t'+pval_decide[3], ',\t'+pval_decide[4]+']'])
 solutions.close()
-
 print(pvals2e)
-#print(hvals)
-#print(np.mean(hvals)) 
+
+#3a
+m = int(input("Part 3: what value for m?\n"))    
