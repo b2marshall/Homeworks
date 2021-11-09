@@ -75,11 +75,11 @@ def pvalh(H,mu,sigma):
 #decides to reject/maintain null hypothesis 
 def pvalreject(pval): 
     if pval < 0.05:
-        return 'Reject'
+        return 'Reject null hypothesis'
     if pval > 0.1:
-        return 'Maintain'
+        return 'Maintain null hypothesis'
     else: 
-        return 'Inconclusive'
+        return 'P value inconclusive'
 
 #Gets values for Ix(m,m) to answer 2b 
 z_alpha1 = 1/2 + 1.96/sqrt(8*m+4)
@@ -99,12 +99,13 @@ solutions.write('\n')
 pvals2e = [pvalh(element, 0.5, (1/sqrt(804))) for element in two_e]
 pvalswrite = ['p = '+str(element) for element in pvals2e]
 solutions.write('\n')
-solutions.writelines(['['pvalswrite[0]+'\t', pvalswrite[1]+'\t', pvalswrite[2]+'\t', pvalswrite[3]+'\t', pvalswrite[4]+']'])
+solutions.writelines(['['+pvalswrite[0]+'\t', pvalswrite[1]+'\t', pvalswrite[2]+'\t', pvalswrite[3]+'\t', pvalswrite[4]+']'])
 
 #for 2f, decides whether or not to reject null hypothesis 
 pval_decide = [pvalreject(float(element)) for element in pvals2e]
 print(pval_decide)
-solutions.write('\n')
+solutions.write('\n\n1f: decide whether or not to reject the null hypothesis\n')
+solutions.writelines(['['+pval_decide[0], ',\t'+pval_decide[1], ',\t'+pval_decide[2], ',\t'+pval_decide[3], ',\t'+pval_decide[4]+']'])
 solutions.close()
 
 print(pvals2e)
