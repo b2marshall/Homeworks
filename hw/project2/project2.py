@@ -104,17 +104,17 @@ solutions.writelines(['['+pvalswrite[0]+'\t', pvalswrite[1]+'\t', pvalswrite[2]+
 
 #for 2f, decides whether or not to reject null hypothesis 
 pval_decide = [pvalreject(float(element)) for element in pvals2e]
-print(pval_decide)
 solutions.write('\n\n1f: decide whether or not to reject the null hypothesis\n')
 solutions.writelines(['['+pval_decide[0], ',\t'+pval_decide[1], ',\t'+pval_decide[2], ',\t'+pval_decide[3], ',\t'+pval_decide[4]+']'])
 solutions.close()
-print(pvals2e)
 
-#3a
-
+#Begins section 3
 
 m = int(input("Part 3: what value for m?\n"))   
 k = int(input("Part 3: what value for k?\n"))
+''' 
+This bit has been commented out because this calculation takes SO LONG
+
 
 p3h1 = [str(H(ds1,m))+',' for i in range(1000)]
 p3h2 = [str(H(ds2,m))+',' for i in range(1000)]
@@ -128,15 +128,38 @@ p3txt.writelines(p3h3+['\n'])
 p3txt.writelines(p3h4+['\n'])
 p3txt.writelines(p3h5+['\n'])
 p3txt.close()
+'''
+#reads in from the file generated so we don't have to recalculate everytime I run this 
 
-with open('p3.txt') as fptr:
-    x = fptr.readlines()
-    print(len(x))
-    #y = x.split(',') 
-    #print(y)
-    #print(len(y))
+#3a
+f =  open('p3.txt', 'r')
+temps = f.readlines()
+f.close()
+p3H1 = [float(element) for element in temps[0].split(',')[:-1]]
+p3H2 = [float(element) for element in temps[1].split(',')[:-1]]
+p3H3 = [float(element) for element in temps[2].split(',')[:-1]]
+p3H4 = [float(element) for element in temps[3].split(',')[:-1]]
+p3H5 = [float(element) for element in temps[4].split(',')[:-1]]
 
+h1bar = np.mean(p3H1)
+h2bar = np.mean(p3H2)
+h3bar = np.mean(p3H3)
+h4bar = np.mean(p3H4)
+h5bar = np.mean(p3H5) 
+mu = 0.5
+sigma = 1/(sqrt(8*m+4))
 
+p3p1 = [pvalh(h,mu,sigma) for h in p3H1]
+p3p2 = [pvalh(h,mu,sigma) for h in p3H2]
+p3p3 = [pvalh(h,mu,sigma) for h in p3H3] 
+p3p4 = [pvalh(h,mu,sigma) for h in p3H4]
+p3p5 = [pvalh(h,mu,sigma) for h in p3H5]
 
-
- 
+plt.figure(figsize=(12,9))
+plt.title('P values for data set 1')
+#plt.xticks(np.linspace(0,1,num=11))
+plt.hist(p3p1)
+plt.savefig('p1.png') 
+plt.clf()
+plt.cla()
+plt.close()
