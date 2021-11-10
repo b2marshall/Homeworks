@@ -86,12 +86,12 @@ z_alpha1 = 1/2 + 1.96/sqrt(8*m+4)
 z_alpha2 = 1/2 - 1.96/sqrt(8*m+4) 
 alpha_estimate = 1 - (scipy.special.betainc(m,m,z_alpha1)-scipy.special.betainc(m,m,z_alpha2))
 solutions = open('hopkins.txt', 'w')
-solutions.writelines('1c: The estimate for alpha is {0}\n\n'.format(alpha_estimate))
+solutions.writelines('Part 1c: The estimate for alpha is {0}\n\n'.format(alpha_estimate))
 
 #Finds H for each column,m =100 then writes H values to file for part 2e
 m = 100   
 two_e = [H(ds1,m), H(ds2,m), H(ds3, m), H(ds4,m), H(ds5,m)] 
-solutions.writelines('1e: compute Hopkins statistic for each column and report. \t m = {0}\n'.format(m)) 
+solutions.writelines('Part 1e: compute Hopkins statistic for each column and report. \t m = {0}\n'.format(m)) 
 hop = ['['+'H = '+str(two_e[0])+'\t', 'H = '+str(two_e[1])+'\t', 'H = '+str(two_e[2])+'\t', 'H = '+str(two_e[3])+'\t', 'H = '+str(two_e[4])+']']
 solutions.writelines(hop)
 solutions.write('\n') 
@@ -104,9 +104,8 @@ solutions.writelines(['['+pvalswrite[0]+'\t', pvalswrite[1]+'\t', pvalswrite[2]+
 
 #for 2f, decides whether or not to reject null hypothesis 
 pval_decide = [pvalreject(float(element)) for element in pvals2e]
-solutions.write('\n\n1f: decide whether or not to reject the null hypothesis\n')
+solutions.write('\n\nPart 1f: decide whether or not to reject the null hypothesis\n')
 solutions.writelines(['['+pval_decide[0], ',\t'+pval_decide[1], ',\t'+pval_decide[2], ',\t'+pval_decide[3], ',\t'+pval_decide[4]+']'])
-solutions.close()
 
 #Begins section 3
 
@@ -201,3 +200,14 @@ plt.clf()
 plt.cla()
 plt.close()
 
+#3d 
+samh = [np.mean(p3H1), np.mean(p3H2), np.mean(p3H3), np.mean(p3H4), np.mean(p3H5)]
+samvar = [np.var(p3H1), np.var(p3H2), np.var(p3H3), np.var(p3H4), np.var(p3H5)]
+
+#solutions = open('hopkins.txt', 'w')
+solutions.write('\n\nPart 3d:')
+for i in range(0,5):
+    solutions.write('\n') 
+    meanvar = 'The sample mean for dataset {0} is {1}, and the sample variance is {2}'.format(i+1,samh[i],samvar[i])
+    solutions.write(meanvar)
+solutions.close()
