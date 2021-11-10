@@ -147,7 +147,7 @@ h3bar = np.mean(p3H3)
 h4bar = np.mean(p3H4)
 h5bar = np.mean(p3H5) 
 mu = 0.5
-sigma = 1/(sqrt(8*m+4))
+sigma = 1/(sqrt(8*m+4)*sqrt(k))
 
 p3p1 = [pvalh(h,mu,sigma) for h in p3H1]
 p3p2 = [pvalh(h,mu,sigma) for h in p3H2]
