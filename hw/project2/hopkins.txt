@@ -1,9 +1,9 @@
-1c: The estimate for alpha is 0.04974993012015205
+1c: The estimate for alpha is 0.049494250080353686
 
 1e: compute Hopkins statistic for each column and report. 	 m = 100
-[H = 0.5209667703301821	H = 0.506098075439558	H = 0.4796363994233888	H = 0.7357089551977845	H = 0.48463804238114033]
+[H = 0.5288240744292847	H = 0.5074757766135504	H = 0.4905295274805191	H = 0.5901273883748572	H = 0.4995921131021967]
 
-[p = 0.552170691382	p = 0.862721950142	p = 0.56366405298	p = 2.33298064885e-11	p = 0.663136639458]
+[p = 0.413754968208	p = 0.832126653986	p = 0.788288121016	p = 0.0106019359815	p = 0.990772200303]
 
 1f: decide whether or not to reject the null hypothesis
 [Maintain null hypothesis,	Maintain null hypothesis,	Maintain null hypothesis,	Reject null hypothesis,	Maintain null hypothesis]

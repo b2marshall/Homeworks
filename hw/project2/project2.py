@@ -113,14 +113,14 @@ solutions.close()
 m = int(input("Part 3: what value for m?\n"))   
 k = int(input("Part 3: what value for k?\n"))
 ''' 
-This bit has been commented out because this calculation takes SO LONG
+#This bit has been commented out because this calculation takes SO LONG
 
 
 p3h1 = [str(H(ds1,m))+',' for i in range(1000)]
 p3h2 = [str(H(ds2,m))+',' for i in range(1000)]
 p3h3 = [str(H(ds3,m))+',' for i in range(1000)]
 p3h4 = [str(H(ds4,m))+',' for i in range(1000)]
-p3h5 = [str(H(ds4,m))+',' for i in range(1000)]
+p3h5 = [str(H(ds5,m))+',' for i in range(1000)]
 p3txt = open('p3.txt', 'w')
 p3txt.writelines(p3h1+['\n'])
 p3txt.writelines(p3h2+['\n'])
@@ -146,6 +146,7 @@ h2bar = np.mean(p3H2)
 h3bar = np.mean(p3H3)
 h4bar = np.mean(p3H4)
 h5bar = np.mean(p3H5) 
+
 mu = 0.5
 sigma = 1/(sqrt(8*m+4)*sqrt(k))
 
@@ -157,6 +158,7 @@ p3p5 = [pvalh(h,mu,sigma) for h in p3H5]
 
 plt.figure(figsize=(12,9))
 plt.title('P values for data set 1')
+plt.xticks(np.linspace(0,1,21))
 plt.hist(p3p1,bins=20)
 plt.savefig('p1.png') 
 plt.clf()
@@ -166,6 +168,7 @@ plt.close()
 plt.figure(figsize=(12,9))
 plt.title('P values for data set 2')
 plt.hist(p3p2, bins=20)
+plt.xticks(np.linspace(0,1,21))
 plt.savefig('p2.png') 
 plt.clf()
 plt.cla()
@@ -174,14 +177,17 @@ plt.close()
 plt.figure(figsize=(12,9))
 plt.title('P values for data set 3')
 plt.hist(p3p3, bins=20)
+plt.xticks(np.linspace(0,1,21))
 plt.savefig('p3.png') 
 plt.clf()
 plt.cla()
 plt.close()
-
+print(p3p5)
+#print(p3H5) 
 plt.figure(figsize=(12,9))
 plt.title('P values for data set 4')
-plt.hist(p3p4, bins=20)
+plt.xticks(np.linspace(0,1,21))
+plt.hist(p3p4, bins=np.linspace(min(p3p4),max(p3p4),num=11))
 plt.savefig('p4.png') 
 plt.clf()
 plt.cla()
@@ -190,6 +196,7 @@ plt.close()
 plt.figure(figsize=(12,9))
 plt.title('P values for data set 5')
 plt.hist(p3p5, bins=20)
+plt.xticks(np.linspace(0,1,21))
 plt.savefig('p5.png') 
 plt.clf()
 plt.cla()
