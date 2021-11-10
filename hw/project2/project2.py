@@ -36,7 +36,7 @@ def dist(x,y,j,k):
     return sqrt((x-j)**2 + (y-k)**2)
 
 #selects sample size, generates D_m set and random set of size m from the same range
-m = int(input("Part 2c: what value for m?\n"))    
+m = 50    
 def getm(m,column): 
     return [random.choice(column)for i in range(0,m)]
 
@@ -89,7 +89,7 @@ solutions = open('hopkins.txt', 'w')
 solutions.writelines('1c: The estimate for alpha is {0}\n\n'.format(alpha_estimate))
 
 #Finds H for each column,m =100 then writes H values to file for part 2e
-m = int(input("Part 2e: what value for m?\n"))    
+m = 100   
 two_e = [H(ds1,m), H(ds2,m), H(ds3, m), H(ds4,m), H(ds5,m)] 
 solutions.writelines('1e: compute Hopkins statistic for each column and report. \t m = {0}\n'.format(m)) 
 hop = ['['+'H = '+str(two_e[0])+'\t', 'H = '+str(two_e[1])+'\t', 'H = '+str(two_e[2])+'\t', 'H = '+str(two_e[3])+'\t', 'H = '+str(two_e[4])+']']
@@ -110,8 +110,8 @@ solutions.close()
 
 #Begins section 3
 
-m = int(input("Part 3: what value for m?\n"))   
-k = int(input("Part 3: what value for k?\n"))
+m = 100 
+k=1000
 ''' 
 #This bit has been commented out because this calculation takes SO LONG
 
@@ -182,12 +182,11 @@ plt.savefig('p3.png')
 plt.clf()
 plt.cla()
 plt.close()
-print(p3p5)
-#print(p3H5) 
+
 plt.figure(figsize=(12,9))
 plt.title('P values for data set 4')
-plt.xticks(np.linspace(0,1,21))
-plt.hist(p3p4, bins=np.linspace(min(p3p4),max(p3p4),num=11))
+plt.xticks(np.linspace(0,0.1,5))
+plt.hist(p3p4, bins=[0,0.025,0.05,0.075,0.1])
 plt.savefig('p4.png') 
 plt.clf()
 plt.cla()
@@ -201,5 +200,4 @@ plt.savefig('p5.png')
 plt.clf()
 plt.cla()
 plt.close()
-
 
