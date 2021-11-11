@@ -200,6 +200,63 @@ plt.clf()
 plt.cla()
 plt.close()
 
+#3b 
+#Kind of convoluted but this calculates O_i for the goodness of fit test  
+numbins = 20
+bins = np.linspace(0,1,num=numbins+1)
+oi1 = []
+oi2 = []
+oi3 = []
+oi4 = []
+oi5 = [] 
+for i in range(0,len(bins)-1):
+    tp1 = 0
+    tp2 = 0
+    tp3 = 0
+    tp4 = 0 
+    tp5 = 0 
+    for j in range(0,1000): 
+        if p3p1[j] >= bins[i] and p3p1[j] < bins[i+1]:
+            tp1 += 1
+        if p3p2[j] >= bins[i] and p3p2[j] < bins[i+1]: 
+            tp2 += 1 
+        if p3p3[j] >= bins[i] and p3p3[j] < bins[i+1]: 
+            tp3 += 1
+        if p3p4[j] >= bins[i] and p3p4[j] < bins[i+1]: 
+            tp4 += 1  
+        if p3p5[j] >= bins[i] and p3p5[j] < bins[i+1]:
+            tp5 += 1 
+    oi1.append(tp1) 
+    oi2.append(tp2) 
+    oi3.append(tp3) 
+    oi4.append(tp4) 
+    oi5.append(tp5) 
+width_bin = (bins[1]-bins[0]) 
+n = 200
+ei = n * width_bin
+chi1 = 0
+chi2 = 0 
+chi3 = 0
+chi4 = 0
+chi5 = 0 
+for i in range(numbins): 
+    chi1 += (oi1[i] - ei)**2/ei 
+    chi2 += (oi2[i] - ei)**2/ei 
+    chi3 += (oi3[i] - ei)**2/ei 
+    chi4 += (oi4[i] - ei)**2/ei 
+    chi5 += (oi5[i] - ei)**2/ei 
+p = numbins-2-1 
+pchi1 = pvalh(chi1,0.5, 1/12*(1/sqrt(n))) 
+pchi2 = pvalh(chi2,0.5,1/12*(1/sqrt(n)))
+pchi3 = pvalh(chi3,0.5,1/12*(1/sqrt(n)))
+pchi4 = pvalh(chi4,0.5,1/12*(1/sqrt(n)))
+pchi5 = pvalh(chi5,0.5,1/12*(1/sqrt(n)))
+print(pchi1,pchi2,pchi3,pchi4,pchi5)
+
+solutions.write('\n\nPart3b:\n')
+solutions.write('The p-values for the goodness of fit test are {0}, {1}, {2}, {3}, {4}'.format(pchi1,pchi2,pchi3,pchi4,pchi5))
+
+
 #3d 
 samh = [np.mean(p3H1), np.mean(p3H2), np.mean(p3H3), np.mean(p3H4), np.mean(p3H5)]
 samvar = [np.var(p3H1), np.var(p3H2), np.var(p3H3), np.var(p3H4), np.var(p3H5)]
@@ -211,3 +268,4 @@ for i in range(0,5):
     meanvar = 'The sample mean for dataset {0} is {1}, and the sample variance is {2}'.format(i+1,samh[i],samvar[i])
     solutions.write(meanvar)
 solutions.close()
+
