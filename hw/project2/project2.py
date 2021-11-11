@@ -255,17 +255,23 @@ print(pchi1,pchi2,pchi3,pchi4,pchi5)
 
 solutions.write('\n\nPart3b:\n')
 solutions.write('The p-values for the goodness of fit test are {0}, {1}, {2}, {3}, {4}'.format(pchi1,pchi2,pchi3,pchi4,pchi5))
-
+solutions.write('\n\n{0},{1},{2},{3},{4}'.format(pvalreject(pchi1),pvalreject(pchi2),pvalreject(pchi3), pvalreject(pchi4),pvalreject(pchi5)))
 
 #3d 
 samh = [np.mean(p3H1), np.mean(p3H2), np.mean(p3H3), np.mean(p3H4), np.mean(p3H5)]
 samvar = [np.var(p3H1), np.var(p3H2), np.var(p3H3), np.var(p3H4), np.var(p3H5)]
 
-#solutions = open('hopkins.txt', 'w')
 solutions.write('\n\nPart 3d:')
 for i in range(0,5):
     solutions.write('\n') 
     meanvar = 'The sample mean for dataset {0} is {1}, and the sample variance is {2}'.format(i+1,samh[i],samvar[i])
     solutions.write(meanvar)
+#3e 
+def samplemean(data,samplesize): 
+    return (1/k)*sum()
+def alphahat(smean,svar): 
+    return (smean**3 -smean*(svar) 
+alphabeta = [(x,y) for  ]
+
 solutions.close()
 
