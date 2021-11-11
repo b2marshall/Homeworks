@@ -1,12 +1,12 @@
-Part 1c: The estimate for alpha is 0.049494250080353686
+Part 2c: The estimate for alpha is 0.049494250080353686
 
-Part 1e: compute Hopkins statistic for each column and report. 	 m = 100
-[H = 0.4988958714938415	H = 0.4609652542967848	H = 0.4809232289620195	H = 0.6564377069459029	H = 0.5706104039709936]
+Part 2e: compute Hopkins statistic for each column and report. 	 m = 100
+[H = 0.5519388272010618	H = 0.5499828457882536	H = 0.49333421119696985	H = 0.7071976541046803	H = 0.4692239031979218]
 
-[p = 0.975024351883	p = 0.268369135687	p = 0.588562851791	p = 9.1741819293e-06	p = 0.0452685472932]
+[p = 0.140826571077	p = 0.156407427428	p = 0.850086755724	p = 4.2267116751e-09	p = 0.382852267342]
 
-Part 1f: decide whether or not to reject the null hypothesis
-[Maintain null hypothesis,	Maintain null hypothesis,	Maintain null hypothesis,	Reject null hypothesis,	Reject null hypothesis]
+Part 2f: decide whether or not to reject the null hypothesis
+[Maintain null hypothesis,	Maintain null hypothesis,	Maintain null hypothesis,	Reject null hypothesis,	Maintain null hypothesis]
 
 Part3b:
 The p-values for the goodness of fit test are 0.0, 0.0, 0.0, 0.0, 0.0
@@ -14,40 +14,40 @@ The p-values for the goodness of fit test are 0.0, 0.0, 0.0, 0.0, 0.0
 Reject null hypothesis,	Reject null hypothesis,	Reject null hypothesis,	Reject null hypothesis,	Reject null hypothesis
 
 Part 3d:
-The sample mean for dataset 1 is 0.5096659353288568, and the sample variance is 0.0012863364639738512
+The sample mean for dataset 1 is 0.5096659353288568, and the sample variance is 0.0015540976792969624
 The difference between the mean from part (2a), 0.5 and the the sample mean is 0.009665935328856845. 
-The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.03398094432895606
+The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.03371318311363295
 
-The sample mean for dataset 2 is 0.5069974650268264, and the sample variance is 0.0012595618045412407
+The sample mean for dataset 2 is 0.5069974650268264, and the sample variance is 0.000918359411972009
 The difference between the mean from part (2a), 0.5 and the the sample mean is 0.0069974650268264105. 
-The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.034007718988388676
+The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.03434892138095791
 
-The sample mean for dataset 3 is 0.501479573810558, and the sample variance is 0.0008837668564267871
+The sample mean for dataset 3 is 0.501479573810558, and the sample variance is 0.0010218329732984619
 The difference between the mean from part (2a), 0.5 and the the sample mean is 0.0014795738105579659. 
-The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.03438351393650313
+The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.03424544781963145
 
-The sample mean for dataset 4 is 0.6832395134074105, and the sample variance is 0.0030360369699420453
+The sample mean for dataset 4 is 0.6832395134074105, and the sample variance is 0.0034784205683705033
 The difference between the mean from part (2a), 0.5 and the the sample mean is 0.18323951340741051. 
-The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.03223124382298787
+The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.03178886022455941
 
-The sample mean for dataset 5 is 0.5110363197871184, and the sample variance is 0.0013046839570501683
+The sample mean for dataset 5 is 0.5110363197871184, and the sample variance is 0.001433580598245338
 The difference between the mean from part (2a), 0.5 and the the sample mean is 0.011036319787118387. 
-The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.033962596835879745
+The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.033833700194684575
 
 
 Part 3e:
-The computed alpha and beta values are (alpha = -0.0025997112531334046, beta = -0.0024306037243824784)
-The difference between alpha and beta for dataset 1 is 0.000147041782821
+The computed alpha and beta values are (alpha = -0.0028555079391354194, beta = -0.0026694249788739135)
+The difference between alpha and beta for dataset 1 is 0.000178279286475
 
-The computed alpha and beta values are (alpha = -0.0025997112531334046, beta = -0.0024306037243824784)
-The difference between alpha and beta for dataset 2 is 0.000105955405743
+The computed alpha and beta values are (alpha = -0.0028555079391354194, beta = -0.0026694249788739135)
+The difference between alpha and beta for dataset 2 is 7.67395088561e-05
 
-The computed alpha and beta values are (alpha = -0.0025997112531334046, beta = -0.0024306037243824784)
-The difference between alpha and beta for dataset 3 is 1.71114565695e-05
+The computed alpha and beta values are (alpha = -0.0028555079391354194, beta = -0.0026694249788739135)
+The difference between alpha and beta for dataset 3 is 2.00540589e-05
 
-The computed alpha and beta values are (alpha = -0.0025997112531334046, beta = -0.0024306037243824784)
-The difference between alpha and beta for dataset 4 is 0.00399943562872
+The computed alpha and beta values are (alpha = -0.0028555079391354194, beta = -0.0026694249788739135)
+The difference between alpha and beta for dataset 4 is 0.00458012218273
 
-The computed alpha and beta values are (alpha = -0.0025997112531334046, beta = -0.0024306037243824784)
-The difference between alpha and beta for dataset 5 is 0.000169107528751
+The computed alpha and beta values are (alpha = -0.0028555079391354194, beta = -0.0026694249788739135)
+The difference between alpha and beta for dataset 5 is 0.000186082960262
 
