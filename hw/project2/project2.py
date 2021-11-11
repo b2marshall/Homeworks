@@ -37,8 +37,8 @@ def dist(x,y,j,k):
 
 #selects sample size, generates D_m set and random set of size m from the same range
 m = 50    
-def getm(m,column): 
-    return [random.choice(column)for i in range(0,m)]
+def getm(m,data): 
+    return [random.choice(data)for i in range(0,m)]
 
 def genm(m): 
     return [(random.uniform(0,10), random.uniform(0,10)) for i in range(0,m)]
@@ -289,5 +289,26 @@ for element in alphabeta:
 solutions.close()
 
 #part 4 
+
+#bootstrapping using normal method
+def hbarboot(samplesize, data, bootsize):
+    Tboot = []
+    for i in range(bootsize):
+        Tboot.append(np.mean(getm(samplesize,data)))
+    return Tboot 
+
+def alphaboot(samplesize, data, bootsize):
+    Tboot = []
+    for i in range(bootsize):
+        smean = np.mean(getm(samplesize,data)) 
+        svar = samplevar(samplesize,getm(samplesize,data))
+        Tboot.append(alphahat(smean,svar))
+    return Tboot          
+
+def vboot(bootdata):
+    inn_sum = np.mean(bootdata)
+    summand = [(bootdata[i]-inn_sum)**2 for i in range(len(bootdata))] 
+    vboot = np.mean(summand) 
+    return vboot 
 
 
