@@ -250,7 +250,7 @@ print(pchi1,pchi2,pchi3,pchi4,pchi5)
 
 solutions.write('\n\nPart3b:\n')
 solutions.write('The p-values for the goodness of fit test are {0}, {1}, {2}, {3}, {4}'.format(pchi1,pchi2,pchi3,pchi4,pchi5))
-solutions.write('\n\n{0},{1},{2},{3},{4}'.format(pvalreject(pchi1),pvalreject(pchi2),pvalreject(pchi3), pvalreject(pchi4),pvalreject(pchi5)))
+solutions.write('\n\n{0},\t{1},\t{2},\t{3},\t{4}'.format(pvalreject(pchi1), pvalreject(pchi2), pvalreject(pchi3), pvalreject(pchi4), pvalreject(pchi5)))
 
 #3d 
 eH = [p3H1,p3H2,p3H3,p3H4,p3H5]
@@ -264,12 +264,14 @@ def samplevar(data,samplesize):
 samplen = 200
 
 samvar = [samplevar(p3H1,samplen), samplevar(p3H2,samplen), samplevar(p3H3,samplen), samplevar(p3H4,samplen), samplevar(p3H5,samplen)]
-
+calculatedmean = 0.5 
+calculatedvar = 1/sqrt(8*m+4)
 solutions.write('\n\nPart 3d:')
 for i in range(0,5):
     solutions.write('\n') 
-    meanvar = 'The sample mean for dataset {0} is {1}, and the sample variance is {2}'.format(i+1,samh[i],samvar[i])
+    meanvar = 'The sample mean for dataset {0} is {1}, and the sample variance is {2}'.format(i+1,samh[i],samvar[i])+'\n'
     solutions.write(meanvar)
+    solutions.write('The difference between the mean from part (2a), {0} and the the sample mean is {1}. \nThe difference between the variance from part (2a), {2} and the sample variance is {3}'.format(calculatedmean, abs(samh[i]-calculatedmean), calculatedvar, abs(samvar[i]-calculatedvar))+'\n')
 #3e 
 def alphahat(smean,svar): 
     return (smean**3 -smean*(svar+smean)**2)/(svar + smean**2 )
