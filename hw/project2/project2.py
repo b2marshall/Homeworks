@@ -140,11 +140,6 @@ p3H3 = [float(element) for element in temps[2].split(',')[:-1]]
 p3H4 = [float(element) for element in temps[3].split(',')[:-1]]
 p3H5 = [float(element) for element in temps[4].split(',')[:-1]]
 
-h1bar = np.mean(p3H1)
-h2bar = np.mean(p3H2)
-h3bar = np.mean(p3H3)
-h4bar = np.mean(p3H4)
-h5bar = np.mean(p3H5) 
 
 mu = 0.5
 sigma = 1/(sqrt(8*m+4)*sqrt(k))
@@ -258,8 +253,17 @@ solutions.write('The p-values for the goodness of fit test are {0}, {1}, {2}, {3
 solutions.write('\n\n{0},{1},{2},{3},{4}'.format(pvalreject(pchi1),pvalreject(pchi2),pvalreject(pchi3), pvalreject(pchi4),pvalreject(pchi5)))
 
 #3d 
+eH = [p3H1,p3H2,p3H3,p3H4,p3H5]
 samh = [np.mean(p3H1), np.mean(p3H2), np.mean(p3H3), np.mean(p3H4), np.mean(p3H5)]
-samvar = [np.var(p3H1), np.var(p3H2), np.var(p3H3), np.var(p3H4), np.var(p3H5)]
+def samplevar(data,samplesize): 
+    sample = getm(samplesize,data) 
+    samplemean = np.mean(sample)
+    temp = [(element-samplemean)**2 for element in sample] 
+    return 1/samplesize * sum(temp) 
+
+samplen = 200
+
+samvar = [samplevar(p3H1,samplen), samplevar(p3H2,samplen), samplevar(p3H3,samplen), samplevar(p3H4,samplen), samplevar(p3H5,samplen)]
 
 solutions.write('\n\nPart 3d:')
 for i in range(0,5):
@@ -267,11 +271,18 @@ for i in range(0,5):
     meanvar = 'The sample mean for dataset {0} is {1}, and the sample variance is {2}'.format(i+1,samh[i],samvar[i])
     solutions.write(meanvar)
 #3e 
-def samplemean(data,samplesize): 
-    return (1/k)*sum()
 def alphahat(smean,svar): 
-    return (smean**3 -smean*(svar) 
-alphabeta = [(x,y) for  ]
+    return (smean**3 -smean*(svar+smean)**2)/(svar + smean**2 )
 
+def betahat(smean,svar): 
+    return (-svar+svar*smean)/(svar+smean**2) 
+alphabeta = [(alphahat(samh[i],samvar[i]), betahat(samh[i], samvar[i]))  for i in range(5)]
+solutions.write('\n\nPart 3e:\n')
+increment = 1
+for element in alphabeta:
+    solutions.write('The computed alpha and beta values are (alpha = {0}, beta = {1})'.format(alphabeta[i][0],alphabeta[i][1])+'\n')
+    solutions.write('The difference between alpha and beta for dataset {0} is '.format(increment)+  str(abs(element[1]-element[0]))+'\n\n') 
+    increment += 1
+ 
 solutions.close()
 

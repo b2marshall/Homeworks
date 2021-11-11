@@ -1,9 +1,38 @@
-1c: The estimate for alpha is 0.049494250080353686
+Part 1c: The estimate for alpha is 0.049494250080353686
 
-1e: compute Hopkins statistic for each column and report. 	 m = 100
-[H = 0.5288240744292847	H = 0.5074757766135504	H = 0.4905295274805191	H = 0.5901273883748572	H = 0.4995921131021967]
+Part 1e: compute Hopkins statistic for each column and report. 	 m = 100
+[H = 0.5945670556228239	H = 0.5052435367789542	H = 0.5469134169516016	H = 0.6962762607524798	H = 0.4996615640072227]
 
-[p = 0.413754968208	p = 0.832126653986	p = 0.788288121016	p = 0.0106019359815	p = 0.990772200303]
+[p = 0.0073306318451	p = 0.881806200093	p = 0.183444164848	p = 2.61562960829e-08	p = 0.992343364645]
 
-1f: decide whether or not to reject the null hypothesis
-[Maintain null hypothesis,	Maintain null hypothesis,	Maintain null hypothesis,	Reject null hypothesis,	Maintain null hypothesis]
+Part 1f: decide whether or not to reject the null hypothesis
+[Reject null hypothesis,	Maintain null hypothesis,	Maintain null hypothesis,	Reject null hypothesis,	Maintain null hypothesis]
+
+Part3b:
+The p-values for the goodness of fit test are 0.0, 0.0, 0.0, 0.0, 0.0
+
+Reject null hypothesis,Reject null hypothesis,Reject null hypothesis,Reject null hypothesis,Reject null hypothesis
+
+Part 3d:
+The sample mean for dataset 1 is 0.5096659353288568, and the sample variance is 0.0013771933351295867
+The sample mean for dataset 2 is 0.5069974650268264, and the sample variance is 0.0013863459508150853
+The sample mean for dataset 3 is 0.501479573810558, and the sample variance is 0.0009873687789677102
+The sample mean for dataset 4 is 0.6832395134074105, and the sample variance is 0.0026216263585099736
+The sample mean for dataset 5 is 0.5110363197871184, and the sample variance is 0.0013726703018722333
+
+Part 3e:
+The computed alpha and beta values are (alpha = -0.002734654082990985, beta = -0.0025565988712740744)
+The difference between alpha and beta for dataset 1 is 0.000157617118942
+
+The computed alpha and beta values are (alpha = -0.002734654082990985, beta = -0.0025565988712740744)
+The difference between alpha and beta for dataset 2 is 0.000116908204621
+
+The computed alpha and beta values are (alpha = -0.002734654082990985, beta = -0.0025565988712740744)
+The difference between alpha and beta for dataset 3 is 1.93127329514e-05
+
+The computed alpha and beta values are (alpha = -0.002734654082990985, beta = -0.0025565988712740744)
+The difference between alpha and beta for dataset 4 is 0.00345499124518
+
+The computed alpha and beta values are (alpha = -0.002734654082990985, beta = -0.0025565988712740744)
+The difference between alpha and beta for dataset 5 is 0.000178055211717
+
