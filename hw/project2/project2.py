@@ -337,4 +337,11 @@ for i in range(5):
     solutions.write('The confidence interval for alpha for dataset {0} is ({1}, {2})'.format(i,TnA[i]-2*sqrt(vboot(samplesets[i])),TnA[i]+2*sqrt(vboot(samplesets[i])))+'\n')  
     solutions.write('The confidence interval for beta for dataset {0} is ({1}, {2})'.format(i,TnB[i]-2*sqrt(vboot(samplesets[i])),TnB[i]+2*sqrt(vboot(samplesets[i])))+'\n')  
     solutions.write('\n\n')
+
+solutions.write('\n\nPart 4, pivotal method:\n\n')
+
+for i in range(5): 
+    solutions.write('The confidence interval for Hbar for dataset {0} is ({1}, {2})'.format(i,2*TnH[i]-scipy.stats.norm.ppf(0.9725), 2*TnH[i]-scipy.stats.norm.ppf(0.025)))
+    solutions.write('The confidence interval for alpha for dataset {0} is ({1}, {2})'.format(i,2*TnA[i]-scipy.stats.norm.ppf(0.9725), 2*TnA[i]-scipy.stats.norm.ppf(0.025)))
+    solutions.write('The confidence interval for beta for dataset {0} is ({1}, {2})'.format(i,2*TnB[i]-scipy.stats.norm.ppf(0.9725), 2*TnB[i]-scipy.stats.norm.ppf(0.025)))
 solutions.close()
