@@ -331,8 +331,10 @@ bootstraphbar1 = [hbarboot(50,samplesets[i],1000) for i in range(5)]
 bootstrapalpha1 = [alphaboot(50,samplesets[i],1000) for i in range(5)]
 bootstrapbeta1 = [betaboot(50,samplesets[i],1000) for i in range(5)] 
 
-#print(TnH, TnA, TnB)  
-solutions.write('\n\nPart 4:\n\n') 
+solutions.write('\n\nPart 4, normal method:\n\n') 
 for i in range(5):
-   solutions.write('The confidence interval for Hbar for dataset {0} is ({1},{2})'.format(i,TnH[i]-2*sqrt(vboot(samplesets[i])),TnH[i]+2*sqrt(vboot(samplesets[i])))+'\n')  
+    solutions.write('The confidence interval for Hbar for dataset {0} is ({1}, {2})'.format(i,TnH[i]-2*sqrt(vboot(samplesets[i])),TnH[i]+2*sqrt(vboot(samplesets[i])))+'\n')  
+    solutions.write('The confidence interval for alpha for dataset {0} is ({1}, {2})'.format(i,TnA[i]-2*sqrt(vboot(samplesets[i])),TnA[i]+2*sqrt(vboot(samplesets[i])))+'\n')  
+    solutions.write('The confidence interval for beta for dataset {0} is ({1}, {2})'.format(i,TnB[i]-2*sqrt(vboot(samplesets[i])),TnB[i]+2*sqrt(vboot(samplesets[i])))+'\n')  
+    solutions.write('\n\n')
 solutions.close()

@@ -1,9 +1,9 @@
 Part 2c: The estimate for alpha is 0.049494250080353686
 
 Part 2e: compute Hopkins statistic for each column and report. 	 m = 100
-[H = 0.5519388272010618	H = 0.5499828457882536	H = 0.49333421119696985	H = 0.7071976541046803	H = 0.4692239031979218]
+[H = 0.4604471099408753	H = 0.503986989669898	H = 0.5001130069812915	H = 0.6346062653149683	H = 0.4935793564570364]
 
-[p = 0.140826571077	p = 0.156407427428	p = 0.850086755724	p = 4.2267116751e-09	p = 0.382852267342]
+[p = 0.262067435935	p = 0.909990385002	p = 0.99744334212	p = 0.000135223055749	p = 0.855538256234]
 
 Part 2f: decide whether or not to reject the null hypothesis
 [Maintain null hypothesis,	Maintain null hypothesis,	Maintain null hypothesis,	Reject null hypothesis,	Maintain null hypothesis]
@@ -14,40 +14,69 @@ The p-values for the goodness of fit test are 0.0, 0.0, 0.0, 0.0, 0.0
 Reject null hypothesis,	Reject null hypothesis,	Reject null hypothesis,	Reject null hypothesis,	Reject null hypothesis
 
 Part 3d:
-The sample mean for dataset 1 is 0.5096659353288568, and the sample variance is 0.0015540976792969624
+The sample mean for dataset 1 is 0.5096659353288568, and the sample variance is 0.0011333940089651906
 The difference between the mean from part (2a), 0.5 and the the sample mean is 0.009665935328856845. 
-The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.03371318311363295
+The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.03413388678396472
 
-The sample mean for dataset 2 is 0.5069974650268264, and the sample variance is 0.000918359411972009
+The sample mean for dataset 2 is 0.5069974650268264, and the sample variance is 0.0010956508472360494
 The difference between the mean from part (2a), 0.5 and the the sample mean is 0.0069974650268264105. 
-The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.03434892138095791
+The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.034171629945693865
 
-The sample mean for dataset 3 is 0.501479573810558, and the sample variance is 0.0010218329732984619
+The sample mean for dataset 3 is 0.501479573810558, and the sample variance is 0.0012240786832529856
 The difference between the mean from part (2a), 0.5 and the the sample mean is 0.0014795738105579659. 
-The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.03424544781963145
+The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.03404320210967693
 
-The sample mean for dataset 4 is 0.6832395134074105, and the sample variance is 0.0034784205683705033
+The sample mean for dataset 4 is 0.6832395134074105, and the sample variance is 0.002598602430014731
 The difference between the mean from part (2a), 0.5 and the the sample mean is 0.18323951340741051. 
-The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.03178886022455941
+The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.032668678362915184
 
-The sample mean for dataset 5 is 0.5110363197871184, and the sample variance is 0.001433580598245338
+The sample mean for dataset 5 is 0.5110363197871184, and the sample variance is 0.001329432048162704
 The difference between the mean from part (2a), 0.5 and the the sample mean is 0.011036319787118387. 
-The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.033833700194684575
+The difference between the variance from part (2a), 0.035267280792929914 and the sample variance is 0.03393784874476721
 
 
 Part 3e:
-The computed alpha and beta values are (alpha = -0.0028555079391354194, beta = -0.0026694249788739135)
-The difference between alpha and beta for dataset 1 is 0.000178279286475
+The computed alpha and beta values are (alpha = -0.002648838558513962, beta = -0.00247647548022672)
+The difference between alpha and beta for dataset 1 is 0.000129296167506
 
-The computed alpha and beta values are (alpha = -0.0028555079391354194, beta = -0.0026694249788739135)
-The difference between alpha and beta for dataset 2 is 7.67395088561e-05
+The computed alpha and beta values are (alpha = -0.002648838558513962, beta = -0.00247647548022672)
+The difference between alpha and beta for dataset 2 is 9.18728823679e-05
 
-The computed alpha and beta values are (alpha = -0.0028555079391354194, beta = -0.0026694249788739135)
-The difference between alpha and beta for dataset 3 is 2.00540589e-05
+The computed alpha and beta values are (alpha = -0.002648838558513962, beta = -0.00247647548022672)
+The difference between alpha and beta for dataset 3 is 2.44952980103e-05
 
-The computed alpha and beta values are (alpha = -0.0028555079391354194, beta = -0.0026694249788739135)
-The difference between alpha and beta for dataset 4 is 0.00458012218273
+The computed alpha and beta values are (alpha = -0.002648838558513962, beta = -0.00247647548022672)
+The difference between alpha and beta for dataset 4 is 0.00342472933936
 
-The computed alpha and beta values are (alpha = -0.0028555079391354194, beta = -0.0026694249788739135)
-The difference between alpha and beta for dataset 5 is 0.000186082960262
+The computed alpha and beta values are (alpha = -0.002648838558513962, beta = -0.00247647548022672)
+The difference between alpha and beta for dataset 5 is 0.000172363078287
+
+
+
+Part 4, normal method:
+
+The confidence interval for Hbar for dataset 0 is (0.4425420425663027,0.5840047667645301)
+The confidence interval for alpha for dataset 0 is (-0.07315580159656827,0.06830692260165903)
+The confidence interval for beta for dataset 0 is (-0.07275718890792511,0.0687055352903022)
+
+
+The confidence interval for Hbar for dataset 1 is (0.4506969676479618,0.5720309211634187)
+The confidence interval for alpha for dataset 1 is (-0.06263745796978243,0.05869649554567445)
+The confidence interval for beta for dataset 1 is (-0.06301448839084212,0.05831946512461476)
+
+
+The confidence interval for Hbar for dataset 2 is (0.4409070009835717,0.5619051518592882)
+The confidence interval for alpha for dataset 2 is (-0.06247406597748386,0.05852408489823271)
+The confidence interval for beta for dataset 2 is (-0.062126530671113164,0.0588716202046034)
+
+
+The confidence interval for Hbar for dataset 3 is (0.5701929248294755,0.7871149051735471)
+The confidence interval for alpha for dataset 3 is (-0.11448801626937137,0.10243396407470033)
+The confidence interval for beta for dataset 3 is (-0.1103385729441694,0.1065834073999023)
+
+
+The confidence interval for Hbar for dataset 4 is (0.43836866927369894,0.5807993105102087)
+The confidence interval for alpha for dataset 4 is (-0.07311806903789587,0.06931257219861396)
+The confidence interval for beta for dataset 4 is (-0.07398889894768876,0.06844174228882108)
+
 
