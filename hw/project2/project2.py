@@ -286,11 +286,19 @@ for element in alphabeta:
     solutions.write('The difference between alpha and beta for dataset {0} is '.format(increment)+  str(abs(element[1]-element[0]))+'\n\n') 
     increment += 1
  
-solutions.close()
 
 #part 4 
 
 #bootstrapping using normal method
+bssample = 200 
+samplesets = [getm(bssample,p3H1), getm(bssample,p3H2), getm(bssample,p3H3), getm(bssample,p3H4), getm(bssample,p3H5)]
+m = 100
+sigma = 1/(sqrt(8*m+4))
+#TnH  = [((np.mean(samplesets[i])-0.5)*sqrt(bssample))/sigma for i in range(5)]
+TnH = [np.mean(samplesets[i]) for i in range(5)]
+TnA = [alphahat(np.mean(samplesets[i]), samplevar(samplesets[i],50)) for i in range(5)]
+TnB = [betahat(np.mean(samplesets[i]), samplevar(samplesets[i],50)) for i in range(5)] 
+
 def hbarboot(samplesize, data, bootsize):
     Tboot = []
     for i in range(bootsize):
@@ -301,9 +309,17 @@ def alphaboot(samplesize, data, bootsize):
     Tboot = []
     for i in range(bootsize):
         smean = np.mean(getm(samplesize,data)) 
-        svar = samplevar(samplesize,getm(samplesize,data))
+        svar = samplevar(getm(samplesize,data),samplesize)
         Tboot.append(alphahat(smean,svar))
     return Tboot          
+
+def betaboot(samplesize, data, bootsize):
+    Tboot = []
+    for i in range(bootsize):
+        smean = np.mean(getm(samplesize,data))
+        svar = samplevar(getm(samplesize,data),samplesize)
+        Tboot.append(betahat(smean,svar))
+    return Tboot 
 
 def vboot(bootdata):
     inn_sum = np.mean(bootdata)
@@ -311,4 +327,12 @@ def vboot(bootdata):
     vboot = np.mean(summand) 
     return vboot 
 
+bootstraphbar1 = [hbarboot(50,samplesets[i],1000) for i in range(5)]
+bootstrapalpha1 = [alphaboot(50,samplesets[i],1000) for i in range(5)]
+bootstrapbeta1 = [betaboot(50,samplesets[i],1000) for i in range(5)] 
 
+#print(TnH, TnA, TnB)  
+solutions.write('\n\nPart 4:\n\n') 
+for i in range(5):
+   solutions.write('The confidence interval for Hbar for dataset {0} is ({1},{2})'.format(i,TnH[i]-2*sqrt(vboot(samplesets[i])),TnH[i]+2*sqrt(vboot(samplesets[i])))+'\n')  
+solutions.close()
