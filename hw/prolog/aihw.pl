@@ -145,6 +145,11 @@ reverse_print_stack(S) :-
 	write(E), nl.
   
 
+% Vampires section
+
+
+
+% Sliding 
 
 move([0, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P],  [B, 0, C, D, E, F, G, H, I, J, K, L, M, N, O, P]).
 move([0, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P],  [E, B, C, D, 0, F, G, H, I, J, K, L, M, N, O, P]). 
