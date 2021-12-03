@@ -144,30 +144,6 @@ reverse_print_stack(S) :-
 	reverse_print_stack(Rest),
 	write(E), nl.
   
-go2(Start, Goal) :-
-	empty_stack(Empty_been_list),
-	stack(Start, Empty_been_list, Been_list),
-	path(Start, Goal, Been_list).
-	
-	% path implements a depth first search in PROLOG
-	
-	% Current state = goal, print out been list
-path(Goal, Goal, Been_list) :-
-	reverse_print_stack(Been_list).
-	
-path(State, Goal, Been_list) :-
-	move2(State, Next),
-	% not(unsafe(Next)),
-	not(member_stack(Next, Been_list)),
-	stack(Next, Been_list, New_been_list),
-	path(Next, Goal, New_been_list), !.
-	
-reverse_print_stack(S) :-
-	empty_stack(S).
-reverse_print_stack(S) :-
-	stack(E, Rest, S),
-	reverse_print_stack(Rest),
-	write(E), nl.
 
 % Vampires section
 unsafe(1,2,0,3,_).
@@ -179,131 +155,131 @@ unsafe(2,1,3,0,_).
 
 %boat on east side of river
 
-move2((0,3,0,3,e), (1,2,0,3,w)) :- not(unsafe(1,2,0,3,w)).
-move2((0,3,0,3,e), (0,3,1,2,w)) :- not(unsafe(0,3,1,2,w)).
-move2((0,3,0,3,e), (1,2,1,2,w)) :- not(unsafe(1,2,1,2,w)).
-move2((0,3,0,3,e), (2,1,0,3,w)) :- not(unsafe(2,1,0,3,w)).
-move2((0,3,0,3,e), (0,3,2,1,w)) :- not(unsafe(0,3,2,1,w)).
+move((0,3,0,3,e), (1,2,0,3,w)) :- not(unsafe(1,2,0,3,w)).
+move((0,3,0,3,e), (0,3,1,2,w)) :- not(unsafe(0,3,1,2,w)).
+move((0,3,0,3,e), (1,2,1,2,w)) :- not(unsafe(1,2,1,2,w)).
+move((0,3,0,3,e), (2,1,0,3,w)) :- not(unsafe(2,1,0,3,w)).
+move((0,3,0,3,e), (0,3,2,1,w)) :- not(unsafe(0,3,2,1,w)).
 
-move2((0,3,1,2,e), (1,2,1,2,w)) :- not(unsafe(1,2,1,2,w)).
-move2((0,3,1,2,e), (0,3,2,1,w)) :- not(unsafe(0,3,2,1,w)).
-move2((0,3,1,2,e), (1,2,2,1,w)) :- not(unsafe(1,2,2,1,w)).
-move2((0,3,1,2,e), (2,1,1,2,w)) :- not(unsafe(2,1,1,2,w)).
-move2((0,3,1,2,e), (0,3,3,0,w)) :- not(unsafe(0,3,3,0,w)).
+move((0,3,1,2,e), (1,2,1,2,w)) :- not(unsafe(1,2,1,2,w)).
+move((0,3,1,2,e), (0,3,2,1,w)) :- not(unsafe(0,3,2,1,w)).
+move((0,3,1,2,e), (1,2,2,1,w)) :- not(unsafe(1,2,2,1,w)).
+move((0,3,1,2,e), (2,1,1,2,w)) :- not(unsafe(2,1,1,2,w)).
+move((0,3,1,2,e), (0,3,3,0,w)) :- not(unsafe(0,3,3,0,w)).
 
-move2((0,3,2,1,e), (1,2,2,1,w)) :- not(unsafe(1,2,2,1,w)).
-move2((0,3,2,1,e), (0,3,3,0,w)) :- not(unsafe(0,3,3,0,w)).
-move2((0,3,2,1,e), (1,2,3,0,w)) :- not(unsafe(1,2,3,0,w)).
-move2((0,3,2,1,e), (2,1,2,1,w)) :- not(unsafe(2,1,2,1,w)). 
+move((0,3,2,1,e), (1,2,2,1,w)) :- not(unsafe(1,2,2,1,w)).
+move((0,3,2,1,e), (0,3,3,0,w)) :- not(unsafe(0,3,3,0,w)).
+move((0,3,2,1,e), (1,2,3,0,w)) :- not(unsafe(1,2,3,0,w)).
+move((0,3,2,1,e), (2,1,2,1,w)) :- not(unsafe(2,1,2,1,w)). 
 
-move2((0,3,3,0,e), (1,2,3,0,w)) :- not(unsafe(1,2,3,0,w)).
-move2((0,3,3,0,e), (2,1,3,0,w)) :- not(unsafe(2,1,3,0,w)).
+move((0,3,3,0,e), (1,2,3,0,w)) :- not(unsafe(1,2,3,0,w)).
+move((0,3,3,0,e), (2,1,3,0,w)) :- not(unsafe(2,1,3,0,w)).
 
-move2((1,2,0,3,e), (2,1,0,3,w)) :- not(unsafe(2,1,0,3,w)).
-move2((1,2,0,3,e), (1,2,1,2,w)) :- not(unsafe(1,2,1,2,w)).
-move2((1,2,0,3,e), (2,1,1,2,w)) :- not(unsafe(2,1,1,2,w)).
-move2((1,2,0,3,e), (3,0,0,3,w)) :- not(unsafe(3,0,0,3,w)).
-move2((1,2,0,3,e), (1,2,2,1,w)) :- not(unsafe(1,2,2,1,w)).
+move((1,2,0,3,e), (2,1,0,3,w)) :- not(unsafe(2,1,0,3,w)).
+move((1,2,0,3,e), (1,2,1,2,w)) :- not(unsafe(1,2,1,2,w)).
+move((1,2,0,3,e), (2,1,1,2,w)) :- not(unsafe(2,1,1,2,w)).
+move((1,2,0,3,e), (3,0,0,3,w)) :- not(unsafe(3,0,0,3,w)).
+move((1,2,0,3,e), (1,2,2,1,w)) :- not(unsafe(1,2,2,1,w)).
 
-move2((1,2,1,2,e), (2,1,1,2,w)) :- not(unsafe(2,1,1,2,w)).
-move2((1,2,1,2,e), (1,2,2,1,w)) :- not(unsafe(1,2,2,1,w)).
-move2((1,2,1,2,e), (2,1,2,1,w)) :- not(unsafe(2,1,2,1,w)).
-move2((1,2,1,2,e), (3,0,1,2,w)) :- not(unsafe(3,0,1,2,w)).
-move2((1,2,1,2,e), (1,2,3,0,w)) :- not(unsafe(1,2,3,0,w)).
+move((1,2,1,2,e), (2,1,1,2,w)) :- not(unsafe(2,1,1,2,w)).
+move((1,2,1,2,e), (1,2,2,1,w)) :- not(unsafe(1,2,2,1,w)).
+move((1,2,1,2,e), (2,1,2,1,w)) :- not(unsafe(2,1,2,1,w)).
+move((1,2,1,2,e), (3,0,1,2,w)) :- not(unsafe(3,0,1,2,w)).
+move((1,2,1,2,e), (1,2,3,0,w)) :- not(unsafe(1,2,3,0,w)).
 
-move2((1,2,2,1,e), (2,1,2,1,w)) :- not(unsafe(2,1,2,1,w)).
-move2((1,2,2,1,e), (1,2,3,0,w)) :- not(unsafe(1,2,3,0,w)).
-move2((1,2,2,1,e), (2,1,3,0,w)) :- not(unsafe(2,1,3,0,w)).
-move2((1,2,2,1,e), (3,0,2,1,w)) :- not(unsafe(3,0,2,1,w)).
+move((1,2,2,1,e), (2,1,2,1,w)) :- not(unsafe(2,1,2,1,w)).
+move((1,2,2,1,e), (1,2,3,0,w)) :- not(unsafe(1,2,3,0,w)).
+move((1,2,2,1,e), (2,1,3,0,w)) :- not(unsafe(2,1,3,0,w)).
+move((1,2,2,1,e), (3,0,2,1,w)) :- not(unsafe(3,0,2,1,w)).
 
-move2((1,2,3,0,e), (2,1,3,0,w)) :- not(unsafe(2,1,3,0,w)).
-move2((1,2,3,0,e), (3,0,3,0,w)) :- not(unsafe(3,0,3,0,w)). 
+move((1,2,3,0,e), (2,1,3,0,w)) :- not(unsafe(2,1,3,0,w)).
+move((1,2,3,0,e), (3,0,3,0,w)) :- not(unsafe(3,0,3,0,w)). 
 
-move2((2,1,0,3,e), (3,0,0,3,w)) :- not(unsafe(3,0,0,3,w)).
-move2((2,1,0,3,e), (2,1,1,2,w)) :- not(unsafe(2,1,1,2,w)).
-move2((2,1,0,3,e), (3,0,1,2,w)) :- not(unsafe(3,0,1,2,w)).
-move2((2,1,0,3,e), (2,1,2,1,w)) :- not(unsafe(2,1,2,1,w)).
+move((2,1,0,3,e), (3,0,0,3,w)) :- not(unsafe(3,0,0,3,w)).
+move((2,1,0,3,e), (2,1,1,2,w)) :- not(unsafe(2,1,1,2,w)).
+move((2,1,0,3,e), (3,0,1,2,w)) :- not(unsafe(3,0,1,2,w)).
+move((2,1,0,3,e), (2,1,2,1,w)) :- not(unsafe(2,1,2,1,w)).
 
-move2((2,1,1,2,e), (3,0,1,2,w)) :- not(unsafe(3,0,1,2,w)).
-move2((2,1,1,2,e), (2,1,2,1,w)) :- not(unsafe(2,1,2,1,w)).
-move2((2,1,1,2,e), (3,0,2,1,w)) :- not(unsafe(3,0,2,1,w)).
-move2((2,1,1,2,e), (2,1,3,0,w)) :- not(unsafe(2,1,3,0,w)).
+move((2,1,1,2,e), (3,0,1,2,w)) :- not(unsafe(3,0,1,2,w)).
+move((2,1,1,2,e), (2,1,2,1,w)) :- not(unsafe(2,1,2,1,w)).
+move((2,1,1,2,e), (3,0,2,1,w)) :- not(unsafe(3,0,2,1,w)).
+move((2,1,1,2,e), (2,1,3,0,w)) :- not(unsafe(2,1,3,0,w)).
 
-move2((2,1,2,1,e), (3,0,2,1,w)) :- not(unsafe(3,0,2,1,w)).
-move2((2,1,2,1,e), (2,1,3,0,w)) :- not(unsafe(2,1,3,0,w)).
-move2((2,1,2,1,e), (3,0,3,0,w)) :- not(unsafe(3,0,3,0,w)).
+move((2,1,2,1,e), (3,0,2,1,w)) :- not(unsafe(3,0,2,1,w)).
+move((2,1,2,1,e), (2,1,3,0,w)) :- not(unsafe(2,1,3,0,w)).
+move((2,1,2,1,e), (3,0,3,0,w)) :- not(unsafe(3,0,3,0,w)).
 
-move2((2,1,3,0,e), (3,0,3,0,w)) :- not(unsafe(3,0,3,0,w)).
+move((2,1,3,0,e), (3,0,3,0,w)) :- not(unsafe(3,0,3,0,w)).
 
-move2((3,0,0,3,e), (3,0,1,2,w)) :- not(unsafe(3,0,1,2,w)).
-move2((3,0,0,3,e), (3,0,2,1,w)) :- not(unsafe(3,0,2,1,w)).
+move((3,0,0,3,e), (3,0,1,2,w)) :- not(unsafe(3,0,1,2,w)).
+move((3,0,0,3,e), (3,0,2,1,w)) :- not(unsafe(3,0,2,1,w)).
 
-move2((3,0,1,2,e), (3,0,2,1,w)) :- not(unsafe(3,0,2,1,w)).
-move2((3,0,1,2,e), (3,0,3,0,w)) :- not(unsafe(3,0,3,0,2)).
+move((3,0,1,2,e), (3,0,2,1,w)) :- not(unsafe(3,0,2,1,w)).
+move((3,0,1,2,e), (3,0,3,0,w)) :- not(unsafe(3,0,3,0,2)).
 
 %boat on west side of river
 
-move2((3,0,3,0,w), (2,1,3,0,e)) :- not(unsafe(2,1,3,0,e)).
-move2((3,0,3,0,w), (3,0,2,1,e)) :- not(unsafe(3,0,2,1,e)).
-move2((3,0,3,0,w), (2,1,2,1,e)) :- not(unsafe(2,1,2,1,e)).
-move2((3,0,3,0,w), (1,2,3,0,e)) :- not(unsafe(1,2,3,0,e)).
-move2((3,0,3,0,w), (3,0,1,2,e)) :- not(unsafe(3,0,1,2,e)).
+move((3,0,3,0,w), (2,1,3,0,e)) :- not(unsafe(2,1,3,0,e)).
+move((3,0,3,0,w), (3,0,2,1,e)) :- not(unsafe(3,0,2,1,e)).
+move((3,0,3,0,w), (2,1,2,1,e)) :- not(unsafe(2,1,2,1,e)).
+move((3,0,3,0,w), (1,2,3,0,e)) :- not(unsafe(1,2,3,0,e)).
+move((3,0,3,0,w), (3,0,1,2,e)) :- not(unsafe(3,0,1,2,e)).
 
-move2((3,0,2,1,w), (2,1,2,1,e)) :- not(unsafe(2,1,2,1,e)).
-move2((3,0,2,1,w), (3,0,1,2,e)) :- not(unsafe(3,0,1,2,e)).
-move2((3,0,2,1,w), (2,1,1,2,e)) :- not(unsafe(2,1,1,2,e)).
-move2((3,0,2,1,w), (1,2,2,1,e)) :- not(unsafe(1,2,2,1,e)).
-move2((3,0,2,1,w), (3,0,0,3,e)) :- not(unsafe(3,0,0,3,e)).
+move((3,0,2,1,w), (2,1,2,1,e)) :- not(unsafe(2,1,2,1,e)).
+move((3,0,2,1,w), (3,0,1,2,e)) :- not(unsafe(3,0,1,2,e)).
+move((3,0,2,1,w), (2,1,1,2,e)) :- not(unsafe(2,1,1,2,e)).
+move((3,0,2,1,w), (1,2,2,1,e)) :- not(unsafe(1,2,2,1,e)).
+move((3,0,2,1,w), (3,0,0,3,e)) :- not(unsafe(3,0,0,3,e)).
 
-move2((3,0,1,2,w), (2,1,1,2,e)) :- not(unsafe(2,1,1,2,e)).
-move2((3,0,1,2,w), (3,0,0,3,e)) :- not(unsafe(3,0,0,3,e)).
-move2((3,0,1,2,w), (2,1,0,3,e)) :- not(unsafe(2,1,0,3,e)).
-move2((3,0,1,2,w), (1,2,1,2,e)) :- not(unsafe(1,2,1,2,e)). 
+move((3,0,1,2,w), (2,1,1,2,e)) :- not(unsafe(2,1,1,2,e)).
+move((3,0,1,2,w), (3,0,0,3,e)) :- not(unsafe(3,0,0,3,e)).
+move((3,0,1,2,w), (2,1,0,3,e)) :- not(unsafe(2,1,0,3,e)).
+move((3,0,1,2,w), (1,2,1,2,e)) :- not(unsafe(1,2,1,2,e)). 
 
-move2((3,0,0,3,w), (2,1,0,3,e)) :- not(unsafe(2,1,0,3,e)).
-move2((3,0,0,3,w), (1,2,0,3,e)) :- not(unsafe(1,2,0,3,e)).
+move((3,0,0,3,w), (2,1,0,3,e)) :- not(unsafe(2,1,0,3,e)).
+move((3,0,0,3,w), (1,2,0,3,e)) :- not(unsafe(1,2,0,3,e)).
 
-move2((2,1,3,0,w), (1,2,3,0,e)) :- not(unsafe(1,2,3,0,e)).
-move2((2,1,3,0,w), (2,1,2,1,e)) :- not(unsafe(2,1,2,1,e)).
-move2((2,1,3,0,w), (1,2,2,1,e)) :- not(unsafe(1,2,2,1,e)).
-move2((2,1,3,0,w), (0,3,3,0,e)) :- not(unsafe(0,3,3,0,e)).
-move2((2,1,3,0,w), (2,1,0,3,e)) :- not(unsafe(2,1,0,3,e)).
+move((2,1,3,0,w), (1,2,3,0,e)) :- not(unsafe(1,2,3,0,e)).
+move((2,1,3,0,w), (2,1,2,1,e)) :- not(unsafe(2,1,2,1,e)).
+move((2,1,3,0,w), (1,2,2,1,e)) :- not(unsafe(1,2,2,1,e)).
+move((2,1,3,0,w), (0,3,3,0,e)) :- not(unsafe(0,3,3,0,e)).
+move((2,1,3,0,w), (2,1,0,3,e)) :- not(unsafe(2,1,0,3,e)).
 
-move2((2,1,2,1,w), (1,2,2,1,e)) :- not(unsafe(1,2,2,1,e)).
-move2((2,1,2,1,w), (2,1,1,2,e)) :- not(unsafe(2,1,1,2,e)).
-move2((2,1,2,1,w), (1,2,1,2,e)) :- not(unsafe(1,2,1,2,e)).
-move2((2,1,2,1,w), (0,3,2,1,e)) :- not(unsafe(0,3,2,1,e)).
-move2((2,1,2,1,w), (2,1,0,3,e)) :- not(unsafe(2,1,0,3,e)).
+move((2,1,2,1,w), (1,2,2,1,e)) :- not(unsafe(1,2,2,1,e)).
+move((2,1,2,1,w), (2,1,1,2,e)) :- not(unsafe(2,1,1,2,e)).
+move((2,1,2,1,w), (1,2,1,2,e)) :- not(unsafe(1,2,1,2,e)).
+move((2,1,2,1,w), (0,3,2,1,e)) :- not(unsafe(0,3,2,1,e)).
+move((2,1,2,1,w), (2,1,0,3,e)) :- not(unsafe(2,1,0,3,e)).
 
-move2((2,1,1,2,w), (1,2,1,2,e)) :- not(unsafe(1,2,1,2,e)).
-move2((2,1,1,2,w), (2,1,0,3,e)) :- not(unsafe(2,1,0,3,e)).
-move2((2,1,1,2,w), (1,2,0,3,e)) :- not(unsafe(1,2,0,3,e)).
-move2((2,1,1,2,w), (0,3,1,2,e)) :- not(unsafe(0,3,1,2,e)).
+move((2,1,1,2,w), (1,2,1,2,e)) :- not(unsafe(1,2,1,2,e)).
+move((2,1,1,2,w), (2,1,0,3,e)) :- not(unsafe(2,1,0,3,e)).
+move((2,1,1,2,w), (1,2,0,3,e)) :- not(unsafe(1,2,0,3,e)).
+move((2,1,1,2,w), (0,3,1,2,e)) :- not(unsafe(0,3,1,2,e)).
 
-move2((2,1,0,3,w), (1,2,0,3,e)) :- not(unsafe(1,2,0,3,e)).
-move2((2,1,0,3,w), (0,3,0,3,e)) :- not(unsafe(0,3,0,3,e)). 
+move((2,1,0,3,w), (1,2,0,3,e)) :- not(unsafe(1,2,0,3,e)).
+move((2,1,0,3,w), (0,3,0,3,e)) :- not(unsafe(0,3,0,3,e)). 
 
-move2((1,2,3,0,w), (0,3,3,0,e)) :- not(unsafe(0,3,3,0,e)).
-move2((1,2,3,0,w), (1,2,2,1,e)) :- not(unsafe(1,2,2,1,e)).
-move2((1,2,3,0,w), (0,3,2,1,e)) :- not(unsafe(0,3,2,1,e)).
-move2((1,2,3,0,w), (1,2,1,2,e)) :- not(unsafe(1,2,1,2,e)).
+move((1,2,3,0,w), (0,3,3,0,e)) :- not(unsafe(0,3,3,0,e)).
+move((1,2,3,0,w), (1,2,2,1,e)) :- not(unsafe(1,2,2,1,e)).
+move((1,2,3,0,w), (0,3,2,1,e)) :- not(unsafe(0,3,2,1,e)).
+move((1,2,3,0,w), (1,2,1,2,e)) :- not(unsafe(1,2,1,2,e)).
 
-move2((1,2,2,1,w), (0,3,2,1,e)) :- not(unsafe(0,3,2,1,e)).
-move2((1,2,2,1,w), (1,2,1,2,e)) :- not(unsafe(1,2,1,2,e)).
-move2((1,2,2,1,w), (0,3,1,2,e)) :- not(unsafe(0,3,1,2,e)).
-move2((1,2,2,1,w), (1,2,0,3,e)) :- not(unsafe(1,2,0,3,e)).
+move((1,2,2,1,w), (0,3,2,1,e)) :- not(unsafe(0,3,2,1,e)).
+move((1,2,2,1,w), (1,2,1,2,e)) :- not(unsafe(1,2,1,2,e)).
+move((1,2,2,1,w), (0,3,1,2,e)) :- not(unsafe(0,3,1,2,e)).
+move((1,2,2,1,w), (1,2,0,3,e)) :- not(unsafe(1,2,0,3,e)).
 
-move2((1,2,1,2,w), (0,3,1,2,e)) :- not(unsafe(0,3,1,2,e)).
-move2((1,2,1,2,w), (1,2,0,3,e)) :- not(unsafe(1,2,0,3,e)).
-move2((1,2,1,2,w), (0,3,0,3,e)) :- not(unsafe(0,3,0,3,e)).
+move((1,2,1,2,w), (0,3,1,2,e)) :- not(unsafe(0,3,1,2,e)).
+move((1,2,1,2,w), (1,2,0,3,e)) :- not(unsafe(1,2,0,3,e)).
+move((1,2,1,2,w), (0,3,0,3,e)) :- not(unsafe(0,3,0,3,e)).
 
-move2((1,2,0,3,w), (0,3,0,3,e)) :- not(unsafe(0,3,0,3,e)).
+move((1,2,0,3,w), (0,3,0,3,e)) :- not(unsafe(0,3,0,3,e)).
 
-move2((0,3,3,0,w), (0,3,2,1,e)) :- not(unsafe(0,3,2,1,e)).
-move2((0,3,3,0,w), (0,3,1,2,e)) :- not(unsafe(0,3,1,2,e)).
+move((0,3,3,0,w), (0,3,2,1,e)) :- not(unsafe(0,3,2,1,e)).
+move((0,3,3,0,w), (0,3,1,2,e)) :- not(unsafe(0,3,1,2,e)).
 
-move2((0,3,2,1,w), (0,3,1,2,e)) :- not(unsafe(3,0,2,1,w)).
-move2((0,3,2,1,w), (0,3,0,3,e)) :- not(unsafe(3,0,3,0,2)).
+move((0,3,2,1,w), (0,3,1,2,e)) :- not(unsafe(3,0,2,1,w)).
+move((0,3,2,1,w), (0,3,0,3,e)) :- not(unsafe(3,0,3,0,2)).
 
 
 
