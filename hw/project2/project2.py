@@ -30,7 +30,6 @@ ds4 = [(float(x[0]),float(x[1])) for x in fds4]
 fds5 = [element[4].split(',') for element in lines]
 ds5 = [(float(x[0]),float(x[1])) for x in fds5]
 
-
 #calculates Euclidean distance between (x,y) and (j,k) 
 def dist(x,y,j,k):
     return sqrt((x-j)**2 + (y-k)**2)
@@ -52,7 +51,7 @@ def min_dist(pairs1, pairs2):
         for x in pairs2:
             temp.append(dist(element[0],element[1],x[0],x[1]))
         mins.append(min(temp))
-        temp = []  
+    temp = []  
     return mins 
 
 #Squares then sums the element of the lists 
@@ -66,7 +65,59 @@ def H(data,m):
     r_i = min_dist(data, randm) 
     p_i = min_dist(data, dm) 
     return sumsquare(r_i)/(sumsquare(p_i)+ sumsquare(r_i))
+b1 = []
+b2 = []
+b3 = []
+b4 = []
+b5 = []
+for i in range(100):
+    b1.append(H(ds1,50))
+    b2.append(H(ds2,50))
+    b3.append(H(ds3,50))
+    b4.append(H(ds4,50))
+    b5.append(H(ds5,50))
+print(b1)
+print('\n\n\n')
+print(b2)
+plt.figure(figsize=(12,9))
+plt.title('Hopkins stat 1')
+plt.scatter(b1,np.linspace(0,101, num=100))
+plt.savefig('hopkin1.png') 
+plt.clf()
+plt.cla()
+plt.close()
 
+plt.figure(figsize=(12,9))
+plt.title('Hopkins stat 2')
+plt.scatter(b2,np.linspace(0,101, num=100))
+plt.savefig('hopkin2.png') 
+plt.clf()
+plt.cla()
+plt.close()
+
+plt.figure(figsize=(12,9))
+plt.title('Hopkins stat 3')
+plt.scatter(b3,np.linspace(0,101, num=100))
+plt.savefig('hopkin3.png') 
+plt.clf()
+plt.cla()
+plt.close()
+
+plt.figure(figsize=(12,9))
+plt.title('Hopkins stat 4')
+plt.scatter(b4,np.linspace(0,101, num=100))
+plt.savefig('hopkin4.png') 
+plt.clf()
+plt.cla()
+plt.close()
+
+plt.figure(figsize=(12,9))
+plt.title('Hopkins stat 5')
+plt.scatter(b5,np.linspace(0,101, num=100))
+plt.savefig('hopkin5.png') 
+plt.clf()
+plt.cla()
+plt.close()
 #calculates p values 
 def pvalh(H,mu,sigma):
     z_0 = (H-mu)/sigma 
@@ -110,7 +161,8 @@ solutions.writelines(['['+pval_decide[0], ',\t'+pval_decide[1], ',\t'+pval_decid
 #Begins section 3
 
 m = 100 
-k=1000
+k = 1000
+
 ''' 
 #This bit has been commented out because this calculation takes SO LONG
 
@@ -139,6 +191,7 @@ p3H2 = [float(element) for element in temps[1].split(',')[:-1]]
 p3H3 = [float(element) for element in temps[2].split(',')[:-1]]
 p3H4 = [float(element) for element in temps[3].split(',')[:-1]]
 p3H5 = [float(element) for element in temps[4].split(',')[:-1]]
+
 
 
 mu = 0.5
