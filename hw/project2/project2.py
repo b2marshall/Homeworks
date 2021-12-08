@@ -15,20 +15,24 @@ with open('Hopkinsdata.csv') as fptr:
     linesin2 = [element.rstrip() for element in linesin]
     lines = [element.split(',,') for element in linesin2]
 
-fds1 = [element[0].split(',') for element in lines]
+fds1 = [] 
+fds2 = []  
+fds3 = []
+fds4 = []
+fds5 = []    
+
+for element in lines: 
+    fds1.append(element[0].split(','))
+    fds2.append(element[1].split(','))
+    fds3.append(element[2].split(','))
+    fds4.append(element[3].split(','))
+    fds5.append(element[4].split(',')) 
+  
 ds1 = [(float(x[0]),float(x[1])) for x in fds1]
-
-fds2 = [element[1].split(',') for element in lines]
 ds2 = [(float(x[0]),float(x[1])) for x in fds2]
-
-fds3 = [element[2].split(',') for element in lines]
 ds3 = [(float(x[0]),float(x[1])) for x in fds3]
-
-fds4 = [element[3].split(',') for element in lines]
 ds4 = [(float(x[0]),float(x[1])) for x in fds4]
-
-fds5 = [element[4].split(',') for element in lines]
-ds5 = [(float(x[0]),float(x[1])) for x in fds5]
+ 
 
 #calculates Euclidean distance between (x,y) and (j,k) 
 def dist(x,y,j,k):
@@ -163,11 +167,12 @@ solutions.writelines(['['+pval_decide[0], ',\t'+pval_decide[1], ',\t'+pval_decid
 m = 100 
 k = 1000
 
-''' 
+
 #This bit has been commented out because this calculation takes SO LONG
 
 
 p3h1 = [str(H(ds1,m))+',' for i in range(1000)]
+'''
 p3h2 = [str(H(ds2,m))+',' for i in range(1000)]
 p3h3 = [str(H(ds3,m))+',' for i in range(1000)]
 p3h4 = [str(H(ds4,m))+',' for i in range(1000)]
@@ -181,7 +186,7 @@ p3txt.writelines(p3h5+['\n'])
 p3txt.close()
 '''
 #reads in from the file generated so we don't have to recalculate everytime I run this 
-
+'''
 #3a
 f =  open('p3.txt', 'r')
 temps = f.readlines()
@@ -399,3 +404,4 @@ for i in range(5):
     solutions.write('The confidence interval for beta for dataset {0} is ({1}, {2})'.format(i+1,2*TnB[i]-scipy.stats.norm.ppf(0.9725), 2*TnB[i]-scipy.stats.norm.ppf(0.025))+'\n')
     solutions.write('\n')
 solutions.close()
+'''
