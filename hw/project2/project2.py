@@ -69,65 +69,39 @@ def H(data,m):
     r_i = min_dist(data, randm) 
     p_i = min_dist(data, dm) 
     return sumsquare(r_i)/(sumsquare(p_i)+ sumsquare(r_i))
+
 '''
-b1 = []
-b2 = []
-b3 = []
-b4 = []
-b5 = []
-for i in range(100):
-    b1.append(H(ds1,50))
-    b2.append(H(ds2,50))
-    b3.append(H(ds3,50))
-    b4.append(H(ds4,50))
-    b5.append(H(ds5,50))
-print(b1)
-print('\n\n\n')
-print(b2)
-plt.figure(figsize=(12,9))
-plt.title('Hopkins stat 1')
-plt.scatter(b1,np.linspace(0,101, num=100))
-plt.savefig('hopkin1.png') 
-plt.clf()
-plt.cla()
-plt.close()
-
-plt.figure(figsize=(12,9))
-plt.title('Hopkins stat 2')
-plt.scatter(b2,np.linspace(0,101, num=100))
-plt.savefig('hopkin2.png') 
-plt.clf()
-plt.cla()
-plt.close()
-
-plt.figure(figsize=(12,9))
-plt.title('Hopkins stat 3')
-plt.scatter(b3,np.linspace(0,101, num=100))
-plt.savefig('hopkin3.png') 
-plt.clf()
-plt.cla()
-plt.close()
-
-plt.figure(figsize=(12,9))
-plt.title('Hopkins stat 4')
-plt.scatter(b4,np.linspace(0,101, num=100))
-plt.savefig('hopkin4.png') 
-plt.clf()
-plt.cla()
-plt.close()
-
-plt.figure(figsize=(12,9))
-plt.title('Hopkins stat 5')
-plt.scatter(b5,np.linspace(0,101, num=100))
-plt.savefig('hopkin5.png') 
-plt.clf()
-plt.cla()
-plt.close()
+#b1 = []
+#b2 = []
+#b3 = []
+#b4 = []
+#b5 = []
+#for i in range(100):
+    #b1.append(H(ds1,50))
+    #b2.append(H(ds2,50))
+    #b3.append(H(ds3,50))
+    #b4.append(H(ds4,50))
+    #b5.append(H(ds5,50))
+#print(b1)
+#print('\n\n\n')
+#print(b2)
 '''
+
+xs1 = [element[0] for element in ds1]
+ys1 = [element[1] for element in ds1]
+xs2 = [element[0] for element in ds2]
+ys2 = [element[1] for element in ds2]
+xs3 = [element[0] for element in ds3]
+ys3 = [element[1] for element in ds3]
+xs4 = [element[0] for element in ds4]
+ys4 = [element[1] for element in ds5]
+xs5 = [element[0] for element in ds5]
+ys5 = [element[1] for element in ds5]
+
 
 #calculates p values 
 def pvalh(H,mu,sigma):
-    z_0 = (H-mu)/sigma 
+    z_0 = (H-mu)/sqrt(sigma) 
     p = 2*(scipy.stats.norm.cdf(-abs(z_0)))
     return p
 #decides to reject/maintain null hypothesis 
@@ -141,7 +115,7 @@ def pvalreject(pval):
 
 #Gets values for Ix(m,m) to answer 2b 
 z_alpha1 = 1/2 + 1.96/sqrt(8*m+4)
-z_alpha2 = 1/2 - 1.96/sqrt(8*m+4) 
+z_alpha2 = -1/2 - 1.96/sqrt(8*m+4) 
 alpha_estimate = 1 - (scipy.special.betainc(m,m,z_alpha1)-scipy.special.betainc(m,m,z_alpha2))
 solutions = open('hopkins.txt', 'w')
 solutions.writelines('Part 2c: The estimate for alpha is {0}\n\n'.format(alpha_estimate))
@@ -156,12 +130,16 @@ solutions.write('\n')
 
 #for 2e, calculates p values and writes to file
 pvals2e = [pvalh(element, 0.5, (1/sqrt(8*m+4))) for element in two_e]
+print(two_e)
+print('\n')
+print(pvals2e)
+print('\n\n\n')
 pvalswrite = ['p = '+str(element) for element in pvals2e]
 solutions.write('\n')
 solutions.writelines(['['+pvalswrite[0]+'\t', pvalswrite[1]+'\t', pvalswrite[2]+'\t', pvalswrite[3]+'\t', pvalswrite[4]+']'])
 
 #for 2f, decides whether or not to reject null hypothesis 
-pval_decide = [pvalreject(float(element)) for element in pvals2e]
+pval_decide = [pvalreject(element) for element in pvals2e]
 solutions.write('\n\nPart 2f: decide whether or not to reject the null hypothesis\n')
 solutions.writelines(['['+pval_decide[0], ',\t'+pval_decide[1], ',\t'+pval_decide[2], ',\t'+pval_decide[3], ',\t'+pval_decide[4]+']'])
 
@@ -193,17 +171,99 @@ p3txt.close()
 #3a
 f =  open('p3.txt', 'r')
 temps = f.readlines()
-f.close()
+
 p3H1 = [float(element) for element in temps[0].split(',')[:-1]]
 p3H2 = [float(element) for element in temps[1].split(',')[:-1]]
 p3H3 = [float(element) for element in temps[2].split(',')[:-1]]
 p3H4 = [float(element) for element in temps[3].split(',')[:-1]]
 p3H5 = [float(element) for element in temps[4].split(',')[:-1]]
 
+plt.figure(figsize=(12,9))
+plt.title('Data 1')
+plt.scatter(xs1,ys1)
+plt.savefig('hopkin1.png') 
+plt.clf()
+plt.cla()
+plt.close()
 
+plt.figure(figsize=(12,9))
+plt.title('Data 2')
+plt.scatter(xs2,ys2)
+plt.savefig('hopkin2.png') 
+plt.clf()
+plt.cla()
+plt.close()
+
+plt.figure(figsize=(12,9))
+plt.title('Data 3')
+plt.scatter(xs3,ys3)
+plt.savefig('hopkin3.png') 
+plt.clf()
+plt.cla()
+plt.close()
+
+plt.figure(figsize=(12,9))
+plt.title('Data 4')
+plt.scatter(xs4,ys4)
+plt.savefig('hopkin4.png') 
+plt.clf()
+plt.cla()
+plt.close()
+
+plt.figure(figsize=(12,9))
+plt.title('Data 5')
+plt.scatter(xs5,ys5)
+plt.savefig('hopkin5.png') 
+plt.clf()
+plt.cla()
+plt.close()
+
+'''
+plt.figure(figsize=(12,9))
+plt.title('Hopkins stat 1')
+plt.scatter(np.linspace(0,1, num=len(p3H1)),p3H1)
+plt.savefig('hopkin1.png') 
+plt.clf()
+plt.cla()
+plt.close()
+
+plt.figure(figsize=(12,9))
+plt.title('Hopkins stat 2')
+plt.scatter(np.linspace(0,1, num=len(p3H2)),p3H2)
+plt.savefig('hopkin2.png') 
+plt.clf()
+plt.cla()
+plt.close()
+
+plt.figure(figsize=(12,9))
+plt.title('Hopkins stat 3')
+plt.scatter(np.linspace(0,1, num=len(p3H3)),p3H3)
+plt.savefig('hopkin3.png') 
+plt.clf()
+plt.cla()
+plt.close()
+
+plt.figure(figsize=(12,9))
+plt.title('Hopkins stat 4')
+plt.scatter(np.linspace(0,1, num=len(p3H4)),p3H4)
+plt.savefig('hopkin4.png') 
+plt.clf()
+plt.cla()
+plt.close()
+
+plt.figure(figsize=(12,9))
+plt.title('Hopkins stat 5')
+plt.scatter(np.linspace(0,1, num=len(p3H5)),p3H5)
+plt.savefig('hopkin5.png') 
+plt.clf()
+plt.cla()
+plt.close()
+'''
+f.close()
 
 mu = 0.5
-sigma = 1/(sqrt(8*m+4)*sqrt(k))
+#sigma = 1/(sqrt(8*m+4)*sqrt(k))
+sigma = 1/(sqrt(8*m+4))
 
 p3p1 = [pvalh(h,mu,sigma) for h in p3H1]
 p3p2 = [pvalh(h,mu,sigma) for h in p3H2]
