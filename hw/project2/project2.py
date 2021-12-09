@@ -32,7 +32,7 @@ ds1 = [(float(x[0]),float(x[1])) for x in fds1]
 ds2 = [(float(x[0]),float(x[1])) for x in fds2]
 ds3 = [(float(x[0]),float(x[1])) for x in fds3]
 ds4 = [(float(x[0]),float(x[1])) for x in fds4]
- 
+ds5 = [(float(x[0]),float(x[1])) for x in fds5] 
 
 #calculates Euclidean distance between (x,y) and (j,k) 
 def dist(x,y,j,k):
@@ -69,6 +69,7 @@ def H(data,m):
     r_i = min_dist(data, randm) 
     p_i = min_dist(data, dm) 
     return sumsquare(r_i)/(sumsquare(p_i)+ sumsquare(r_i))
+'''
 b1 = []
 b2 = []
 b3 = []
@@ -122,6 +123,8 @@ plt.savefig('hopkin5.png')
 plt.clf()
 plt.cla()
 plt.close()
+'''
+
 #calculates p values 
 def pvalh(H,mu,sigma):
     z_0 = (H-mu)/sigma 
@@ -170,9 +173,9 @@ k = 1000
 
 #This bit has been commented out because this calculation takes SO LONG
 
-
-p3h1 = [str(H(ds1,m))+',' for i in range(1000)]
 '''
+p3h1 = [str(H(ds1,m))+',' for i in range(1000)]
+
 p3h2 = [str(H(ds2,m))+',' for i in range(1000)]
 p3h3 = [str(H(ds3,m))+',' for i in range(1000)]
 p3h4 = [str(H(ds4,m))+',' for i in range(1000)]
@@ -186,7 +189,7 @@ p3txt.writelines(p3h5+['\n'])
 p3txt.close()
 '''
 #reads in from the file generated so we don't have to recalculate everytime I run this 
-'''
+
 #3a
 f =  open('p3.txt', 'r')
 temps = f.readlines()
@@ -404,4 +407,4 @@ for i in range(5):
     solutions.write('The confidence interval for beta for dataset {0} is ({1}, {2})'.format(i+1,2*TnB[i]-scipy.stats.norm.ppf(0.9725), 2*TnB[i]-scipy.stats.norm.ppf(0.025))+'\n')
     solutions.write('\n')
 solutions.close()
-'''
+
