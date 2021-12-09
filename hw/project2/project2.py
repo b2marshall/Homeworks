@@ -70,35 +70,6 @@ def H(data,m):
     p_i = min_dist(data, dm) 
     return sumsquare(r_i)/(sumsquare(p_i)+ sumsquare(r_i))
 
-'''
-#b1 = []
-#b2 = []
-#b3 = []
-#b4 = []
-#b5 = []
-#for i in range(100):
-    #b1.append(H(ds1,50))
-    #b2.append(H(ds2,50))
-    #b3.append(H(ds3,50))
-    #b4.append(H(ds4,50))
-    #b5.append(H(ds5,50))
-#print(b1)
-#print('\n\n\n')
-#print(b2)
-'''
-
-xs1 = [element[0] for element in ds1]
-ys1 = [element[1] for element in ds1]
-xs2 = [element[0] for element in ds2]
-ys2 = [element[1] for element in ds2]
-xs3 = [element[0] for element in ds3]
-ys3 = [element[1] for element in ds3]
-xs4 = [element[0] for element in ds4]
-ys4 = [element[1] for element in ds5]
-xs5 = [element[0] for element in ds5]
-ys5 = [element[1] for element in ds5]
-
-
 #calculates p values 
 def pvalh(H,mu,sigma):
     z_0 = (H-mu)/sqrt(sigma) 
@@ -107,9 +78,9 @@ def pvalh(H,mu,sigma):
 #decides to reject/maintain null hypothesis 
 def pvalreject(pval): 
     if pval < 0.05:
-        return 'Reject null hypothesis'
+        return 'Reject null hypothesis - p<0.05'
     if pval > 0.1:
-        return 'Maintain null hypothesis'
+        return 'Maintain null hypothesis - p>0.1'
     else: 
         return 'P value inconclusive'
 
@@ -141,7 +112,8 @@ solutions.writelines(['['+pvalswrite[0]+'\t', pvalswrite[1]+'\t', pvalswrite[2]+
 #for 2f, decides whether or not to reject null hypothesis 
 pval_decide = [pvalreject(element) for element in pvals2e]
 solutions.write('\n\nPart 2f: decide whether or not to reject the null hypothesis\n')
-solutions.writelines(['['+pval_decide[0], ',\t'+pval_decide[1], ',\t'+pval_decide[2], ',\t'+pval_decide[3], ',\t'+pval_decide[4]+']'])
+print('[1:'+pval_decide[0], ',\n2:'+pval_decide[1], ',\n3:'+pval_decide[2], ',\n4:'+pval_decide[3], ',\n5:'+pval_decide[4]+']')
+solutions.writelines(['[1:'+pval_decide[0], ',\n2:'+pval_decide[1], ',\n3:'+pval_decide[2], ',\n4:'+pval_decide[3], ',\n5:'+pval_decide[4]+']'])
 
 #Begins section 3
 
@@ -177,6 +149,18 @@ p3H2 = [float(element) for element in temps[1].split(',')[:-1]]
 p3H3 = [float(element) for element in temps[2].split(',')[:-1]]
 p3H4 = [float(element) for element in temps[3].split(',')[:-1]]
 p3H5 = [float(element) for element in temps[4].split(',')[:-1]]
+
+#plots data to sanity check 
+xs1 = [element[0] for element in ds1]
+ys1 = [element[1] for element in ds1]
+xs2 = [element[0] for element in ds2]
+ys2 = [element[1] for element in ds2]
+xs3 = [element[0] for element in ds3]
+ys3 = [element[1] for element in ds3]
+xs4 = [element[0] for element in ds4]
+ys4 = [element[1] for element in ds5]
+xs5 = [element[0] for element in ds5]
+ys5 = [element[1] for element in ds5]
 
 plt.figure(figsize=(12,9))
 plt.title('Data 1')
@@ -218,47 +202,6 @@ plt.clf()
 plt.cla()
 plt.close()
 
-'''
-plt.figure(figsize=(12,9))
-plt.title('Hopkins stat 1')
-plt.scatter(np.linspace(0,1, num=len(p3H1)),p3H1)
-plt.savefig('hopkin1.png') 
-plt.clf()
-plt.cla()
-plt.close()
-
-plt.figure(figsize=(12,9))
-plt.title('Hopkins stat 2')
-plt.scatter(np.linspace(0,1, num=len(p3H2)),p3H2)
-plt.savefig('hopkin2.png') 
-plt.clf()
-plt.cla()
-plt.close()
-
-plt.figure(figsize=(12,9))
-plt.title('Hopkins stat 3')
-plt.scatter(np.linspace(0,1, num=len(p3H3)),p3H3)
-plt.savefig('hopkin3.png') 
-plt.clf()
-plt.cla()
-plt.close()
-
-plt.figure(figsize=(12,9))
-plt.title('Hopkins stat 4')
-plt.scatter(np.linspace(0,1, num=len(p3H4)),p3H4)
-plt.savefig('hopkin4.png') 
-plt.clf()
-plt.cla()
-plt.close()
-
-plt.figure(figsize=(12,9))
-plt.title('Hopkins stat 5')
-plt.scatter(np.linspace(0,1, num=len(p3H5)),p3H5)
-plt.savefig('hopkin5.png') 
-plt.clf()
-plt.cla()
-plt.close()
-'''
 f.close()
 
 mu = 0.5
