@@ -86,7 +86,7 @@ def pvalreject(pval):
 
 #Gets values for Ix(m,m) to answer 2b 
 z_alpha1 = 1/2 + 1.96/sqrt(8*m+4)
-z_alpha2 = -1/2 - 1.96/sqrt(8*m+4) 
+z_alpha2 = 1/2 - 1.96/sqrt(8*m+4) 
 alpha_estimate = 1 - (scipy.special.betainc(m,m,z_alpha1)-scipy.special.betainc(m,m,z_alpha2))
 solutions = open('hopkins.txt', 'w')
 solutions.writelines('Part 2c: The estimate for alpha is {0}\n\n'.format(alpha_estimate))
@@ -112,8 +112,9 @@ solutions.writelines(['['+pvalswrite[0]+'\t', pvalswrite[1]+'\t', pvalswrite[2]+
 #for 2f, decides whether or not to reject null hypothesis 
 pval_decide = [pvalreject(element) for element in pvals2e]
 solutions.write('\n\nPart 2f: decide whether or not to reject the null hypothesis\n')
-print('[1:'+pval_decide[0], ',\n2:'+pval_decide[1], ',\n3:'+pval_decide[2], ',\n4:'+pval_decide[3], ',\n5:'+pval_decide[4]+']')
-solutions.writelines(['[1:'+pval_decide[0], ',\n2:'+pval_decide[1], ',\n3:'+pval_decide[2], ',\n4:'+pval_decide[3], ',\n5:'+pval_decide[4]+']'])
+reject_string =['[1:'+pval_decide[0], '\n2:'+pval_decide[1], '\n3:'+pval_decide[2], '\n4:'+pval_decide[3], '\n5:'+pval_decide[4]+']']
+print(reject_string)
+solutions.writelines(reject_string)
 
 #Begins section 3
 
@@ -243,8 +244,8 @@ plt.close()
 
 plt.figure(figsize=(12,9))
 plt.title('P values for data set 4')
-plt.xticks(np.linspace(0,0.1,5))
-plt.hist(p3p4, bins=[0,0.025,0.05,0.075,0.1])
+plt.xticks(np.linspace(0,1,21))
+plt.hist(p3p4, bins=20)
 plt.savefig('p4.png') 
 plt.clf()
 plt.cla()
