@@ -132,7 +132,8 @@ def main():
     ds4 = [(float(x[0]),float(x[1])) for x in fds4]
     ds5 = [(float(x[0]),float(x[1])) for x in fds5] 
 
-    #Gets values for Ix(m,m) to answer 2b 
+    #Gets values for Ix(m,m) to answer 2b
+    m=50 
     z_alpha1 = 1/2 + 1.96/sqrt(8*m+4)
     z_alpha2 = 1/2 - 1.96/sqrt(8*m+4) 
     alpha_estimate = 1 - (scipy.special.betainc(m,m,z_alpha1)-scipy.special.betainc(m,m,z_alpha2))
@@ -426,4 +427,4 @@ def main():
     return 0
 
 if __name__ == "__main__":
-    cProfile.run(main())
+    cProfile.run('main()')
