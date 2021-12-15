@@ -458,7 +458,7 @@ def main():
     print("Runtime with first 1000 elements of DS1 and first 1000 elements of DS2, m=50, k=10: {0}".format(endtest3_1-starttest3_1))
     
 
-
+    #doubling m: 
     starttest1_2 = time.time()
     for element in range(10):
         Hstat = H(ds1, 50)
@@ -468,10 +468,17 @@ def main():
     for element in range(10):
         Hstat = H(ds1, 100)
     endtest2_2 = time.time()
+    
+    starttest3_2 = time.time()
+    for element in range(10):
+        Hstat = H(ds1, 100)
+    endtest3_2 = time.time()
     print('\n\nDoubling m:\n')
     print("Runtime with first 10 elements of dataset 1, m=50: {0}".format(endtest1_2-starttest1_2)) 
     print("\n") 
     print("Runtime with first 10 elements of dataset 1, m=100: {0}".format(endtest2_2-starttest2_2))
+    print("\n") 
+    print("Runtime with first 10 elements of dataset 1, m=200: {0}".format(endtest2_2-starttest2_2))
     print('\n\n')
 
 
@@ -484,11 +491,31 @@ def main():
     for element in range(20):
         Hstat = H(ds1, 50)
     endtest2_3 = time.time()
+    
+    starttest3_3 = time.time()
+    for element in range(40):
+        Hstat = H(ds1,50)
+    endtest3_3 = time.time()
+
     print('\n\nDoubling k:\n')
-    print("Runtime with first 10 elements of dataset 1: {0}".format(endtest1_3-starttest1_3)) 
+    print("Runtime with dataset 1, m=50, k=10: {0}".format(endtest1_3-starttest1_3)) 
     print("\n") 
-    print("Runtime with first 20 elements of dataset 1: {0}".format(endtest2_3-starttest2_3))
+    print("Runtime with dataset 1, m=50, k=20: {0}".format(endtest2_3-starttest2_3))
+    print("\n") 
+    print("Runtime with dataset 1, m=50, k=40: {0}".format(endtest2_3-starttest2_3))
     print('\n\n')
+    
+    doubling_n = [500,1000,2000]
+    doubling_n_ys = [(endtest1_1-starttest1_1), (endtest2_1-starttest2_1), (endtest3_1-starttest3_1)]
+    
+    doubling_m = [50,100,200]    
+    doubling_m_ys = [(endtest1_2-starttest1_2)(endtest2_2-starttest2_2)(endtest3_2-starttest3_2)]
+    
+    doubling_k = [10,20,40] 
+    doubling_k_ys =[(endtest1_3-starttest1_3),(endtest2_3-starttest2_3)(endtest3_3-starttest3_3)] 
+
+
+
     return 0
 if __name__ == "__main__":
     #cProfile.run('main()')
@@ -496,5 +523,5 @@ if __name__ == "__main__":
     profiler.enable()
     main()
     profiler.disable()
-    stats = pstats.Stats(profiler).sort_stats('ncalls')
+    stats = pstats.Stats(profiler).sort_stats('cumtime')
     stats.print_stats()
