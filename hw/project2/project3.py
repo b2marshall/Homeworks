@@ -455,7 +455,7 @@ def main():
     print("\n") 
     print("Runtime with first 1000 elements of dataset 1, m=50, k=10: {0}".format(endtest2_1-starttest2_1))
     print('\n')
-    print("Runtime with first 1000 elements of DS1 and first 1000 elements of DS2, m=50, k=10:".format(endtest3_1-starttest3_1))
+    print("Runtime with first 1000 elements of DS1 and first 1000 elements of DS2, m=50, k=10: {0}".format(endtest3_1-starttest3_1))
     
 
 
