@@ -432,7 +432,8 @@ def main():
 
 #ds1 will be testlist1
     dss = ds1[0:499] 
-    dss2 = ds1[0,999]
+    dss2 = ds1[0:999]
+    dss3 = ds1[0:999]+ds2[0:999]
     starttest1_1 = time.time()
     for element in range(10):
         Hstat = H(dss, 50)
@@ -442,11 +443,19 @@ def main():
     for element in range(10):
         Hstat = H(dss2, 50)
     endtest2_1 = time.time()
+    
+    starttest3_1 = time.time()
+    for element in range(10):
+        Hstat = H(dss3,50)
+    endtest3_1 = time.time()
+    
+
     print('\n\nDoubling n:\n')
     print("Runtime with first 500 elements of dataset 1, m=50, k=10: {0}".format(endtest1_1-starttest1_1)) 
     print("\n") 
     print("Runtime with first 1000 elements of dataset 1, m=50, k=10: {0}".format(endtest2_1-starttest2_1))
-    print('\n\n')
+    print('\n')
+    print("Runtime with first 1000 elements of DS1 and first 1000 elements of DS2, m=50, k=10:".format(endtest3_1-starttest3_1))
     
 
 
